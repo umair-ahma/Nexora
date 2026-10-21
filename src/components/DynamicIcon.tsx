@@ -1,0 +1,88 @@
+import React from 'react';
+import {
+  Home,
+  Building2,
+  HardHat,
+  Sparkles,
+  KeyRound,
+  PackageCheck,
+  Sun,
+  CalendarCheck,
+  GraduationCap,
+  Baby,
+  HeartHandshake,
+  Stethoscope,
+  ShieldCheck,
+  Hammer,
+  Calendar,
+  PartyPopper,
+  Layers,
+  Warehouse,
+  Droplets,
+  AppWindow,
+  Sofa,
+  Grid,
+  Flame,
+  Bath,
+  CloudRain,
+  MapPin,
+  Shield,
+  UserCheck,
+  Award,
+  Clock,
+  ClipboardCheck,
+  CheckCircle2,
+  BadgeDollarSign,
+  MessageSquare,
+  ShieldAlert,
+  Check,
+} from 'lucide-react';
+
+interface DynamicIconProps {
+  name: string;
+  className?: string;
+}
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Home,
+  Building2,
+  HardHat,
+  Sparkles,
+  KeyRound,
+  PackageCheck,
+  Sun,
+  CalendarCheck,
+  GraduationCap,
+  Baby,
+  HeartHandshake,
+  Stethoscope,
+  ShieldCheck,
+  Hammer,
+  Calendar,
+  PartyPopper,
+  Layers,
+  Warehouse,
+  Droplets,
+  AppWindow,
+  Sofa,
+  Grid,
+  Flame,
+  Bath,
+  CloudRain,
+  MapPin,
+  Shield,
+  UserCheck,
+  Award,
+  Clock,
+  ClipboardCheck,
+  CheckCircle2,
+  BadgeDollarSign,
+  MessageSquare,
+  ShieldAlert,
+  Check,
+};
+
+export default function DynamicIcon({ name, className = 'w-6 h-6' }: DynamicIconProps) {
+  const IconComponent = iconMap[name] || Sparkles;
+  return <IconComponent className={className} />;
+}

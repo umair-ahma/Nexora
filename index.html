@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en-AU" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexora Cleaning Co | Professional Cleaning Solutions Across Western Australia</title>
+  <meta name="description" content="Reliable cleaning for homes, businesses, builders and specialist facilities across Perth & Western Australia. 100% free quote within a few minutes — we beat all comparable quotes by 5%." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN for Instant Zero-Dependency Local & Static Execution -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#050811',
+            navyCard: '#0B1120',
+            brandCyan: '#10C0FF',
+            brandCyanBright: '#20E0FF',
+            brandBlue: '#0080F0',
+            brandRoyal: '#0060E0',
+            whatsapp: '#25D366',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            heading: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- LocalBusiness / CleaningService Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CleaningService",
+    "name": "Nexora Cleaning Co",
+    "url": "https://www.nexoracleaning.com.au",
+    "logo": "https://www.nexoracleaning.com.au/public/images/nexora-logo.jpg",
+    "email": "cleaning@nexora.com",
+    "telephone": "+61861000000",
+    "priceRange": "$$",
+    "areaServed": {
+      "@type": "City",
+      "name": "Perth",
+      "containedInPlace": {
+        "@type": "State",
+        "name": "Western Australia"
+      }
+    },
+    "description": "Professional Cleaning Solutions Across Western Australia. Reliable cleaning for homes, businesses, builders and specialist facilities."
+  }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased min-h-screen flex flex-col">
+
+  <!-- ========================================================================
+       1. STICKY HEADER & NAVIGATION
+  ======================================================================== -->
+  <header class="sticky top-0 z-40 w-full bg-[#050811]/95 backdrop-blur-md border-b border-brandCyan/20 text-white">
+    <!-- Top Announcement Bar -->
+    <div class="bg-[#03050B] border-b border-white/10 text-xs py-2 px-4">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-2 text-slate-300">
+          <span class="inline-flex items-center gap-1.5 font-medium text-brandCyan">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            WA-Based • Insured &amp; Police-Checked
+          </span>
+          <span class="hidden md:inline text-slate-600">|</span>
+          <span class="hidden md:inline text-slate-300">
+            Servicing All Perth Metro Suburbs &amp; Western Australia
+          </span>
+        </div>
+
+        <div class="flex items-center gap-4 ml-auto">
+          <span class="inline-flex items-center gap-1.5 bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-semibold">
+            <i data-lucide="badge-percent" class="w-3.5 h-3.5 text-emerald-400"></i>
+            We Beat Any Quote by 5%
+          </span>
+          <a href="mailto:cleaning@nexora.com" class="hidden sm:inline-flex items-center gap-1.5 text-slate-300 hover:text-brandCyan transition-colors">
+            <i data-lucide="mail" class="w-3.5 h-3.5 text-brandCyan"></i>
+            cleaning@nexora.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Row -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo Left -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 rounded-xl overflow-hidden border border-brandCyan/40 bg-black flex items-center justify-center shadow-[0_0_15px_rgba(16,192,255,0.25)] group-hover:border-brandCyan transition-colors">
+            <img src="public/images/nexora-logo.jpg" alt="Nexora Cleaning Co Logo" class="w-full h-full object-cover" onerror="this.src='/images/nexora-logo.jpg'" />
+          </div>
+          <div class="flex flex-col">
+            <span class="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-white leading-none">
+              NEXORA <span class="text-brandCyan">CLEANING</span>
+            </span>
+            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 mt-1 font-medium">
+              Western Australia
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+          <a href="#home" data-nav="home" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brandCyan hover:bg-white/5 transition-colors">Home</a>
+          <a href="#services" data-nav="services" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brandCyan hover:bg-white/5 transition-colors">Services (25)</a>
+          <a href="#industries" data-nav="industries" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brandCyan hover:bg-white/5 transition-colors">Industries</a>
+          <a href="#about" data-nav="about" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brandCyan hover:bg-white/5 transition-colors">About Us</a>
+          <a href="#service-areas" data-nav="service-areas" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brandCyan hover:bg-white/5 transition-colors">Service Areas</a>
+          <a href="#contact" data-nav="contact" class="nav-link px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-brandCyan hover:bg-white/5 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Right CTA & Phone -->
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="tel:+61861000000" class="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-sm font-semibold text-white transition-all">
+            <i data-lucide="phone" class="w-4 h-4 text-brandCyan"></i>
+            <span>(08) 6100 0000</span>
+          </a>
+
+          <a href="#contact" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-bold text-sm shadow-[0_6px_20px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5">
+            <span>Get a Free Quote</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="flex items-center gap-2 lg:hidden">
+          <a href="tel:+61861000000" aria-label="Call Nexora Cleaning" class="p-2.5 rounded-xl bg-brandBlue/20 border border-brandCyan/30 text-brandCyan">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+          </a>
+          <button id="mobile-menu-btn" type="button" aria-label="Toggle Menu" class="p-2.5 rounded-xl bg-white/5 border border-white/15 text-white hover:bg-white/10">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="hidden lg:hidden bg-[#060B17] border-t border-white/10 px-4 pt-3 pb-6 space-y-2">
+      <a href="#home" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-200 border-b border-white/5">Home</a>
+      <a href="#services" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-200 border-b border-white/5">Cleaning Services (All 25)</a>
+      <a href="#industries" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-200 border-b border-white/5">Industries We Serve</a>
+      <a href="#about" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-200 border-b border-white/5">About Us</a>
+      <a href="#service-areas" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-200 border-b border-white/5">Service Areas (Perth Metro)</a>
+      <a href="#contact" class="mobile-nav-link block py-2.5 text-base font-semibold text-slate-200 border-b border-white/5">Contact &amp; Quote</a>
+      <a href="#privacy-terms" class="mobile-nav-link block py-2.5 text-sm font-medium text-slate-400">Privacy Policy &amp; Terms</a>
+      <div class="pt-3 flex flex-col gap-2.5">
+        <a href="#contact" class="mobile-nav-link w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-center text-sm shadow-lg">
+          Get a Free Quote Within Minutes
+        </a>
+        <a href="tel:+61861000000" class="w-full py-3 px-5 rounded-xl bg-white/5 border border-white/15 text-white font-semibold text-center text-sm">
+          Call (08) 6100 0000
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       DYNAMIC MAIN VIEW CONTAINER
+  ======================================================================== -->
+  <main id="app-root" class="flex-1"></main>
+
+  <!-- ========================================================================
+       GLOBAL FOOTER
+  ======================================================================== -->
+  <footer class="bg-[#040710] text-slate-300 border-t border-brandCyan/20 pb-20 lg:pb-0">
+    <!-- Top Quote Banner Strip -->
+    <div class="bg-gradient-to-r from-[#08132B] via-[#0B1E42] to-[#08132B] border-b border-brandCyan/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-1 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brandCyan">
+            <i data-lucide="badge-percent" class="w-4 h-4"></i>
+            <span>We Beat All Comparable Written Quotes by 5%</span>
+          </div>
+          <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+            Let's Get Your Space Clean.
+          </h3>
+          <p class="text-sm text-slate-300">
+            100% free, no-obligation quote within a few minutes — price confirmed before work begins.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-sm shadow-[0_8px_25px_rgba(0,128,240,0.4)] hover:opacity-95 transition-all">
+            <span>Request a Free Quote</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+          <a href="tel:+61861000000" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm transition-all">
+            <i data-lucide="phone" class="w-4 h-4 text-brandCyan"></i>
+            <span>(08) 6100 0000</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Footer Columns -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        <!-- Brand Info -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="#home" class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl overflow-hidden border border-brandCyan/40 bg-black flex items-center justify-center">
+              <img src="public/images/nexora-logo.jpg" alt="Nexora Cleaning Co Logo" class="w-full h-full object-cover" onerror="this.src='/images/nexora-logo.jpg'" />
+            </div>
+            <div>
+              <span class="font-heading font-extrabold text-xl text-white block leading-none">
+                NEXORA <span class="text-brandCyan">CLEANING CO</span>
+              </span>
+              <span class="text-xs uppercase tracking-widest text-slate-400">
+                Perth • Western Australia
+              </span>
+            </div>
+          </a>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Professional Cleaning Solutions Across Western Australia. Reliable cleaning for homes, businesses, builders and specialist facilities—backed by documented checklists, screened staff, and upfront pricing.
+          </p>
+        </div>
+
+        <!-- Residential & Specialist Links -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider border-b border-white/10 pb-2">
+            Popular Cleaning Services
+          </h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#service/regular-house-cleaning" class="text-slate-400 hover:text-brandCyan">Regular House Cleaning</a></li>
+            <li><a href="#service/deep-cleaning" class="text-slate-400 hover:text-brandCyan">Deep Cleaning</a></li>
+            <li><a href="#service/end-of-lease-bond-cleaning" class="text-slate-400 hover:text-brandCyan">End-of-Lease / Bond Cleaning</a></li>
+            <li><a href="#service/move-in-cleaning" class="text-slate-400 hover:text-brandCyan">Move-In Cleaning</a></li>
+            <li><a href="#service/airbnb-short-stay-cleaning" class="text-slate-400 hover:text-brandCyan">Airbnb &amp; Short-Stay Turnover</a></li>
+            <li><a href="#service/kitchen-oven-appliance-cleaning" class="text-slate-400 hover:text-brandCyan">Kitchen &amp; Oven Cleaning (Add-On)</a></li>
+            <li><a href="#service/carpet-upholstery-cleaning" class="text-slate-400 hover:text-brandCyan">Carpet &amp; Upholstery (Partner)</a></li>
+          </ul>
+        </div>
+
+        <!-- Commercial & Quick Links -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider border-b border-white/10 pb-2">
+            Commercial &amp; Pages
+          </h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#service/office-commercial-cleaning" class="text-slate-400 hover:text-brandCyan">Office &amp; Commercial</a></li>
+            <li><a href="#service/school-education-cleaning" class="text-slate-400 hover:text-brandCyan">School &amp; Education</a></li>
+            <li><a href="#service/childcare-daycare-cleaning" class="text-slate-400 hover:text-brandCyan">Childcare &amp; Day-Care</a></li>
+            <li><a href="#service/builders-construction-cleaning" class="text-slate-400 hover:text-brandCyan">Builders &amp; Construction</a></li>
+            <li><a href="#industries" class="text-slate-300 hover:text-brandCyan font-medium">Industries We Serve</a></li>
+            <li><a href="#service-areas" class="text-slate-300 hover:text-brandCyan font-medium">Perth Service Areas</a></li>
+            <li><a href="#about" class="text-slate-300 hover:text-brandCyan font-medium">About Nexora</a></li>
+            <li><a href="#privacy-terms" class="text-slate-300 hover:text-brandCyan font-medium">Privacy Policy &amp; Terms</a></li>
+          </ul>
+        </div>
+
+        <!-- 3 Departmental Emails & Phone -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-heading font-bold text-white text-sm uppercase tracking-wider border-b border-white/10 pb-2">
+            Contact Our WA Team
+          </h4>
+          <div class="space-y-2.5 text-sm">
+            <p class="text-white font-semibold">Phone: <a href="tel:+61861000000" class="text-brandCyan hover:underline">(08) 6100 0000</a></p>
+            <div>
+              <span class="text-[11px] uppercase tracking-wider text-brandCyan block font-semibold">Main Website Email:</span>
+              <a href="mailto:cleaning@nexora.com" class="text-white hover:text-brandCyan font-medium">cleaning@nexora.com</a>
+            </div>
+            <div class="text-xs text-slate-400 space-y-1">
+              <p>Admin: <a href="mailto:admin@nexora.com" class="text-slate-300 hover:text-brandCyan">admin@nexora.com</a></p>
+              <p>Accounts: <a href="mailto:accounts@nexora.com" class="text-slate-300 hover:text-brandCyan">accounts@nexora.com</a></p>
+            </div>
+            <p class="text-xs text-slate-400 pt-1">Hours: Mon – Sun, 7:00 AM – 8:00 PM AWST (24/7 Commercial Available)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 bg-[#020409] py-6">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <p>© 2026 <strong class="text-white">Nexora Cleaning Co</strong> (nexoraCleaning.com.au). All rights reserved. Western Australia.</p>
+        <div class="flex items-center gap-6">
+          <a href="#privacy-terms" class="hover:text-brandCyan">Privacy Policy</a>
+          <a href="#privacy-terms" class="hover:text-brandCyan">Terms of Service</a>
+          <a href="#services" class="hover:text-brandCyan">All 25 Services</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       FLOATING WHATSAPP POP-UP CHAT WIDGET
+  ======================================================================== -->
+  <div class="fixed bottom-20 lg:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end">
+    <div id="wa-popup" class="hidden mb-3 w-[330px] sm:w-[360px] rounded-2xl overflow-hidden bg-white shadow-2xl border border-slate-200">
+      <div class="bg-gradient-to-r from-[#070D1D] to-[#0B1933] p-4 text-white flex items-center justify-between border-b border-brandCyan/30">
+        <div class="flex items-center gap-3">
+          <div class="relative w-10 h-10 rounded-full overflow-hidden border border-brandCyan bg-black shrink-0">
+            <img src="public/images/nexora-logo.jpg" alt="Nexora WA" class="w-full h-full object-cover" onerror="this.src='/images/nexora-logo.jpg'" />
+          </div>
+          <div>
+            <h4 class="font-heading font-bold text-sm text-white">Nexora Cleaning WA</h4>
+            <p class="text-[11px] text-emerald-300 font-medium">Online • Replies within a few minutes</p>
+          </div>
+        </div>
+        <button id="wa-close-btn" type="button" class="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-4 bg-slate-50 space-y-3">
+        <div class="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-slate-200 text-xs text-slate-700 space-y-1.5">
+          <p class="font-semibold text-slate-900">G'day from Perth! 👋</p>
+          <p>Need a fast, <strong>100% free quote</strong>? Remember — we <strong class="text-brandBlue">beat any comparable quote by 5%</strong>!</p>
+        </div>
+        <div class="space-y-1.5">
+          <a href="https://wa.me/61400000000?text=Hi%20Nexora%20Cleaning!%20I%20would%20like%20a%20free%20quote%20for%20an%20End-of-Lease%20/%20Bond%20Clean%20in%20Perth." target="_blank" rel="noopener" class="block w-full text-left text-xs font-medium px-3 py-2 rounded-xl bg-white hover:bg-brandBlue/5 text-slate-800 border border-slate-200">
+            🏠 End-of-Lease / Bond Clean Quote
+          </a>
+          <a href="https://wa.me/61400000000?text=Hi%20Nexora%20Cleaning!%20I%20would%20like%20a%20free%20quote%20for%20a%20Regular%20or%20Deep%20House%20Clean." target="_blank" rel="noopener" class="block w-full text-left text-xs font-medium px-3 py-2 rounded-xl bg-white hover:bg-brandBlue/5 text-slate-800 border border-slate-200">
+            ✨ Regular or Deep House Clean
+          </a>
+          <a href="https://wa.me/61400000000?text=Hi%20Nexora%20Cleaning!%20We%20are%20looking%20for%20Office%20/%20Commercial%20Cleaning%20in%20WA." target="_blank" rel="noopener" class="block w-full text-left text-xs font-medium px-3 py-2 rounded-xl bg-white hover:bg-brandBlue/5 text-slate-800 border border-slate-200">
+            🏢 Office / Commercial Cleaning
+          </a>
+          <a href="https://wa.me/61400000000?text=Hi%20Nexora%20Cleaning!%20I%20have%20a%20written%20quote%20and%20want%20to%20use%20your%205%25%20Price-Beat%20Guarantee." target="_blank" rel="noopener" class="block w-full text-left text-xs font-medium px-3 py-2 rounded-xl bg-white hover:bg-brandBlue/5 text-slate-800 border border-slate-200">
+            🏷️ Beat My Existing Quote by 5%
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <button id="wa-trigger-btn" type="button" class="relative flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-heading font-bold text-sm shadow-[0_8px_25px_rgba(37,211,102,0.45)] transition-all">
+      <span class="absolute -top-1 -right-1 flex h-4 w-4">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-4 w-4 bg-white text-[#128C7E] text-[10px] font-extrabold items-center justify-center">1</span>
+      </span>
+      <i data-lucide="message-circle" class="w-5 h-5"></i>
+      <span class="hidden sm:inline">WhatsApp Chat</span>
+    </button>
+  </div>
+
+  <!-- Sticky Mobile Bottom Bar -->
+  <div class="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-[#050811]/95 backdrop-blur-md border-t border-brandCyan/30 px-3 py-2.5">
+    <div class="grid grid-cols-3 gap-2 max-w-md mx-auto">
+      <a href="tel:+61861000000" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-white/10 border border-white/15 text-white font-semibold text-xs">
+        <span>📞 Call Now</span>
+      </a>
+      <a href="#contact" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs shadow-md">
+        <span>⚡ Free Quote</span>
+      </a>
+      <a href="https://wa.me/61400000000?text=Hi%20Nexora%20Cleaning,%20I%20would%20like%20a%20free%20quote%20in%20Perth!" target="_blank" rel="noopener" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-[#25D366] text-white font-heading font-bold text-xs shadow-md">
+        <span>💬 WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       APPLICATION DATA & MULTI-PAGE ROUTER
+  ======================================================================== -->
+  <script>
+    const SERVICES = [
+      // Category 1: Residential
+      { slug: 'regular-house-cleaning', title: 'Regular House Cleaning', categoryId: 'residential', categoryName: 'Residential Cleaning', badge: 'POPULAR RESIDENTIAL', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'Weekly, fortnightly, monthly and one-off cleaning tailored to keep your Perth home fresh, hygienic and effortlessly tidy.', overview: 'Designed for busy Perth professionals, families, and homeowners who want reliable, consistent domestic upkeep. You get a dedicated, police-checked cleaner following a personalised checklist for your bedrooms, bathrooms, kitchen, and living spaces.', checklist: ['Dusting and wiping of all accessible surfaces, furniture, and skirting boards', 'Kitchen benchtops, splashbacks, sink scrubbing, and external appliance wipe-down', 'Bathroom sanitisation: showers, glass screens, vanities, mirrors, and toilets', 'Thorough vacuuming of all carpets, rugs, stairs, and soft furnishings', 'Mopping and sanitising of hard floors (timber, tiles, vinyl, and hybrid flooring)', 'Bedroom tidying, mirror polishing, and general surface presentation', 'Emptying internal bins and replacing liners', 'Optional add-on available: Deep Kitchen, Oven & Appliance Cleaning'], featured: true },
+      { slug: 'deep-cleaning', title: 'Deep Cleaning', categoryId: 'residential', categoryName: 'Residential Cleaning', badge: 'INTENSIVE DETAIL', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'A more detailed clean for built-up dirt, soap scum, grease and hard-to-reach areas throughout your home.', overview: 'Ideal when your home needs a comprehensive reset—before hosting family, after a busy period, or prior to starting a regular fortnightly schedule.', checklist: ['Intensive descaling of shower screens, tapware, tiles, and bathroom grout lines', 'Detailed scrubbing of skirting boards, door frames, architraves, and light switches', 'High-reach dusting of ceiling fans, air-conditioning vents, and light fittings', 'Deep kitchen degreasing of rangehood exteriors, stove tops, splashbacks, and cabinet fronts', 'Window sills, sliding door tracks, and internal glass polishing', 'Under-furniture and edge vacuuming plus multi-stage hard floor sanitising', 'Full disinfection of toilets, laundry troughs, and wet areas', 'Optional add-on available: Inside Oven, Rangehood Filter & Appliance Deep Clean'], featured: true },
+      { slug: 'end-of-lease-bond-cleaning', title: 'End-of-Lease / Bond / Vacate Cleaning', categoryId: 'residential', categoryName: 'Residential Cleaning', badge: 'BOND BACK READY', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'Move-out cleaning for tenants, landlords and property managers designed to meet strict Western Australian final inspection standards.', overview: 'Our Perth vacate cleaning team follows a comprehensive real-estate inspection checklist so your property is handed back immaculate. Bundle carpet steam cleaning (via our trusted partner) and oven detailing for a complete one-stop handover.', checklist: ['Inside and outside of all kitchen cupboards, drawers, pantries, and benchtops', 'Full bathroom & ensuite restoration: showers, baths, toilets, vanities, mirrors, and exhaust fans', 'Built-in wardrobes, shelving, mirror doors, and sliding tracks cleaned inside and out', 'Skirting boards, doors, handles, power points, and switches detailed throughout', 'Cobweb removal, ceiling fan dusting, air vents, and light fittings cleaned', 'Internal windows, glass sliding doors, sills, and tracks thoroughly detailed', 'Full-property vacuuming and machine/hand mopping of all hard floors', 'Easy bundling with Kitchen/Oven Add-On and Trusted Partner Carpet Steam Cleaning'], featured: true },
+      { slug: 'move-in-cleaning', title: 'Move-In Cleaning', categoryId: 'residential', categoryName: 'Residential Cleaning', badge: 'FRESH START', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Prepare and sanitise a home from top to bottom before moving your family and furniture in.', overview: 'Whether you have just settled on a newly purchased Perth home or are moving into a rental property, our Move-In Clean ensures every cupboard, bathroom, and floor is hygienically sanitised before you unpack.', checklist: ['Sanitising inside all kitchen cabinets, drawers, and pantry shelves prior to unpacking', 'Hospital-grade disinfection of all toilets, showers, bathtubs, and bathroom vanities', 'Wiping inside wardrobes, linen cupboards, and laundry cabinetry', 'Dusting ceiling fans, blinds, window ledges, and air-conditioning vents', 'Spot-cleaning walls, doors, light switches, and door handles', 'Internal glass and mirror polishing for streak-free natural light', 'Deep vacuuming and antibacterial mopping of all floors', 'Optional Oven & Appliance Deep Clean Add-On for complete kitchen hygiene'], featured: false },
+      { slug: 'spring-cleaning', title: 'Spring Cleaning', categoryId: 'residential', categoryName: 'Residential Cleaning', badge: 'SEASONAL REFRESH', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Seasonal, whole-home refresh to clear out dust, allergens and winter build-up across every room.', overview: 'Give your home a bright seasonal uplift. Our Spring Cleaning package revitalises living spaces, bedrooms, wet areas, and indoor-outdoor entertaining zones.', checklist: ['Whole-home high and low dusting including fans, vents, cornices, and skirting boards', 'Window, sill, flyscreen brushing, and sliding door track detailing', 'Kitchen cabinet exteriors, splashbacks, benchtops, and sink polishing', 'Deep bathroom refresh removing soap residue, water marks, and mould spots', 'Cleaning behind and beneath movable furniture and appliances', 'Polishing mirrors, glass tables, and chrome fixtures throughout the house', 'Thorough allergen-reducing vacuuming and fragrant hard floor mopping', 'Customisable scope—add oven cleaning, pressure washing, or window detailing'], featured: false },
+      { slug: 'airbnb-short-stay-cleaning', title: 'Airbnb & Short-Stay Turnover Cleaning', categoryId: 'residential', categoryName: 'Residential Cleaning', badge: 'HOST PARTNER', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Guest changeovers, presentation checks and agreed linen or restocking tasks for 5-star guest reviews.', overview: 'We work with Airbnb hosts, Stayz owners, and short-term property managers across Perth to deliver punctual between-guest turnarounds between check-out and check-in.', checklist: ['Strict check-out to check-in turnaround scheduling across Perth metro suburbs', 'Stripping beds and remaking with fresh linen (per agreed host arrangement)', 'Hotel-standard bathroom sanitisation, towel presentation, and amenity restocking', 'Kitchen reset: dishes, fridge check, microwave, coffee machine, and bench sanitisation', 'Living area styling, cushion plumping, remote sanitising, and glass polishing', 'Rubbish removal, bin sanitising, and fresh liner replacement', 'Visual damage, lost-property, and consumable low-stock photo reporting to host', 'Thorough vacuuming and mopping of all guest areas and balconies'], featured: false },
+
+      // Category 2: Commercial & Specialist
+      { slug: 'office-commercial-cleaning', title: 'Office & Commercial Cleaning', categoryId: 'commercial', categoryName: 'Commercial & Specialist Facilities', badge: 'COMMERCIAL CORE', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'Workplaces, corporate suites, retail premises and common areas maintained to a consistent professional standard.', overview: 'A spotless workplace boosts staff productivity and leaves a strong impression on visiting clients. Our police-checked commercial team works during or after business hours using documented site checklists.', checklist: ['Workstations, desks, meeting tables, reception counters, and touchpoint disinfection', 'Staff kitchens, tea rooms, sinks, microwaves, fridges, and dishwasher loading/unloading', 'Commercial washroom sanitisation, toilet cleaning, and consumable restocking', 'Glass entry doors, partition glass, and reception mirror polishing', 'Commercial vacuuming of carpeted offices and machine/damp mopping of hard floors', 'Daily waste, recycling, and confidential bin emptying with liner replacement', 'After-hours or early-morning scheduling with secure alarm/key-holder protocols', 'Dedicated site communication logbook and regular quality inspections'], featured: true },
+      { slug: 'school-education-cleaning', title: 'School & Education Cleaning', categoryId: 'commercial', categoryName: 'Commercial & Specialist Facilities', badge: 'WWCC SCREENED', badgeClass: 'bg-sky-100 text-brandBlue', oneLiner: 'Safe, reliable cleaning for classrooms, staff areas, toilets and shared educational spaces.', overview: 'All Nexora personnel assigned to schools, colleges, and training campuses hold current National Police Clearances and Working With Children Checks (WWCC).', checklist: ['Classroom desks, chairs, whiteboards, sinks, and high-touch surface disinfection', 'Student and staff toilet blocks, change rooms, and drinking fountain sanitisation', 'Libraries, administration offices, staff rooms, and sick-bay hygiene cleaning', 'School halls, gymnasium floors, corridors, and stairwell maintenance', 'Safe, non-hazardous, colour-coded microfibre cleaning systems', 'Term-time daily cleaning plus comprehensive school holiday deep cleaning programmes', 'Rubbish collection and playground/quadrangle bin management', 'Full WWCC, Police Check, and WHS documentation supplied'], featured: false },
+      { slug: 'childcare-daycare-cleaning', title: 'Childcare & Day-Care Cleaning', categoryId: 'commercial', categoryName: 'Commercial & Specialist Facilities', badge: 'CHILD-SAFE HYGIENE', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'Age-appropriate cleaning and documented hygiene procedures tailored for early learning and day-care centres.', overview: 'Our childcare cleaning programmes focus on low-tox, child-safe sanitisation of play mats, nappy change rooms, sleep areas, and food preparation spaces in line with National Quality Standard (NQS) expectations.', checklist: ['Child-safe, non-toxic sanitisation of play tables, low shelving, and activity zones', 'Nappy change stations, toddler toilets, hand basins, and wet area disinfection', 'Cot rooms, sleep mats, and quiet area allergen-free vacuuming and wiping', 'Commercial bottle-prep and centre kitchen hygiene cleaning', 'Low-level internal glass, finger-mark removal, and entry door sanitisation', 'Strict colour-coded cleaning cloths and mops isolating bathroom vs. play/food zones', 'Signed daily cleaning & hygiene verification checklists for centre directors', '100% WWCC and Police-Checked staff trained in infection control protocols'], featured: true },
+      { slug: 'aged-care-cleaning', title: 'Aged-Care Cleaning', categoryId: 'commercial', categoryName: 'Commercial & Specialist Facilities', badge: 'HIGH-CARE STANDARDS', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Cleaning plans suited to the facility’s operational needs, resident comfort and strict hygiene procedures.', overview: 'Our screened, compassionate cleaners operate quietly and respectfully in residential care environments while maintaining rigorous infection-control standards.', checklist: ['Resident rooms, ensuites, handrails, call buttons, and mobility-aid touchpoint disinfection', 'Communal lounges, dining rooms, activity centres, and reception presentation', 'Slip-resistant floor cleaning procedures with clear safety signage and rapid-dry methods', 'Strict colour-coded infection prevention and cross-contamination controls', 'Quiet, respectful conduct around residents, nursing staff, and visiting families', 'Assisted living common corridors, lifts, and nursing station cleaning', 'Full compliance documentation, Police Checks, and screening adherence', 'Tailored daily or supplemental support schedules for WA care providers'], featured: false },
+      { slug: 'medical-healthcare-cleaning', title: 'Medical & Healthcare Cleaning', categoryId: 'commercial', categoryName: 'Commercial & Specialist Facilities', badge: 'COMING SOON', badgeClass: 'bg-amber-100 text-amber-800', oneLiner: 'Medical and healthcare cleaning — Coming Soon. Register your interest for GP clinics, dental practices and allied health.', overview: 'COMING SOON: Nexora Cleaning Co is finalising our dedicated clinical and allied healthcare cleaning division across Perth. Submit an enquiry below to register your clinic’s interest.', checklist: ['Consultation rooms, treatment beds (non-clinical surfaces), and waiting room sanitisation', 'High-touch point disinfection (door handles, reception counters, EFTPOS terminals)', 'Patient and staff washroom hospital-grade disinfection', 'Colour-coded clinical zoning and documented infection control checklists', 'Floor scrubbing and sanitisation of vinyl, tiled, and sealed clinical flooring', 'SDS (Safety Data Sheet) registers and site compliance logs', 'After-hours servicing to ensure zero disruption to patient appointments', 'Priority launch registration open now via cleaning@nexora.com'], featured: false },
+      { slug: 'ndis-domestic-cleaning', title: 'NDIS-Related Domestic Cleaning', categoryId: 'commercial', categoryName: 'Commercial & Specialist Facilities', badge: 'NDIS SUPPORT', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Supportive, reliable domestic cleaning tailored for NDIS participants (self-managed and plan-managed across Perth).', overview: 'We work closely with NDIS participants, family carers, support coordinators, and plan managers across WA to provide dependable domestic assistance matched to your goals and schedule.', checklist: ['Flexible routine cleaning of bedrooms, living areas, kitchens, and accessible bathrooms', 'Consistent cleaner allocation so participants see a familiar, trusted face', 'Assistance with bed linen changes, laundry folding, and dishwashing upon request', 'Clear, itemised invoicing sent directly to participants or Plan Managers (accounts@nexora.com)', 'Police-checked, empathetic team members who respect your routine and home', 'Low-scent or sensitive-skin cleaning product options available on request', 'Easy communication for Support Coordinators and family members', 'Customisable weekly, fortnightly, or one-off deep cleaning support'], featured: false },
+
+      // Category 3: Builders, Events & Projects
+      { slug: 'builders-construction-cleaning', title: 'Builders & Construction Cleaning', categoryId: 'builders-events', categoryName: 'Builders, Events & Projects', badge: 'HANDOVER READY', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'Rough, detailed and final handover cleans for new builds, commercial fit-outs or renovations across WA.', overview: 'We partner with Perth residential builders, site supervisors, shopfitters, and developers to transition construction sites from dusty work zones to defect-free client handovers.', checklist: ['Stage 1 Rough Clean: Removal of loose trade debris, packaging, plaster dust, and sweep/vacuum', 'Stage 2 Detailed Clean: Full detailing of cabinetry inside/out, joinery, bathrooms, and tiling', 'Stage 3 Final Handover Clean: Sparkle polish of glass, chrome, mirrors, and floors', 'Safe removal of manufacturer stickers, protective tape, silicone smudges, and paint flecks', 'Window, frame, sill, and sliding door track construction dust extraction', 'Garage, alfresco, porch, and driveway sweep/wash-down options', 'Construction-ready PPE, White Card awareness, and full Public Liability Insurance', 'Strict adherence to practical completion (PC) handover schedules'], featured: true },
+      { slug: 'post-renovation-cleaning', title: 'Post-Renovation Cleaning', categoryId: 'builders-events', categoryName: 'Builders, Events & Projects', badge: 'DUST REMOVAL', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Remove fine renovation dust, grout haze and trade residue safely using suitable methods for new surfaces.', overview: 'Our crew uses multi-stage vacuuming and surface-safe techniques to protect brand-new stone benchtops, cabinetry, tapware, and flooring after renovations.', checklist: ['Multi-pass fine dust extraction from walls, ceilings, cornices, and ledges', 'Inside and outside cleaning of newly installed cabinetry, drawers, and hardware', 'Careful removal of tile grout haze, adhesive marks, and trade footprints', 'Air-conditioning vents, ceiling fans, light fittings, and power points detailed', 'Non-scratch detailing of newly installed bathroom tapware and frameless glass', 'Window tracks, frames, and glass cleaned free of construction dust', 'Multi-stage vacuuming and damp microfibre mopping of new floors', 'Ready-to-live-in finish across both renovated and adjacent rooms'], featured: false },
+      { slug: 'pre-event-cleaning', title: 'Pre-Event Cleaning', categoryId: 'builders-events', categoryName: 'Builders, Events & Projects', badge: 'VENUE PREP', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Prepare and detail a venue to immaculate presentation standards before an event.', overview: 'Hosting a corporate launch, wedding reception, or private function in Perth? We ensure your venue, entryways, VIP lounges, and restrooms look spotless before doors open.', checklist: ['Main hall, stage, foyer, and VIP lounge floor vacuuming and polishing', 'Restroom deep sanitisation, mirror polishing, and soap/paper towel stocking', 'Bar areas, catering prep spaces, and servery bench sanitisation', 'Entry glass doors, balustrades, and outdoor patio presentation sweep', 'Table, chair, and fixture wipe-down prior to event styling', 'Empty bins fitted with fresh heavy-duty liners across the venue', 'Flexible bump-in timing coordinated with your event manager', 'Optional bundle with Post-Event Reset Cleaning'], featured: false },
+      { slug: 'post-event-cleaning', title: 'Post-Event Cleaning', categoryId: 'builders-events', categoryName: 'Builders, Events & Projects', badge: 'FAST VENUE RESET', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Venue reset, rubbish collection, washroom sanitisation and floor cleaning after events.', overview: 'Available late at night or early morning across Perth to clear event litter, sanitise washrooms, and return hired venues or offices to pristine condition.', checklist: ['Comprehensive litter picking, bottle sorting, and bagging of event waste', 'Spill removal, sticky floor degreasing, vacuuming, and machine/hand mopping', 'Full washroom and toilet block disinfection and deodorising', 'Bar, kitchen, and catering area clean-down and sink sanitising', 'Outdoor courtyard, marquee zone, and car park litter sweep', 'Surface wiping of tables, ledges, and fixtures', 'Late-night, overnight, or early-morning weekend deployment', 'Venue handover checklist verification to protect your hire bond'], featured: false },
+      { slug: 'strata-common-area-cleaning', title: 'Commercial / Strata Common-Area Cleaning', categoryId: 'builders-events', categoryName: 'Builders, Events & Projects', badge: 'STRATA CARE', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Dependable maintenance for lobbies, lifts, corridors, shared facilities and agreed common areas.', overview: 'We work with Perth strata managers, Councils of Owners, and building managers to keep residential and commercial complexes clean and welcoming.', checklist: ['Ground-floor lobbies, foyers, intercom panels, letterboxes, and entry glass doors', 'Lift car interiors, stainless steel polishing, mirrors, and lift door tracks', 'Carpeted corridors vacuumed and tiled/concrete fire stairs swept and mopped', 'Shared resident lounges, gyms, BBQ areas, and common washrooms cleaned', 'Bin rooms swept, tidied, and deodorised', 'Car park pedestrian walkways, cobweb removal, and external pathway tidying', 'Immediate hazard or maintenance issue reporting to strata manager', 'Consolidated monthly invoicing via accounts@nexora.com'], featured: false },
+      { slug: 'industrial-warehouse-cleaning', title: 'Industrial & Warehouse Cleaning', categoryId: 'builders-events', categoryName: 'Builders, Events & Projects', badge: 'SITE SCOPE', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Targeted cleaning only for industrial sites and tasks Nexora is equipped and trained to handle.', overview: 'Supporting workshops, logistics depots, and warehouses across Welshpool, Kewdale, Malaga, Canning Vale, and Henderson.', checklist: ['Site administration offices, meeting rooms, and dispatch counters', 'Staff crib rooms, lunchrooms, kitchenettes, and locker rooms', 'High-usage industrial toilets, showers, and washroom blocks', 'Warehouse pedestrian walkways, mezzanine floors, and packing stations', 'Industrial dust removal from accessible shelving, ledges, and signage', 'End-of-commercial-lease warehouse office and amenities clean-ups', 'Strict adherence to site inductions, PPE requirements, and SWMS protocols', 'Upfront scope assessment to ensure safe, appropriate equipment deployment'], featured: false },
+
+      // Category 4: Specialist & Exterior
+      { slug: 'high-pressure-washing', title: 'High-Pressure Washing', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'EXTERIOR RESTORE', badgeClass: 'bg-emerald-100 text-emerald-800', oneLiner: 'High-pressure surface cleaning for suitable driveways, paths, paved areas and exterior hard surfaces.', overview: 'Blasts away winter moss, bore stains, dirt build-up, and surface grime across Perth driveways, alfresco patios, limestone paths, and shopfronts.', checklist: ['Concrete, exposed aggregate, and brick-paved driveways and crossovers', 'Alfresco entertaining areas, patios, pool surrounds, and verandas', 'Garden pathways, side access walkways, and entry steps', 'Retaining walls, suitable limestone blocks, and exterior masonry', 'Commercial shopfront footpaths, bin bays, and loading zones', 'Removal of slippery winter moss, algae, dirt build-up, and surface grime', 'Careful pressure regulation to protect mortar joints and surface coatings', 'Final rinse-down of surrounding edges and adjacent areas'], featured: true },
+      { slug: 'window-cleaning', title: 'Window Cleaning', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'STREAK-FREE GLASS', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Streak-free interior and exterior window cleaning within safe working limits.', overview: 'Using pure-water systems and professional squeegee techniques, we remove coastal salt spray, water spots, dust, and fingerprints safely.', checklist: ['Interior and exterior glass panes cleaned to a streak-free shine', 'Sliding glass doors, stacker doors, and French door panels', 'Window frames, ledges, and aluminium/timber sills wiped down', 'Sliding door and window track vacuuming and grime removal', 'Flyscreen removal, light brushing/washing, and refitting upon request', 'Pool fencing glass and internal glass balustrades (optional inclusion)', 'Retail shopfront and ground-floor commercial office glazing', 'Performed strictly within safe working-at-heights limits'], featured: false },
+      { slug: 'carpet-upholstery-cleaning', title: 'Carpet & Upholstery Cleaning', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'TRUSTED PARTNER SERVICE', badgeClass: 'bg-purple-100 text-purple-800', oneLiner: 'Deep steam extraction for carpets, rugs and upholstery delivered seamlessly via our trusted Perth specialist partner.', overview: 'Delivered in partnership with our vetted specialist technician partner so you get industrial hot-water extraction with single-point Nexora booking and official bond receipts.', checklist: ['Seamless single-point booking alongside your End-of-Lease or House Clean', 'Pre-inspection, heavy-duty pre-vacuuming, and targeted stain pre-treatment', 'Hot-water extraction (steam cleaning) for carpeted bedrooms, lounges, and hallways', 'Fabric sofa, armchair, dining chair, and mattress steam sanitisation', 'Pet hair, odour neutralisation, and dust-mite removal treatments', 'Commercial carpet tile cleaning for offices and strata corridors', 'Official professional carpet cleaning invoice/receipt provided for bond inspections', 'Backed by Nexora’s coordination and quality communication standards'], featured: true },
+      { slug: 'tile-grout-cleaning', title: 'Tile & Grout Cleaning', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'HARD FLOOR REVIVAL', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Specialist deep cleaning of hard floors and discoloured grout lines.', overview: 'Lifts embedded grease, soap residue, and soil from ceramic, porcelain, and sealed hard tiled surfaces across kitchens, living areas, and wet zones.', checklist: ['Pre-treatment with specialist tile and grout cleaning solutions to break down grease', 'Mechanical agitation and deep scrubbing of recessed grout lines', 'Kitchen, hallway, open-plan living, and alfresco tiled floor restoration', 'Bathroom floor and wall tile deep descaling and sanitising', 'Extraction and thorough neutralising rinse leaving zero sticky residue', 'Safe methods tailored to ceramic, porcelain, and sealed hard surfaces', 'Ideal for pre-sale home presentation, new homeowners, and commercial foyers', 'Noticeable brightness improvement across high-traffic walkways'], featured: false },
+      { slug: 'kitchen-oven-appliance-cleaning', title: 'Kitchen, Oven & Appliance Cleaning', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'AVAILABLE AS ADD-ON', badgeClass: 'bg-sky-100 text-brandBlue', oneLiner: 'Deep degreasing for ovens, rangehoods, cooktops and appliances — offered as our popular Add-On to any clean.', overview: 'We offer Kitchen, Oven & Appliance Cleaning as a convenient Add-On to any Regular Clean, Deep Clean, or End-of-Lease Bond Clean for a sparkling, odour-free kitchen.', checklist: ['Complete internal oven degreasing (600mm or 900mm ovens, racks, trays, and side runners)', 'Oven door glass detailing to remove burnt-on grease and streaking', 'Gas burner, trivet, electric ceramic, or induction cooktop detailing and polishing', 'Rangehood canopy degreasing and removable metal filter soaking/cleaning', 'Microwave interior and exterior steam-clean and sanitisation', 'Dishwasher filter, door seal, and stainless steel exterior detailing', 'Refrigerator/freezer interior shelf and drawer sanitising (upon request)', 'Fume-free, food-safe finish ready for immediate use'], featured: true },
+      { slug: 'bathroom-toilet-deep-cleaning', title: 'Bathroom & Toilet Deep Cleaning', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'HYGIENE & DESCALING', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Intensive descaling, calcium removal and hospital-grade sanitisation for home bathrooms and commercial facilities.', overview: 'Targets Perth hard-water calcium build-up on shower screens, soap scum, mould spores, and washroom odours across homes and commercial washrooms.', checklist: ['Glass shower screen restoration removing hard water spots and soap scum build-up', 'Shower recess tiles, grout lines, soap dishes, and floor waste drain detailing', 'Bathtub, vanity basin, stone/laminate benchtop, and mirror polishing', 'Complete toilet cistern, bowl, hinges, base, and surrounding wall disinfection', 'Chrome, matte-black, or brushed-brass tapware and showerhead descaling', 'Exhaust fan cover dust removal and ceiling mould spot treatment', 'Commercial multi-cubicle washroom and urinal deep sanitisation', 'Antibacterial floor scrubbing and odour neutralisation'], featured: false },
+      { slug: 'gutter-cleaning', title: 'Gutter Cleaning', categoryId: 'specialist-exterior', categoryName: 'Specialist & Exterior Cleaning', badge: 'EXTERIOR SPECIALIST', badgeClass: 'bg-slate-100 text-slate-700', oneLiner: 'Optional specialist gutter clearing service, subject to safe access and appropriate equipment.', overview: 'Where roof pitch, height, and site access allow safe working conditions, our team clears leaves, silt, and debris from accessible gutters and downpipe entries.', checklist: ['Pre-work safe access and roofline assessment prior to commencement', 'Removal of dry leaves, twigs, moss, and roof debris from accessible gutters', 'Clearing of valleys and downpipe top-entry points to restore free water flow', 'Bagging and tidy removal of all extracted gutter debris from pathways and lawns', 'Before-and-after roof gutter photos provided upon request', 'Ideal before Perth’s winter storms or summer bushfire season', 'Single-storey residential and safe-access commercial properties', 'Transparent upfront confirmation of site suitability and pricing'], featured: false },
+    ];
+
+    const PERTH_REGIONS = [
+      { name: 'Perth CBD & Inner Suburbs', postcodes: '6000 – 6018', suburbs: ['Perth CBD', 'West Perth', 'East Perth', 'Northbridge', 'Subiaco', 'Leederville', 'Mount Lawley', 'Highgate', 'North Perth', 'Victoria Park', 'South Perth', 'Como', 'Burswood', 'Maylands', 'Bayswater'] },
+      { name: 'Northern Suburbs & Joondalup', postcodes: '6020 – 6065', suburbs: ['Joondalup', 'Hillarys', 'Scarborough', 'Karrinyup', 'Innaloo', 'Osborne Park', 'Balcatta', 'Stirling', 'Morley', 'Dianella', 'Malaga', 'Kingsley', 'Sorrento', 'Ocean Reef', 'Clarkson', 'Butler', 'Alkimos', 'Yanchep', 'Wanneroo'] },
+      { name: 'Western Suburbs & Coastal', postcodes: '6008 – 6019', suburbs: ['Cottesloe', 'Nedlands', 'Claremont', 'Dalkeith', 'Peppermint Grove', 'Mosman Park', 'Floreat', 'City Beach', 'Wembley', 'Churchlands', 'Shenton Park', 'Swanbourne'] },
+      { name: 'Southern Suburbs & Fremantle', postcodes: '6147 – 6166', suburbs: ['Fremantle', 'East Fremantle', 'Melville', 'Applecross', 'Booragoon', 'Willetton', 'Canning Vale', 'Cannington', 'Bentley', 'Murdoch', 'Cockburn Central', 'Success', 'Coogee', 'Thornlie', 'Gosnells', 'Armadale', 'Byford', 'Piara Waters'] },
+      { name: 'Eastern Suburbs & Perth Hills', postcodes: '6054 – 6076', suburbs: ['Midland', 'Guildford', 'Bassendean', 'Belmont', 'Rivervale', 'Cloverdale', 'Ascot', 'Kewdale', 'Welshpool', 'Forrestfield', 'Kalamunda', 'Mundaring', 'Ellenbrook', 'Aveley', 'Brabham'] },
+      { name: 'Rockingham, Kwinana & Peel', postcodes: '6167 – 6210', suburbs: ['Rockingham', 'Baldivis', 'Safety Bay', 'Waikiki', 'Secret Harbour', 'Port Kennedy', 'Kwinana', 'Wellard', 'Mandurah', 'Halls Head', 'Falcon', 'Dawesville', 'Lakelands'] },
+    ];
+
+    function renderQuoteFormHTML(defaultService = 'End-of-lease / bond / vacate cleaning') {
+      const optionsHtml = SERVICES.map(s =>
+        `<option value="${s.title}" ${s.title === defaultService ? 'selected' : ''}>${s.title} (${s.badge})</option>`
+      ).join('');
+
+      return `
+        <div id="quote-form-card" class="bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden">
+          <div class="bg-gradient-to-r from-[#060B18] via-[#0B1730] to-[#060B18] p-6 sm:p-8 text-white border-b border-brandCyan/30">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brandCyan/20 border border-brandCyan/40 text-brandCyan text-xs font-extrabold uppercase tracking-wider">
+                ⚡ 100% Free Quote Within a Few Minutes
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-extrabold uppercase tracking-wider">
+                🏷️ We Beat All Quotes by 5%
+              </span>
+            </div>
+            <h3 class="font-heading text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+              NEXORA CLEANING — ENQUIRY
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 mt-1">
+              Free, no-obligation quote — price confirmed before work begins.
+            </p>
+          </div>
+
+          <form id="nexora-enquiry-form" class="p-6 sm:p-8 space-y-5">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Service <span class="text-slate-400 font-normal">(Optional)</span>
+              </label>
+              <select name="service" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 font-medium focus:bg-white focus:border-brandBlue focus:outline-none">
+                ${optionsHtml}
+                <option value="Custom / Multiple Cleaning Services">Custom / Multiple Cleaning Services</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                  Name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" name="name" required placeholder="Your full name" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 focus:border-brandBlue focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                  Phone <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" name="phone" required placeholder="e.g. 0412 345 678" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 focus:border-brandBlue focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5">
+                  Suburb / Postcode (Address) <span class="text-red-500">*</span>
+                </label>
+                <input type="text" name="suburb" required placeholder="e.g. Subiaco 6008 or Street Address" class="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 focus:border-brandBlue focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Email <span class="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <input type="email" name="email" placeholder="you@example.com.au" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:outline-none" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Preferred Date <span class="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <input type="date" name="preferredDate" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                  Property Size <span class="text-slate-400 font-normal">(Optional)</span>
+                </label>
+                <select name="propertySize" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:outline-none">
+                  <option value="">Select property size (optional)...</option>
+                  <option value="Studio / 1 Bed, 1 Bath">Studio / 1 Bed, 1 Bath</option>
+                  <option value="2 Bed, 1–2 Bath">2 Bed, 1–2 Bath</option>
+                  <option value="3 Bed, 1–2 Bath">3 Bed, 1–2 Bath</option>
+                  <option value="4+ Bed / Large Family Home">4+ Bed / Large Family Home</option>
+                  <option value="Commercial / Office / School / Childcare">Commercial / Office / School / Childcare</option>
+                  <option value="Builders / Event / Custom Scope">Builders / Event / Custom Scope</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 2-Option Preferred Time Selector (1. Flexible | 2. Time & Clock) -->
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700">
+                Preferred Time <span class="text-slate-400 font-normal">(Optional — 2 Options: 1. Flexible | 2. Time &amp; Clock)</span>
+              </label>
+              <input type="hidden" name="timeMode" id="time-mode-input" value="Flexible" />
+              <div class="grid grid-cols-2 gap-3">
+                <button type="button" id="btn-time-flex" onclick="setTimeMode('Flexible')" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border bg-brandBlue text-white border-brandBlue shadow-sm transition-all">
+                  🕒 1. Flexible
+                </button>
+                <button type="button" id="btn-time-clock" onclick="setTimeMode('Clock')" class="py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border bg-white text-slate-700 border-slate-300 hover:border-brandBlue transition-all">
+                  ⏰ 2. Time &amp; Clock
+                </button>
+              </div>
+              <div id="clock-picker-wrap" class="hidden pt-2 flex items-center gap-3">
+                <label class="text-xs font-semibold text-slate-700">Select Clock Time:</label>
+                <input type="time" name="clockTime" value="09:00" class="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 focus:border-brandBlue focus:outline-none" />
+              </div>
+            </div>
+
+            <!-- Disappearing Notes Placeholder -->
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">
+                Notes <span class="text-slate-400 font-normal">(Optional)</span>
+              </label>
+              <textarea name="notes" rows="3" placeholder="Let us know if we need to know anything like property size, special requirements, oven add-on, carpet steam cleaning, or key access..." class="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:outline-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_25px_rgba(0,128,240,0.4)] transition-all">
+              Request My 100% Free Quote →
+            </button>
+
+            <p class="text-[11px] text-slate-500 text-center">
+              🔒 Price confirmed before work begins • We beat any comparable quote by 5% • Direct to cleaning@nexora.com
+            </p>
+          </form>
+        </div>
+      `;
+    }
+
+    window.setTimeMode = function(mode) {
+      const modeInput = document.getElementById('time-mode-input');
+      const btnFlex = document.getElementById('btn-time-flex');
+      const btnClock = document.getElementById('btn-time-clock');
+      const clockWrap = document.getElementById('clock-picker-wrap');
+      if (!modeInput) return;
+      modeInput.value = mode;
+      if (mode === 'Flexible') {
+        btnFlex.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border bg-brandBlue text-white border-brandBlue shadow-sm transition-all';
+        btnClock.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border bg-white text-slate-700 border-slate-300 hover:border-brandBlue transition-all';
+        clockWrap.classList.add('hidden');
+      } else {
+        btnClock.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border bg-brandBlue text-white border-brandBlue shadow-sm transition-all';
+        btnFlex.className = 'py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border bg-white text-slate-700 border-slate-300 hover:border-brandBlue transition-all';
+        clockWrap.classList.remove('hidden');
+      }
+    };
+
+    function bindQuoteForm() {
+      const form = document.getElementById('nexora-enquiry-form');
+      if (!form) return;
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fd = new FormData(form);
+        const name = (fd.get('name') || '').toString().trim();
+        const phone = (fd.get('phone') || '').toString().trim();
+        const suburb = (fd.get('suburb') || '').toString().trim();
+        const service = (fd.get('service') || 'End-of-lease / bond cleaning').toString();
+        const timeMode = (fd.get('timeMode') || 'Flexible').toString();
+        const clockTime = (fd.get('clockTime') || '09:00').toString();
+
+        if (!name || !phone || !suburb) {
+          alert('Please enter your Name, Phone Number, and Suburb/Postcode.');
+          return;
+        }
+
+        const card = document.getElementById('quote-form-card');
+        card.innerHTML = `
+          <div class="p-8 sm:p-12 text-center space-y-6">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 flex items-center justify-center mx-auto text-3xl font-bold">
+              ✓
+            </div>
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+              Enquiry Received • cleaning@nexora.com
+            </span>
+            <h3 class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
+              NEXORA CLEANING — ENQUIRY CONFIRMED
+            </h3>
+            <p class="text-base sm:text-lg text-slate-800 font-medium max-w-xl mx-auto leading-relaxed bg-emerald-50 border border-emerald-200 rounded-2xl p-5">
+              "Thanks for contacting Nexora Cleaning. We've received your request and will contact you to confirm the details."
+            </p>
+            <div class="bg-slate-50 rounded-2xl p-4 text-left text-xs sm:text-sm text-slate-600 max-w-md mx-auto space-y-1 border border-slate-200">
+              <p><strong>Service:</strong> ${service}</p>
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
+              <p><strong>Suburb/Postcode:</strong> ${suburb}</p>
+              <p><strong>Preferred Time:</strong> ${timeMode === 'Clock' ? 'Specific Time (' + clockTime + ')' : 'Flexible'}</p>
+            </div>
+            <div class="pt-2">
+              <a href="https://wa.me/61400000000?text=${encodeURIComponent('Hi Nexora Cleaning! I just submitted a quote request for ' + service + ' in ' + suburb + ' (Name: ' + name + ').')}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] text-white font-heading font-bold text-sm shadow-md">
+                💬 Fast-Track on WhatsApp
+              </a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderServiceCard(srv) {
+      return `
+        <div class="bg-white rounded-2xl border border-slate-200 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brandBlue">${srv.categoryName}</span>
+              <span class="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full ${srv.badgeClass}">${srv.badge}</span>
+            </div>
+            <h3 class="font-heading font-bold text-xl text-slate-900 mb-2">
+              <a href="#service/${srv.slug}" class="hover:text-brandBlue transition-colors">${srv.title}</a>
+            </h3>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">${srv.oneLiner}</p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+            <a href="#service/${srv.slug}" class="text-xs font-bold text-slate-800 hover:text-brandBlue">Learn More →</a>
+            <a href="#service/${srv.slug}" class="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-brandBlue text-white text-xs font-heading font-semibold transition-colors">
+              ${srv.badge === 'COMING SOON' ? 'Register Interest' : 'Get a Quote'}
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHomeView() {
+      const featuredCards = SERVICES.filter(s => s.featured).map(renderServiceCard).join('');
+      const allDirectory = ['residential', 'commercial', 'builders-events', 'specialist-exterior'].map(catId => {
+        const list = SERVICES.filter(s => s.categoryId === catId);
+        const catTitle = list[0]?.categoryName || '';
+        return `
+          <div class="space-y-2.5">
+            <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-brandBlue border-b border-slate-100 pb-1.5">${catTitle}</h4>
+            <ul class="space-y-1.5">
+              ${list.map(s => `
+                <li>
+                  <a href="#service/${s.slug}" class="text-xs sm:text-sm text-slate-700 hover:text-brandBlue font-medium flex items-center justify-between gap-1 py-0.5">
+                    <span>${s.title}</span>
+                    ${s.badge === 'COMING SOON' ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">SOON</span>' : ''}
+                    ${s.badge === 'AVAILABLE AS ADD-ON' ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-sky-100 text-brandBlue">ADD-ON</span>' : ''}
+                    ${s.badge === 'TRUSTED PARTNER SERVICE' ? '<span class="text-[9px] font-bold px-1.5 py-0.5 rounded bg-purple-100 text-purple-800">PARTNER</span>' : ''}
+                  </a>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <!-- SECTION 2: HERO -->
+        <section class="relative overflow-hidden bg-gradient-to-b from-[#040711] via-[#071126] to-[#0A1835] text-white py-16 sm:py-24 border-b border-brandCyan/20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-brandCyan/30 text-xs sm:text-sm font-semibold text-brandCyan">
+                <span>🇦🇺 Perth &amp; Western Australia • Residential, Commercial &amp; Specialist</span>
+              </div>
+              <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+                Professional Cleaning Solutions Across <span class="text-brandCyan">Western Australia.</span>
+              </h1>
+              <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+                Reliable cleaning for homes, businesses, builders and specialist facilities. Tailored services, clear communication and a team focused on quality.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white">⚡ 100% Free Quote Within a Few Minutes</div>
+                <div class="bg-emerald-500/15 border border-emerald-400/30 rounded-xl px-3.5 py-2.5 text-xs font-bold text-emerald-200">🏷️ We Will Beat All Quotes by 5%</div>
+                <div class="bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs font-bold text-white">🛡️ Price Confirmed Before Work Begins</div>
+              </div>
+              <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                <a href="#home-quote" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-extrabold text-base shadow-lg">
+                  Request a Free Quote →
+                </a>
+                <a href="#services" class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-heading font-bold text-base">
+                  Explore Our Services
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-5">
+              <div class="rounded-3xl bg-[#081226]/90 border border-brandCyan/30 p-6 sm:p-8 shadow-2xl space-y-5">
+                <div class="flex items-center gap-4 pb-4 border-b border-white/10">
+                  <img src="public/images/nexora-logo.jpg" alt="Nexora Logo" class="w-16 h-16 rounded-2xl border-2 border-brandCyan object-cover" onerror="this.src='/images/nexora-logo.jpg'" />
+                  <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brandCyan block">WA Verified Standard</span>
+                    <h2 class="font-heading text-xl font-extrabold text-white">Nexora Cleaning Co</h2>
+                    <p class="text-xs text-slate-300">cleaning@nexora.com • Perth WA</p>
+                  </div>
+                </div>
+                <ul class="space-y-2.5 text-xs sm:text-sm text-slate-200">
+                  <li>✓ <strong>Trust:</strong> Public Liability Insurance, National Police Checks &amp; WWCC</li>
+                  <li>✓ <strong>Services:</strong> 25 Dedicated Service Pages &amp; Documented Checklists</li>
+                  <li>✓ <strong>Enquiries:</strong> Short Mobile Form &amp; Instant WhatsApp Chat</li>
+                  <li>✓ <strong>Price Beat:</strong> We Beat Any Comparable Written Quote by 5%</li>
+                </ul>
+                <a href="#home-quote" class="block w-full py-3.5 px-4 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-sm text-center">
+                  Jump to 60-Second Quote Form
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: TRUST & CREDENTIALS -->
+        <section class="bg-slate-950 text-white py-12 border-b border-slate-800">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div class="bg-[#0B1224] border border-white/10 rounded-2xl p-5">
+              <h3 class="font-heading font-bold text-sm text-brandCyan mb-1">1. WA-Based Business</h3>
+              <p class="text-xs text-slate-400">Proudly local to Perth &amp; Western Australia across all metro suburbs.</p>
+            </div>
+            <div class="bg-[#0B1224] border border-white/10 rounded-2xl p-5">
+              <h3 class="font-heading font-bold text-sm text-brandCyan mb-1">2. Fully Insured</h3>
+              <p class="text-xs text-slate-400">Comprehensive Public Liability Insurance for homes &amp; commercial sites.</p>
+            </div>
+            <div class="bg-[#0B1224] border border-white/10 rounded-2xl p-5">
+              <h3 class="font-heading font-bold text-sm text-brandCyan mb-1">3. Police-Checked Staff</h3>
+              <p class="text-xs text-slate-400">National Police Clearance verified personnel for complete peace of mind.</p>
+            </div>
+            <div class="bg-[#0B1224] border border-white/10 rounded-2xl p-5">
+              <h3 class="font-heading font-bold text-sm text-brandCyan mb-1">4. Worker Screening</h3>
+              <p class="text-xs text-slate-400">Valid Working With Children Checks (WWCC) for schools &amp; childcare.</p>
+            </div>
+            <div class="bg-[#0B1224] border border-white/10 rounded-2xl p-5">
+              <h3 class="font-heading font-bold text-sm text-brandCyan mb-1">5. Flexible Scheduling</h3>
+              <p class="text-xs text-slate-400">Weekdays, weekends, after-hours commercial &amp; urgent bond cleans.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: OUR CLEANING SERVICES -->
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-brandBlue">Our Cleaning Services</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 mt-1">Dedicated Pages for Every Cleaning Service</h2>
+              </div>
+              <a href="#services" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 text-white font-heading font-bold text-xs sm:text-sm">
+                View All 25 Services →
+              </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              ${featuredCards}
+            </div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+              <h3 class="font-heading font-extrabold text-xl text-slate-900 mb-6">Complete Directory of All 25 Cleaning Services (Click Any to Open Dedicated Page)</h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                ${allDirectory}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5 & 6: INDUSTRIES WE SUPPORT & WHY CHOOSE NEXORA -->
+        <section class="py-16 bg-white border-t border-slate-200">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center max-w-3xl mx-auto">
+              <span class="text-xs font-bold uppercase tracking-widest text-brandBlue">Why Choose Nexora &amp; Sectors We Serve</span>
+              <h2 class="font-heading text-3xl font-extrabold text-slate-900 mt-1">Documented Checklists, Quality Inspections &amp; Clear Quotes</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Documented Cleaning Checklist</h3>
+                <p class="text-sm text-slate-600">Every residential, bond, commercial, and builders clean follows a structured room-by-room task list.</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Quality Inspections &amp; Follow-Up</h3>
+                <p class="text-sm text-slate-600">Our team inspects completed work and follows up with every client to ensure consistent standards.</p>
+              </div>
+              <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+                <h3 class="font-heading font-bold text-lg text-slate-900 mb-2">Clear Quotes + 5% Price Beat</h3>
+                <p class="text-sm text-slate-600">100% free quote within a few minutes, confirmed before work begins—plus we beat any comparable quote by 5%.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: HOW IT WORKS -->
+        <section class="py-16 bg-slate-900 text-white">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <h2 class="font-heading text-3xl font-extrabold text-center">How It Works — 4 Simple Steps</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <span class="text-brandCyan font-heading font-extrabold text-xl">01</span>
+                <h3 class="font-heading font-bold text-lg mt-2 mb-1">Tell us what needs cleaning.</h3>
+                <p class="text-xs text-slate-300">Use our short mobile form, WhatsApp chat, or call our Perth team.</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <span class="text-brandCyan font-heading font-extrabold text-xl">02</span>
+                <h3 class="font-heading font-bold text-lg mt-2 mb-1">We confirm details &amp; quote.</h3>
+                <p class="text-xs text-slate-300">Receive a 100% free quote within minutes with price confirmed upfront.</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <span class="text-brandCyan font-heading font-extrabold text-xl">03</span>
+                <h3 class="font-heading font-bold text-lg mt-2 mb-1">Agree on a date and time.</h3>
+                <p class="text-xs text-slate-300">Pick Flexible scheduling or lock in a Specific Clock Time.</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+                <span class="text-brandCyan font-heading font-extrabold text-xl">04</span>
+                <h3 class="font-heading font-bold text-lg mt-2 mb-1">Our team completes the work &amp; follows up.</h3>
+                <p class="text-xs text-slate-300">Checklist-verified clean and prompt post-service follow-up.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8 & 9: FINAL ENQUIRY SECTION -->
+        <section id="home-quote" class="py-20 bg-slate-50 border-t border-slate-200 scroll-mt-20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div class="lg:col-span-5 space-y-5">
+              <span class="inline-block px-3 py-1 rounded-full bg-brandBlue/10 text-brandBlue text-xs font-bold uppercase tracking-wider">
+                Final Enquiry Section
+              </span>
+              <h2 class="font-heading text-4xl font-extrabold text-slate-900">Let's Get Your Space Clean.</h2>
+              <p class="text-base text-slate-600">
+                Only <strong>Name</strong>, <strong>Phone</strong>, and <strong>Suburb/Postcode</strong> are required. All other fields are optional.
+              </p>
+              <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-2 text-sm">
+                <p><strong>Phone:</strong> <a href="tel:+61861000000" class="text-brandBlue font-bold">(08) 6100 0000</a></p>
+                <p><strong>Main Email:</strong> <a href="mailto:cleaning@nexora.com" class="text-brandBlue font-bold">cleaning@nexora.com</a></p>
+                <p><strong>Admin Email:</strong> <a href="mailto:admin@nexora.com" class="text-slate-700">admin@nexora.com</a></p>
+                <p><strong>Accounts Email:</strong> <a href="mailto:accounts@nexora.com" class="text-slate-700">accounts@nexora.com</a></p>
+                <p><strong>Hours:</strong> Mon – Sun, 7:00 AM – 8:00 PM AWST</p>
+              </div>
+            </div>
+            <div class="lg:col-span-7">
+              ${renderQuoteFormHTML()}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderServicesOverview() {
+      const sections = ['residential', 'commercial', 'builders-events', 'specialist-exterior'].map(catId => {
+        const list = SERVICES.filter(s => s.categoryId === catId);
+        return `
+          <div class="space-y-6">
+            <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900 border-b border-slate-200 pb-3">${list[0].categoryName} (${list.length} Services)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              ${list.map(renderServiceCard).join('')}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <section class="bg-[#050A18] text-white py-16 border-b border-brandCyan/20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-brandCyan">All 25 Dedicated Cleaning Services</span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-extrabold">Cleaning Services Overview</h1>
+            <p class="text-slate-300 max-w-2xl">Click any service card below to open its dedicated page with a 1-liner overview, documented checklist, and quote form.</p>
+          </div>
+        </section>
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            ${sections}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSingleService(slug) {
+      const srv = SERVICES.find(s => s.slug === slug) || SERVICES[2];
+      return `
+        <section class="bg-gradient-to-b from-[#040814] to-[#0B1936] text-white py-14 sm:py-20 border-b border-brandCyan/20">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
+            <a href="#services" class="inline-flex items-center gap-1.5 text-xs font-bold text-brandCyan hover:underline">← Back to All 25 Services</a>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-xs font-bold uppercase px-3 py-1 rounded-full bg-white/10 text-white">${srv.categoryName}</span>
+              <span class="text-xs font-extrabold uppercase px-3 py-1 rounded-full ${srv.badgeClass}">${srv.badge}</span>
+            </div>
+            <h1 class="font-heading text-3xl sm:text-5xl font-extrabold text-white">${srv.title}</h1>
+            <p class="text-lg sm:text-xl text-brandCyan font-medium">${srv.oneLiner}</p>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">${srv.overview}</p>
+            <div class="pt-2">
+              <a href="#service-enquiry" class="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-extrabold text-sm sm:text-base shadow-lg">
+                ${srv.badge === 'COMING SOON' ? 'Register Your Interest Now →' : 'Request a Quote / Book Now →'}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm space-y-6">
+              <h2 class="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">Documented Cleaning Checklist — ${srv.title}</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                ${srv.checklist.map(item => `
+                  <div class="flex items-start gap-3 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 font-medium">
+                    <span class="text-emerald-600 font-bold">✓</span>
+                    <span>${item}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div id="service-enquiry" class="scroll-mt-24">
+              ${renderQuoteFormHTML(srv.title)}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderIndustriesView() {
+      const sectors = [
+        { title: 'Homes & Residential Properties', desc: 'Regular house cleaning, deep cleans, end-of-lease bond cleaning, move-in cleans, and oven add-ons across Perth.' },
+        { title: 'Offices & Corporate Workplaces', desc: 'Daily, weekly, or after-hours commercial office, retail, and reception cleaning with documented checklists.' },
+        { title: 'Construction, Builders & Renovators', desc: 'Rough, detailed, and final practical completion (PC) handover cleans for new builds and renovations.' },
+        { title: 'Schools, Colleges & Education', desc: 'WWCC and Police-Checked cleaning teams for classrooms, amenities, halls, and term-break deep cleans.' },
+        { title: 'Childcare & Day-Care Centres', desc: 'Age-appropriate, low-tox sanitisation and signed daily hygiene logs for early learning centres.' },
+        { title: 'Aged Care & NDIS Participant Homes', desc: 'Respectful facility cleaning and NDIS self-managed/plan-managed domestic support (invoiced via accounts@nexora.com).' },
+        { title: 'Events & Venues', desc: 'Pre-event venue preparation and rapid overnight/early-morning post-event reset and rubbish removal.' },
+        { title: 'Property Managers & Strata', desc: 'REIWA-aligned tenant vacate cleans, strata common-area maintenance, Airbnb turnovers, and partner carpet steam cleaning.' },
+      ];
+      return `
+        <section class="bg-[#050A18] text-white py-16 border-b border-brandCyan/20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-brandCyan">Industries We Support Across WA</span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-extrabold">Industries We Serve</h1>
+            <p class="text-slate-300 max-w-2xl">Screened staff, documented checklists, and tailored hygiene standards for Western Australia's residential and commercial sectors.</p>
+          </div>
+        </section>
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            ${sectors.map(sec => `
+              <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-3">
+                <h2 class="font-heading text-2xl font-extrabold text-slate-900">${sec.title}</h2>
+                <p class="text-sm text-slate-600 leading-relaxed">${sec.desc}</p>
+                <a href="#contact" class="inline-block text-xs font-bold text-brandBlue hover:underline pt-2">Request a Sector Quote →</a>
+              </div>
+            `).join('')}
+          </div>
+          <div class="max-w-4xl mx-auto px-4">${renderQuoteFormHTML('Office & Commercial Cleaning')}</div>
+        </section>
+      `;
+    }
+
+    function renderAboutView() {
+      return `
+        <section class="bg-[#050A18] text-white py-16 border-b border-brandCyan/20">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-brandCyan">About Nexora Cleaning Co</span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-extrabold">Built on Trust, Dedicated Service Standards &amp; Clear Communication</h1>
+            <p class="text-slate-300 max-w-2xl">Proudly Western Australian owned and operated across Perth Metro.</p>
+          </div>
+        </section>
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="bg-white rounded-3xl p-8 border border-slate-200 space-y-4 text-slate-700 leading-relaxed">
+              <h2 class="font-heading text-2xl font-extrabold text-slate-900">Our 3 Core Pillars</h2>
+              <p><strong>1. Trust:</strong> Comprehensive Public Liability Insurance, National Police Checks, relevant Working With Children Checks (WWCC), trained staff, and clear service standards.</p>
+              <p><strong>2. Services:</strong> Dedicated service checklists across 25 residential, commercial, builders, event, and exterior cleaning services.</p>
+              <p><strong>3. Enquiries:</strong> Fast, mobile-friendly quote requests with 100% free quotes within minutes, upfront price confirmation, and our 5% Price-Beat Guarantee.</p>
+            </div>
+            ${renderQuoteFormHTML()}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderServiceAreasView() {
+      return `
+        <section class="bg-[#050A18] text-white py-16 border-b border-brandCyan/20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-brandCyan">All Over Perth &amp; Surrounds</span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-extrabold">Areas We Service Across Perth, WA</h1>
+            <p class="text-slate-300 max-w-2xl">Covering all Northern, Southern, Eastern, Western, CBD, and Peel/Mandurah suburbs.</p>
+          </div>
+        </section>
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+            ${PERTH_REGIONS.map(r => `
+              <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <div class="flex items-center justify-between">
+                  <h2 class="font-heading font-bold text-xl text-slate-900">${r.name}</h2>
+                  <span class="text-xs font-bold px-2.5 py-1 rounded bg-sky-50 text-brandBlue">${r.postcodes}</span>
+                </div>
+                <div class="flex flex-wrap gap-1.5">
+                  ${r.suburbs.map(sub => `<span class="text-xs px-2.5 py-1 rounded-lg bg-slate-50 border border-slate-200 text-slate-700">${sub}</span>`).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="max-w-4xl mx-auto px-4">${renderQuoteFormHTML()}</div>
+        </section>
+      `;
+    }
+
+    function renderContactView() {
+      return `
+        <section class="bg-[#050A18] text-white py-16 border-b border-brandCyan/20">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-brandCyan">100% Free Quote Within a Few Minutes</span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-extrabold">Contact &amp; Request a Quote</h1>
+            <p class="text-slate-300 max-w-2xl">We beat all comparable quotes by 5% — price confirmed before work begins.</p>
+          </div>
+        </section>
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 space-y-4">
+              <h2 class="font-heading text-2xl font-extrabold text-slate-900">Direct Perth Contacts</h2>
+              <div class="p-4 rounded-2xl bg-sky-50 border border-brandBlue/30">
+                <span class="text-xs font-bold uppercase text-brandBlue block">Main Website &amp; Quote Email</span>
+                <a href="mailto:cleaning@nexora.com" class="font-heading font-bold text-lg text-slate-900">cleaning@nexora.com</a>
+              </div>
+              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span class="text-xs font-bold uppercase text-slate-500 block">Administration Email</span>
+                <a href="mailto:admin@nexora.com" class="font-heading font-bold text-base text-slate-900">admin@nexora.com</a>
+              </div>
+              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200">
+                <span class="text-xs font-bold uppercase text-slate-500 block">Accounts &amp; Invoicing Email</span>
+                <a href="mailto:accounts@nexora.com" class="font-heading font-bold text-base text-slate-900">accounts@nexora.com</a>
+              </div>
+              <div class="p-4 rounded-2xl bg-slate-900 text-white">
+                <span class="text-xs uppercase text-brandCyan block">Phone</span>
+                <a href="tel:+61861000000" class="font-heading font-bold text-lg">(08) 6100 0000</a>
+              </div>
+            </div>
+            <div class="lg:col-span-7">${renderQuoteFormHTML()}</div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderPrivacyView() {
+      return `
+        <section class="bg-[#050A18] text-white py-14 border-b border-brandCyan/20">
+          <div class="max-w-4xl mx-auto px-4 space-y-2">
+            <h1 class="font-heading text-3xl sm:text-5xl font-extrabold">Privacy Policy &amp; Terms of Service</h1>
+            <p class="text-slate-300 text-sm">Compliant with the Australian Privacy Principles (APPs) &amp; Australian Consumer Law.</p>
+          </div>
+        </section>
+        <section class="py-16 bg-slate-50">
+          <div class="max-w-4xl mx-auto px-4 space-y-8">
+            <div class="bg-white rounded-3xl p-8 border border-slate-200 space-y-4 text-sm text-slate-700 leading-relaxed">
+              <h2 class="font-heading text-2xl font-extrabold text-slate-900">1. Privacy Policy</h2>
+              <p>Nexora Cleaning Co (nexoraCleaning.com.au) collects only the information needed to provide your quote and deliver your cleaning service (Name, Phone, and Suburb/Address required; Email, Date, Time, Property Size, and Notes optional). Enquiries are routed securely to cleaning@nexora.com and never sold to third parties.</p>
+              <h2 class="font-heading text-2xl font-extrabold text-slate-900 pt-4">2. Terms of Service</h2>
+              <p>All quotes are 100% free and no-obligation, with pricing confirmed before work begins. Our 5% Price-Beat Guarantee applies to any comparable written quote from an insured WA cleaning provider for an identical scope of work.</p>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function router() {
+      const hash = window.location.hash || '#home';
+      const root = document.getElementById('app-root');
+
+      if (hash.startsWith('#service/')) {
+        const slug = hash.replace('#service/', '');
+        root.innerHTML = renderSingleService(slug);
+        window.scrollTo(0, 0);
+      } else if (hash === '#services') {
+        root.innerHTML = renderServicesOverview();
+        window.scrollTo(0, 0);
+      } else if (hash === '#industries') {
+        root.innerHTML = renderIndustriesView();
+        window.scrollTo(0, 0);
+      } else if (hash === '#about') {
+        root.innerHTML = renderAboutView();
+        window.scrollTo(0, 0);
+      } else if (hash === '#service-areas') {
+        root.innerHTML = renderServiceAreasView();
+        window.scrollTo(0, 0);
+      } else if (hash === '#contact') {
+        root.innerHTML = renderContactView();
+        window.scrollTo(0, 0);
+      } else if (hash === '#privacy-terms') {
+        root.innerHTML = renderPrivacyView();
+        window.scrollTo(0, 0);
+      } else {
+        root.innerHTML = renderHomeView();
+        if (hash === '#home-quote') {
+          setTimeout(() => {
+            document.getElementById('home-quote')?.scrollIntoView({ behavior: 'smooth' });
+          }, 50);
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }
+
+      bindQuoteForm();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    window.addEventListener('hashchange', router);
+    window.addEventListener('DOMContentLoaded', () => {
+      router();
+
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileDrawer = document.getElementById('mobile-drawer');
+      mobileBtn?.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('hidden');
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => mobileDrawer.classList.add('hidden'));
+      });
+
+      // WhatsApp widget toggle
+      const waTrigger = document.getElementById('wa-trigger-btn');
+      const waPopup = document.getElementById('wa-popup');
+      const waClose = document.getElementById('wa-close-btn');
+      waTrigger?.addEventListener('click', () => waPopup.classList.toggle('hidden'));
+      waClose?.addEventListener('click', () => waPopup.classList.add('hidden'));
+    });
+  </script>
+</body>
+</html>
