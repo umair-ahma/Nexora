@@ -39,3 +39,11 @@ next-env.d.ts
 /cloudflare-dist
 *.zip
 
+# Local private client & agent context (keep out of public Git)
+/.agents
+/CLIENT_CONTEXT.md
+/invoices
+/invoice
+
+
+

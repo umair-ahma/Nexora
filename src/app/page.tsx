@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
@@ -11,6 +13,8 @@ import {
   Sparkles,
   CheckCircle2,
   MessageCircle,
+  Star,
+  Check,
 } from 'lucide-react';
 import {
   BRAND_INFO,
@@ -22,6 +26,8 @@ import {
   HOW_IT_WORKS_STEPS,
   PERTH_REGIONS,
   HOME_FAQS,
+  TESTIMONIALS,
+  ServiceCategoryId,
 } from '@/data/nexoraData';
 import DynamicIcon from '@/components/DynamicIcon';
 import ServiceCard from '@/components/ServiceCard';
@@ -29,25 +35,32 @@ import QuoteForm from '@/components/QuoteForm';
 import FaqAccordion from '@/components/FaqAccordion';
 
 export default function HomePage() {
-  const featuredServices = CLEANING_SERVICES.filter((srv) => srv.featuredOnHome);
+  const [selectedCategory, setSelectedCategory] = useState<
+    ServiceCategoryId | 'all'
+  >('all');
+
+  const filteredServices =
+    selectedCategory === 'all'
+      ? CLEANING_SERVICES.filter((srv) => srv.featuredOnHome)
+      : CLEANING_SERVICES.filter((srv) => srv.categoryId === selectedCategory);
 
   return (
     <div className="flex flex-col">
       {/* =====================================================================
           SECTION 2: HERO SECTION (The First Thing Visitors See)
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#040711] via-[#071126] to-[#0A1835] text-white py-16 sm:py-24 lg:py-28 border-b border-brandCyan/20">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#040711] via-[#071126] to-[#0A1835] text-white py-14 sm:py-20 lg:py-24 border-b border-brandCyan/20">
         {/* Decorative Electric Cyan Glow */}
         <div className="pointer-events-none absolute -top-40 right-1/4 w-[520px] h-[520px] rounded-full bg-brandCyan/15 blur-[130px]" />
         <div className="pointer-events-none absolute -bottom-40 left-10 w-[420px] h-[420px] rounded-full bg-brandBlue/20 blur-[120px]" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             {/* Hero Left Copy (7 Cols) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-brandCyan/30 text-xs sm:text-sm font-semibold text-brandCyan">
-                <Sparkles className="w-4 h-4 shrink-0" />
-                <span>Perth &amp; Western Australia • Residential, Commercial &amp; Specialist</span>
+                <Sparkles className="w-4 h-4 shrink-0 text-brandCyan" />
+                <span>Perth &amp; Western Australia • Homes, Offices &amp; Handover Cleans</span>
               </div>
 
               <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
@@ -57,9 +70,10 @@ export default function HomePage() {
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl">
-                Reliable cleaning for homes, businesses, builders and specialist facilities.
-                Tailored services, clear communication and a team focused on quality.
+              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+                Reliable cleaning for homes, businesses, builders, and specialist facilities.
+                Skip the weekend vacuuming, beat the 40° Perth summer heat, and let our police-checked
+                crew get your space spotless with upfront, locked-in pricing.
               </p>
 
               {/* Key Value Proposition Pills */}
@@ -67,13 +81,13 @@ export default function HomePage() {
                 <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
                   <Sparkles className="w-5 h-5 text-brandCyan shrink-0" />
                   <span className="text-xs font-bold text-white leading-snug">
-                    100% Free Quote Within a Few Minutes
+                    100% Free Quote in 3 Minutes
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 bg-emerald-500/10 border border-emerald-400/30 rounded-xl px-3.5 py-2.5">
                   <BadgePercent className="w-5 h-5 text-emerald-400 shrink-0" />
                   <span className="text-xs font-bold text-emerald-200 leading-snug">
-                    We Will Beat All Quotes by 5%
+                    We Beat Any Quote by 5%
                   </span>
                 </div>
                 <div className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5">
@@ -85,7 +99,7 @@ export default function HomePage() {
               </div>
 
               {/* Exact Required Hero Buttons */}
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 <a
                   href="#final-enquiry"
                   className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_30px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5"
@@ -103,7 +117,7 @@ export default function HomePage() {
               </div>
 
               {/* Direct Contact Strip */}
-              <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs sm:text-sm text-slate-300">
+              <div className="pt-3 border-t border-white/10 flex flex-wrap items-center gap-6 text-xs sm:text-sm text-slate-300">
                 <a
                   href={BRAND_INFO.phoneHref}
                   className="inline-flex items-center gap-2 hover:text-brandCyan transition-colors"
@@ -127,10 +141,10 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Hero Right Column: Brand Showcase & Fast Quote Preview Card (5 Cols) */}
+            {/* Hero Right Column: Fast Overview Showcase (5 Cols) */}
             <div className="lg:col-span-5">
               <div className="rounded-3xl bg-[#081226]/90 border border-brandCyan/30 p-6 sm:p-8 shadow-[0_20px_60px_rgba(0,0,0,0.6)] space-y-6">
-                <div className="flex items-center gap-4 pb-5 border-b border-white/10">
+                <div className="flex items-center gap-4 pb-4 border-b border-white/10">
                   <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-brandCyan bg-black shrink-0 shadow-lg">
                     <img
                       src="/images/nexora-logo.jpg"
@@ -140,7 +154,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <span className="text-xs font-bold uppercase tracking-widest text-brandCyan block">
-                      Western Australia Standard
+                      WA Standard of Clean
                     </span>
                     <h2 className="font-heading text-xl font-extrabold text-white">
                       Nexora Cleaning Co
@@ -153,7 +167,7 @@ export default function HomePage() {
 
                 <div className="space-y-3">
                   <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    4 Specialist Cleaning Divisions:
+                    4 Core Cleaning Divisions:
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {SERVICE_CATEGORIES.map((cat) => (
@@ -180,27 +194,27 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-gradient-to-r from-emerald-500/15 to-brandCyan/15 border border-emerald-400/30 p-4 space-y-2">
+                <div className="rounded-2xl bg-gradient-to-r from-emerald-500/15 to-brandCyan/15 border border-emerald-400/30 p-4 space-y-1.5">
                   <div className="flex items-center gap-2 text-emerald-300 font-heading font-bold text-sm">
                     <BadgePercent className="w-5 h-5 text-emerald-400 shrink-0" />
                     <span>5% Price-Beat Guarantee</span>
                   </div>
                   <p className="text-xs text-slate-200 leading-relaxed">
-                    Have a written quote from another insured Perth cleaner? Send it through—we
-                    will beat it by 5% while delivering our full documented checklist.
+                    Have a written quote from another insured Perth cleaner? Send it through — we
+                    will beat it by 5% while delivering our full documented task checklist.
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
                   <a
                     href="#final-enquiry"
-                    className="flex-1 py-3.5 px-4 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm text-center transition-colors"
+                    className="flex-1 py-3.5 px-4 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm text-center transition-colors shadow-md"
                   >
-                    Fill 60-Second Quote Form
+                    Get 60-Second Free Quote
                   </a>
                   <a
                     href={`https://wa.me/${BRAND_INFO.whatsappNumber}?text=${encodeURIComponent(
-                      'Hi Nexora Cleaning! I would like a free quote in Perth.'
+                      "G'day Nexora Cleaning! I would like a free quote in Perth."
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -221,12 +235,12 @@ export default function HomePage() {
       ===================================================================== */}
       <section className="bg-slate-950 text-white py-12 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-8">
+          <div className="text-center max-w-3xl mx-auto mb-8 space-y-1">
             <span className="text-xs font-bold uppercase tracking-widest text-brandCyan">
               Verified Trust &amp; Credentials
             </span>
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white mt-1">
-              Screened, Insured &amp; Ready for Your Property or Facility
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
+              Screened, Insured &amp; Ready for Your Space
             </h2>
           </div>
 
@@ -234,12 +248,12 @@ export default function HomePage() {
             {TRUST_CREDENTIALS.map((cred) => (
               <div
                 key={cred.title}
-                className="bg-[#0B1224] border border-white/10 hover:border-brandCyan/40 rounded-2xl p-5 transition-all"
+                className="bg-[#0B1224] border border-white/10 hover:border-brandCyan/40 rounded-2xl p-5 transition-all group"
               >
-                <div className="w-10 h-10 rounded-xl bg-brandBlue/20 border border-brandCyan/30 text-brandCyan flex items-center justify-center mb-3">
+                <div className="w-10 h-10 rounded-xl bg-brandBlue/20 border border-brandCyan/30 text-brandCyan flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
                   <DynamicIcon name={cred.iconName} className="w-5 h-5" />
                 </div>
-                <h3 className="font-heading font-bold text-base text-white mb-1.5">
+                <h3 className="font-heading font-bold text-base text-white mb-1">
                   {cred.title}
                 </h3>
                 <p className="text-xs text-slate-400 leading-relaxed">
@@ -254,9 +268,9 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 4: OUR CLEANING SERVICES
       ===================================================================== */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <section className="py-16 sm:py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                 Our Cleaning Services
@@ -264,9 +278,9 @@ export default function HomePage() {
               <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
                 Dedicated Service Pages for Every Cleaning Need
               </h2>
-              <p className="text-base text-slate-600">
-                Rather than putting every detail on one long page, each major Nexora cleaning
-                service has its own dedicated page with a clear checklist and instant quote option.
+              <p className="text-sm sm:text-base text-slate-600">
+                Rather than putting every detail on one long page, each major cleaning service has
+                its own dedicated page with a clear checklist and instant quote option.
               </p>
             </div>
 
@@ -279,53 +293,59 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* 4 Category Overview Banners */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
-            {SERVICE_CATEGORIES.map((category) => (
-              <Link
-                key={category.id}
-                href={`/services#${category.id}`}
-                className="group bg-gradient-to-br from-[#070E20] to-[#0D1D3A] text-white rounded-2xl p-6 border border-brandCyan/20 hover:border-brandCyan transition-all shadow-md"
+          {/* Interactive Category Filter Tabs */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setSelectedCategory('all')}
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-heading font-bold transition-all ${
+                selectedCategory === 'all'
+                  ? 'bg-brandBlue text-white shadow-md'
+                  : 'bg-white border border-slate-200 text-slate-700 hover:border-brandBlue'
+              }`}
+            >
+              Featured Highlights (8)
+            </button>
+            {SERVICE_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-heading font-bold transition-all ${
+                  selectedCategory === cat.id
+                    ? 'bg-brandBlue text-white shadow-md'
+                    : 'bg-white border border-slate-200 text-slate-700 hover:border-brandBlue'
+                }`}
               >
-                <div className="w-11 h-11 rounded-xl bg-brandCyan/15 border border-brandCyan/30 text-brandCyan flex items-center justify-center mb-4">
-                  <DynamicIcon name={category.iconName} className="w-5 h-5" />
-                </div>
-                <h3 className="font-heading font-bold text-lg text-white group-hover:text-brandCyan transition-colors">
-                  {category.name}
-                </h3>
-                <p className="text-xs text-slate-300 mt-1.5 leading-relaxed">
-                  {category.tagline}
-                </p>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-brandCyan mt-4">
-                  Explore Category <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </Link>
+                {cat.shortName}
+              </button>
             ))}
           </div>
 
-          {/* Featured Service Cards Grid */}
+          {/* Service Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredServices.map((service) => (
+            {filteredServices.map((service) => (
               <ServiceCard key={service.slug} service={service} />
             ))}
           </div>
 
-          {/* Complete Quick-Jump Directory of All 25 Services */}
-          <div className="mt-14 bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+          {/* Complete Directory Overview */}
+          <div className="mt-8 bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
               <div>
                 <h3 className="font-heading font-extrabold text-xl text-slate-900">
-                  Complete Directory of All 25 Nexora Cleaning Services
+                  Complete Directory of All 25 Nexora Services
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Click any service below to open its dedicated scope page and request a free quote.
+                  Click any service below to open its dedicated page and view the full 8-point
+                  scope checklist.
                 </p>
               </div>
               <a
                 href="#final-enquiry"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-brandBlue hover:underline"
               >
-                <span>Need a custom bundle? Enquire below</span>
+                <span>Need a custom cleaning bundle? Enquire below</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
@@ -337,33 +357,35 @@ export default function HomePage() {
                     {category.name}
                   </h4>
                   <ul className="space-y-2">
-                    {CLEANING_SERVICES.filter((s) => s.categoryId === category.id).map((srv) => (
-                      <li key={srv.slug}>
-                        <Link
-                          href={`/services/${srv.slug}`}
-                          className="text-xs sm:text-sm text-slate-700 hover:text-brandBlue font-medium flex items-center justify-between gap-2 py-0.5 group"
-                        >
-                          <span className="group-hover:translate-x-0.5 transition-transform">
-                            {srv.title}
-                          </span>
-                          {srv.badgeType === 'coming-soon' && (
-                            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 shrink-0">
-                              Coming Soon
+                    {CLEANING_SERVICES.filter((s) => s.categoryId === category.id).map(
+                      (srv) => (
+                        <li key={srv.slug}>
+                          <Link
+                            href={`/services/${srv.slug}`}
+                            className="text-xs sm:text-sm text-slate-700 hover:text-brandBlue font-medium flex items-center justify-between gap-2 py-0.5 group"
+                          >
+                            <span className="group-hover:translate-x-0.5 transition-transform">
+                              {srv.title}
                             </span>
-                          )}
-                          {srv.badgeType === 'add-on' && (
-                            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-sky-100 text-brandBlue shrink-0">
-                              Add-On
-                            </span>
-                          )}
-                          {srv.badgeType === 'partner' && (
-                            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-purple-100 text-purple-800 shrink-0">
-                              Partner
-                            </span>
-                          )}
-                        </Link>
-                      </li>
-                    ))}
+                            {srv.badgeType === 'coming-soon' && (
+                              <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-amber-100 text-amber-800 shrink-0">
+                                Coming Soon
+                              </span>
+                            )}
+                            {srv.badgeType === 'add-on' && (
+                              <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-sky-100 text-brandBlue shrink-0">
+                                Add-On
+                              </span>
+                            )}
+                            {srv.badgeType === 'partner' && (
+                              <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded bg-purple-100 text-purple-800 shrink-0">
+                                Partner
+                              </span>
+                            )}
+                          </Link>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </div>
               ))}
@@ -375,18 +397,18 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 5: INDUSTRIES WE SUPPORT
       ===================================================================== */}
-      <section className="py-20 bg-white border-t border-slate-200/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200/70">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
               Industries We Support
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-              Tailored Cleaning Across Western Australia&apos;s Key Sectors
+              Tailored Cleaning for WA&apos;s Core Sectors
             </h2>
-            <p className="text-base text-slate-600">
-              Homes, offices, construction, education, childcare, aged care, events, property
-              managers and other facilities that Nexora is equipped and screened to service.
+            <p className="text-sm sm:text-base text-slate-600">
+              Homes, offices, construction, education, childcare, aged care, events, and property
+              managers that Nexora is equipped and screened to service.
             </p>
           </div>
 
@@ -412,7 +434,7 @@ export default function HomePage() {
                   href={`/industries#${industry.id}`}
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-brandBlue hover:underline pt-2 border-t border-slate-200/60"
                 >
-                  <span>Sector Standards &amp; Services</span>
+                  <span>Standards &amp; Services</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
@@ -424,18 +446,18 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 6: WHY CHOOSE NEXORA?
       ===================================================================== */}
-      <section className="py-20 bg-gradient-to-b from-[#050914] to-[#0A1429] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-[#050914] to-[#0A1429] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandCyan">
               Why Choose Nexora?
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-white">
-              The Real Operational Differences
+              The Real Differences That Set Us Apart
             </h2>
-            <p className="text-base text-slate-300">
-              A documented cleaning checklist, quality inspections, clear quotes, reliable
-              communication, suitable screening and a consistent service standard.
+            <p className="text-sm sm:text-base text-slate-300">
+              Documented checklists, quality inspections, clear quotes, reliable communication,
+              suitable worker screening, and consistent standards.
             </p>
           </div>
 
@@ -463,18 +485,17 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 7: HOW IT WORKS (4 Steps)
       ===================================================================== */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
               Simple 4-Step Process
             </span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
               How It Works
             </h2>
-            <p className="text-base text-slate-600">
-              Booking a reliable clean in Perth takes just minutes—with no obligation and zero
-              hidden surprises.
+            <p className="text-sm sm:text-base text-slate-600">
+              Booking professional cleaning across Perth takes under 60 seconds with zero obligation.
             </p>
           </div>
 
@@ -482,7 +503,7 @@ export default function HomePage() {
             {HOW_IT_WORKS_STEPS.map((step) => (
               <div
                 key={step.stepNumber}
-                className="relative bg-slate-50 rounded-2xl p-6 border border-slate-200/90 flex flex-col justify-between"
+                className="bg-slate-50 rounded-2xl p-6 border border-slate-200/90 flex flex-col justify-between"
               >
                 <div>
                   <span className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-900 text-brandCyan font-heading font-extrabold text-lg mb-4 shadow-sm">
@@ -502,25 +523,68 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
+          SECTION 7B: LOCAL WA TESTIMONIALS & REVIEWS
+      ===================================================================== */}
+      <section className="py-16 bg-slate-100 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="text-center max-w-2xl mx-auto space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
+              Client Feedback
+            </span>
+            <h2 className="font-heading text-3xl font-extrabold text-slate-900">
+              Trusted by Homeowners &amp; Businesses Across Perth
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {TESTIMONIALS.map((t, idx) => (
+              <div
+                key={idx}
+                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-100">
+                  <p className="font-heading font-bold text-sm text-slate-900">
+                    {t.name}
+                  </p>
+                  <p className="text-xs text-slate-500">
+                    {t.suburb}, WA • <span className="text-brandBlue">{t.service}</span>
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================================================
           SECTION 8: SERVICE COMMITMENTS, PERTH SUBURBS & FAQS
       ===================================================================== */}
-      <section className="py-20 bg-slate-50 border-t border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-          {/* Part A: Honest Service Guarantees + Perth Suburbs Coverage */}
+      <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          {/* Part A: Suburbs & Guarantees */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            {/* Left: Perth Suburbs We Cover (7 Cols) */}
+            {/* Left: Perth Suburbs (7 Cols) */}
             <div className="lg:col-span-7 space-y-6">
               <div className="space-y-2">
                 <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                   Areas We Service
                 </span>
                 <h2 className="font-heading text-3xl font-extrabold text-slate-900">
-                  Covering All Suburbs Across Perth &amp; Surrounds
+                  Covering Suburbs Across All of Perth
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600">
-                  Our mobile cleaning crews service the entire Perth metropolitan area—from
-                  Joondalup and Yanchep in the north to Fremantle, Rockingham, and Mandurah in the
-                  south, and out to Midland, Ellenbrook, and the Perth Hills.
+                  From Joondalup and Yanchep in the north down to Fremantle, Rockingham, and Mandurah
+                  in the south, and east to Midland, Ellenbrook, and the Perth Hills.
                 </p>
               </div>
 
@@ -567,7 +631,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Right: Verified Service Commitments (5 Cols) */}
+            {/* Right: Service Guarantees (5 Cols) */}
             <div className="lg:col-span-5 bg-gradient-to-b from-[#070E20] to-[#0B1833] text-white rounded-3xl p-6 sm:p-8 border border-brandCyan/30 shadow-xl space-y-6">
               <div className="space-y-1.5">
                 <span className="text-xs font-bold uppercase tracking-widest text-brandCyan">
@@ -577,8 +641,7 @@ export default function HomePage() {
                   Transparent Commitments You Can Count On
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-300">
-                  We believe in earning your trust through verified credentials, clear written
-                  checklists, and honest guarantees.
+                  Clear written task checklists, verified screening, and honest price guarantees.
                 </p>
               </div>
 
@@ -589,8 +652,8 @@ export default function HomePage() {
                     <span>Price Confirmed Before Work Begins</span>
                   </div>
                   <p className="text-xs text-slate-300 leading-relaxed">
-                    Every quote is 100% free and no-obligation. We confirm your exact scope and
-                    price upfront so there are never surprise charges on completion.
+                    100% free, no-obligation quotes. We confirm your scope and price upfront so
+                    there are never surprise weekend callouts or added fees.
                   </p>
                 </div>
 
@@ -600,7 +663,7 @@ export default function HomePage() {
                     <span>We Beat Any Comparable Quote by 5%</span>
                   </div>
                   <p className="text-xs text-slate-200 leading-relaxed">
-                    Send us any current written quote from an insured WA cleaning provider for an
+                    Send us any current written quote from an insured WA cleaning business for an
                     identical checklist and we will beat it by 5%.
                   </p>
                 </div>
@@ -608,18 +671,18 @@ export default function HomePage() {
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-4 space-y-1.5">
                   <div className="flex items-center gap-2 text-brandCyan font-heading font-bold text-sm">
                     <ShieldCheck className="w-4 h-4 shrink-0" />
-                    <span>Post-Clean Follow-Up &amp; Inspection Support</span>
+                    <span>Bond Back &amp; Inspection Support</span>
                   </div>
                   <p className="text-xs text-slate-300 leading-relaxed">
-                    Our team follows up after completing your clean. For end-of-lease bookings, we
-                    stand behind our documented checklist for your property manager&apos;s inspection.
+                    For end-of-lease bookings, we stand behind our documented checklist. If your
+                    property manager flags anything within 72 hours, we rectify it free of charge.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Part B: Frequently Asked Questions */}
+          {/* Part B: FAQs */}
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center space-y-2">
               <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
@@ -629,8 +692,8 @@ export default function HomePage() {
                 Frequently Asked Questions
               </h2>
               <p className="text-sm sm:text-base text-slate-600">
-                Everything you need to know about our quotes, screening, equipment, and Perth
-                service coverage.
+                Everything you need to know about our quotes, staff screening, supplies, and Perth
+                service areas.
               </p>
             </div>
 
@@ -644,16 +707,16 @@ export default function HomePage() {
       ===================================================================== */}
       <section
         id="final-enquiry"
-        className="py-20 bg-gradient-to-b from-white to-slate-100 border-t border-slate-200 scroll-mt-20"
+        className="py-16 sm:py-20 bg-gradient-to-b from-white to-slate-100 border-t border-slate-200 scroll-mt-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Left Column: Prominent Heading, Contact Info & Business Hours (5 Cols) */}
+            {/* Left Column (5 Cols) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brandBlue/10 text-brandBlue text-xs font-bold uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5" />
-                  100% Free Quote Within a Few Minutes
+                  100% Free Quote in 3 Minutes
                 </span>
 
                 <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
@@ -664,7 +727,7 @@ export default function HomePage() {
                   Request a quote without having to call first. Only your{' '}
                   <strong className="text-slate-900">Name</strong>,{' '}
                   <strong className="text-slate-900">Phone</strong>, and{' '}
-                  <strong className="text-slate-900">Suburb/Postcode</strong> are required—all
+                  <strong className="text-slate-900">Suburb/Postcode</strong> are required — all
                   other fields are optional for your convenience.
                 </p>
               </div>
@@ -677,7 +740,7 @@ export default function HomePage() {
                 </div>
                 <p className="text-xs text-emerald-700 leading-relaxed">
                   Free, no-obligation quote — price confirmed before work begins. Mention any
-                  comparable written quote in the notes and we&apos;ll beat it by 5%.
+                  comparable written quote in the notes and we will beat it by 5%.
                 </p>
               </div>
 
@@ -739,7 +802,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Column: Interactive Mobile-Friendly Quote Form (7 Cols) */}
+            {/* Right Column: Interactive Quote Form (7 Cols) */}
             <div className="lg:col-span-7">
               <QuoteForm />
             </div>

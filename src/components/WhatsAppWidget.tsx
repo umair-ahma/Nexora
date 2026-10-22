@@ -8,22 +8,22 @@ const QUICK_STARTERS = [
   {
     label: '🏠 End-of-Lease / Bond Clean Quote',
     message:
-      'Hi Nexora Cleaning! I would like a free quote for an End-of-Lease / Bond Clean in Perth.',
+      "G'day Nexora Cleaning! I need a fast quote for an End-of-Lease / Bond Clean in Perth so I get my full deposit back.",
   },
   {
-    label: '✨ Regular or Deep House Clean',
+    label: '✨ Regular House Clean (Save my weekend!)',
     message:
-      'Hi Nexora Cleaning! I would like a free quote for a Regular or Deep House Clean.',
+      "G'day Nexora! Looking for a reliable regular house cleaner in Perth. What's your availability?",
   },
   {
     label: '🏢 Office / Commercial Cleaning',
     message:
-      'Hi Nexora Cleaning! We are looking for a quote for Office / Commercial Cleaning in WA.',
+      "Hi Nexora Cleaning team! We need a quote for regular office / commercial facility cleaning in WA.",
   },
   {
-    label: '🏷️ Beat My Existing Quote by 5%',
+    label: '🏷️ Beat My Existing Written Quote by 5%',
     message:
-      'Hi Nexora Cleaning! I have a written cleaning quote and would love to use your 5% Price-Beat Guarantee.',
+      "G'day! I have a written cleaning quote from another WA company and want to use your 5% Price-Beat Guarantee.",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function WhatsAppWidget() {
     e.preventDefault();
     const messageToSend =
       customMessage.trim() ||
-      'Hi Nexora Cleaning! I would like to request a free cleaning quote in Perth.';
+      "G'day Nexora Cleaning! I would like to request a free cleaning quote in Perth.";
     openWhatsApp(messageToSend);
     setCustomMessage('');
   };
@@ -71,7 +71,7 @@ export default function WhatsAppWidget() {
                   <CheckCircle2 className="w-3.5 h-3.5 text-brandCyan" />
                 </h4>
                 <p className="text-[11px] text-emerald-300 font-medium">
-                  Online • Replies within a few minutes
+                  Online • Typically replies within minutes
                 </p>
               </div>
             </div>
@@ -90,10 +90,13 @@ export default function WhatsAppWidget() {
             <div className="bg-white p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-slate-200/80 text-xs text-slate-700 space-y-1.5 leading-relaxed">
               <p className="font-semibold text-slate-900">G&apos;day from Perth! 👋</p>
               <p>
-                Need a fast, <strong>100% free quote</strong>? Remember — we{' '}
-                <strong className="text-brandBlue">beat any comparable quote by 5%</strong>!
+                Got red dust, bore stains, moving out, or need the office sorted? We provide{' '}
+                <strong>100% free quotes in minutes</strong>.
               </p>
-              <p className="text-slate-500">Tap a quick option below or type your message:</p>
+              <p className="text-emerald-700 font-semibold">
+                🔥 Found cheaper? We beat any comparable quote by 5%!
+              </p>
+              <p className="text-slate-500 text-[11px]">Tap a quick option below or type a message:</p>
             </div>
 
             {/* Quick Starter Buttons */}
@@ -121,7 +124,7 @@ export default function WhatsAppWidget() {
               type="text"
               value={customMessage}
               onChange={(e) => setCustomMessage(e.target.value)}
-              placeholder="Write your message or suburb..."
+              placeholder="Type your suburb or question..."
               className="flex-1 text-xs px-3 py-2.5 rounded-xl bg-slate-100 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
             <button
