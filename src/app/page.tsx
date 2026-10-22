@@ -160,7 +160,7 @@ export default function HomePage() {
                       Nexora Cleaning Co
                     </h2>
                     <p className="text-xs text-slate-300 mt-0.5">
-                      Trust • Dedicated Service Pages • Fast Mobile Quotes
+                      Verified Police Clearance • Insured • Fast Quotes
                     </p>
                   </div>
                 </div>
@@ -276,11 +276,10 @@ export default function HomePage() {
                 Our Cleaning Services
               </span>
               <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-                Dedicated Service Pages for Every Cleaning Need
+                Tailored Cleaning Solutions Across Perth &amp; WA
               </h2>
               <p className="text-sm sm:text-base text-slate-600">
-                Rather than putting every detail on one long page, each major cleaning service has
-                its own dedicated page with a clear checklist and instant quote option.
+                From guaranteed bond recovery and regular family home upkeep to commercial facilities and post-build handovers, explore our specialized services with documented checklists and transparent pricing.
               </p>
             </div>
 
@@ -337,8 +336,7 @@ export default function HomePage() {
                   Complete Directory of All 25 Nexora Services
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
-                  Click any service below to open its dedicated page and view the full 8-point
-                  scope checklist.
+                  Select any service to view comprehensive scope inclusions, itemised checklists, and upfront quotes.
                 </p>
               </div>
               <a

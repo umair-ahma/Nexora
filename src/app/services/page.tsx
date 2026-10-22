@@ -32,18 +32,16 @@ export default function ServicesOverviewPage() {
           <div className="max-w-3xl space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brandCyan/15 border border-brandCyan/30 text-brandCyan text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Dedicated Service Pages • Clear Checklists</span>
+              <span>Full Service Directory • 25 Specialised Solutions</span>
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Our Cleaning Services Across{' '}
+              Professional Cleaning Services Across{' '}
               <span className="text-brandCyan">Western Australia</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-              Every major cleaning service has its own dedicated page with a clear 1-liner
-              overview, documented cleaning checklist, and instant quote request option. Select a
-              category or service below to view full details.
+              Every service comes with transparent scope, documented task checklists, and our 5% price beat guarantee. Select a division below to find the exact service for your home, commercial facility, or worksite.
             </p>
 
             {/* Quick Category Jump Pills */}
@@ -98,7 +96,7 @@ export default function ServicesOverviewPage() {
                   </div>
                   <div className="space-y-1">
                     <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
-                      Division 0{index + 1} • {services.length} Dedicated Services
+                      Division 0{index + 1} • {services.length} Specialised Services
                     </span>
                     <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
                       {category.name}
