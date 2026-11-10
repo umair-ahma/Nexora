@@ -62,15 +62,15 @@ export default function ServiceAreasPage() {
 
           {/* Centerpiece Postcode / Suburb Bar (PDF p. 10) */}
           <div className="pt-2 max-w-2xl mx-auto">
-            <div className="relative flex items-center bg-white rounded-2xl p-2 shadow-2xl border-2 border-brandCyan/60">
-              <Search className="w-5 h-5 text-brandBlue ml-3 shrink-0" />
+            <div className="relative flex items-center bg-white rounded-2xl p-1.5 sm:p-2 shadow-2xl border-2 border-brandCyan/60">
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 text-brandBlue ml-2.5 sm:ml-3 shrink-0" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Type your Perth postcode or suburb (e.g. 6000, Subiaco, Joondalup)..."
+                placeholder="Enter Perth postcode or suburb..."
                 aria-label="Enter Perth postcode or suburb"
-                className="flex-1 px-3 py-3 text-slate-900 placeholder:text-slate-400 text-sm sm:text-base font-medium focus:outline-none"
+                className="flex-1 min-w-0 px-2.5 sm:px-3 py-2.5 sm:py-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-base font-medium focus:outline-none"
               />
               {searchQuery && (
                 <button
@@ -80,7 +80,7 @@ export default function ServiceAreasPage() {
                     setQuoteForcedOpen(false);
                   }}
                   aria-label="Clear postcode"
-                  className="p-2 text-slate-400 hover:text-slate-700"
+                  className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-700 shrink-0"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -88,7 +88,7 @@ export default function ServiceAreasPage() {
               <button
                 type="button"
                 onClick={() => setQuoteForcedOpen(true)}
-                className="px-5 py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md"
+                className="px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md whitespace-nowrap"
               >
                 Start Quote
               </button>
@@ -190,18 +190,21 @@ export default function ServiceAreasPage() {
                 className="scroll-card-snap group cursor-pointer bg-slate-50/70 hover:bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 hover:border-brandBlue shadow-sm hover:shadow-xl transition-all flex flex-col justify-between space-y-5"
               >
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue group-hover:bg-brandBlue group-hover:text-white flex items-center justify-center transition-colors shadow-sm">
-                      <MapPin className="w-6 h-6" />
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <div className="scroll-icon-bounce hover-icon-bounce w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue group-hover:bg-brandBlue group-hover:text-white flex items-center justify-center shrink-0 transition-colors shadow-sm">
+                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6" />
+                      </div>
+                      <div>
+                        <span className="text-[11px] font-heading font-extrabold text-brandBlue block">
+                          Postcodes: {region.postcodeRange}
+                        </span>
+                        <h3 className="font-heading font-extrabold text-lg sm:text-xl text-slate-900 group-hover:text-brandBlue transition-colors leading-snug">
+                          {region.regionName}
+                        </h3>
+                      </div>
                     </div>
-                    <span className="text-xs font-heading font-extrabold px-3 py-1 rounded-full bg-white border border-slate-200 text-brandBlue">
-                      Postcodes: {region.postcodeRange}
-                    </span>
                   </div>
-
-                  <h3 className="font-heading font-extrabold text-xl text-slate-900 group-hover:text-brandBlue transition-colors">
-                    {region.regionName}
-                  </h3>
 
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {region.description}

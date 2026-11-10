@@ -48,9 +48,9 @@ export default function Navbar() {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus:outline-none shrink-0"
+            className="flex items-center gap-2 sm:gap-3 group focus:outline-none shrink-0"
           >
-            <div className="relative w-10 h-10 lg:w-11 lg:h-11 rounded-xl overflow-hidden border border-slate-200 bg-slate-950 flex items-center justify-center shadow-sm group-hover:border-brandBlue transition-colors">
+            <div className="relative w-9 h-9 sm:w-10 sm:h-10 lg:w-11 lg:h-11 rounded-xl overflow-hidden border border-slate-200 bg-slate-950 flex items-center justify-center shadow-sm group-hover:border-brandBlue transition-colors shrink-0">
               <img
                 src="/images/nexora-logo.jpg"
                 alt="Nexora Cleaning Co Logo"
@@ -58,11 +58,11 @@ export default function Navbar() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-heading font-extrabold text-base sm:text-lg lg:text-xl tracking-tight text-slate-900 leading-none">
+              <span className="font-heading font-extrabold text-[13.5px] sm:text-lg lg:text-xl tracking-tight text-slate-900 leading-none whitespace-nowrap">
                 NEXORA <span className="text-brandBlue">CLEANING</span>
               </span>
-              <span className="text-[10px] uppercase tracking-widest text-slate-500 mt-1 font-semibold">
-                Perth • Western Australia
+              <span className="text-[9.5px] sm:text-[10px] uppercase tracking-widest text-slate-500 mt-1 font-semibold whitespace-nowrap">
+                Perth • WA
               </span>
             </div>
           </Link>
@@ -204,10 +204,10 @@ export default function Navbar() {
           </div>
 
           {/* Sleek Mobile Header Controls */}
-          <div className="flex items-center gap-2 lg:hidden">
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
             <Link
               href="/contact#quote-form"
-              className="px-3.5 py-2 rounded-xl bg-brandBlue text-white font-heading font-bold text-xs shadow-sm"
+              className="px-2.5 sm:px-3.5 py-2 rounded-xl bg-brandBlue text-white font-heading font-bold text-[11px] sm:text-xs shadow-sm whitespace-nowrap"
             >
               Free Quote
             </Link>
@@ -215,7 +215,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
-              className="p-2 rounded-xl bg-slate-100 text-slate-900 hover:bg-slate-200"
+              className="p-2 rounded-xl bg-slate-100 text-slate-900 hover:bg-slate-200 shrink-0"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

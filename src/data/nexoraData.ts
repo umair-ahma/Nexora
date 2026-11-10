@@ -1407,9 +1407,9 @@ export const PERTH_REGIONS: PerthRegionItem[] = [
 
 export const TRUST_CREDENTIALS = [
   {
-    title: 'WA-Born & Bred',
+    title: 'Perth-Based & Operated',
     description:
-      'Local Perth team that understands red dust, coastal salt spray, bore water stains, and WA tenancy standards.',
+      'Locally operated Perth team experienced with WA red dust, coastal salt spray, bore water stains, and REIWA tenancy standards.',
     iconName: 'MapPin',
   },
   {

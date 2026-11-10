@@ -23,7 +23,6 @@ import {
   INDUSTRIES_DATA,
   TRUST_CREDENTIALS,
   WHY_CHOOSE_NEXORA,
-  HOW_IT_WORKS_STEPS,
   PERTH_REGIONS,
   HOME_FAQS,
   TESTIMONIALS,
@@ -380,21 +379,23 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {WHY_CHOOSE_NEXORA.map((item) => (
               <div
                 key={item.title}
-                className="scroll-card-snap group bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-lg transition-all"
+                className="scroll-card-snap group bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all flex items-start gap-3.5 sm:gap-4"
               >
-                <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center mb-4 shadow-md">
-                  <DynamicIcon name={item.iconName} className="w-6 h-6" />
+                <div className="scroll-icon-bounce hover-icon-bounce w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center shrink-0 shadow-md">
+                  <DynamicIcon name={item.iconName} className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="font-heading font-bold text-lg sm:text-xl text-slate-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {item.description}
-                </p>
+                <div className="space-y-1">
+                  <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -402,80 +403,43 @@ export default function HomePage() {
       </section>
 
       {/* =====================================================================
-          SECTION 6: HOW IT WORKS (4 Simple Steps + Client Reviews)
+          SECTION 6: CLIENT REVIEWS across Perth Suburbs
       ===================================================================== */}
-      <section className="py-16 sm:py-24 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          <div className="space-y-10 sm:space-y-12">
-            <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
-              <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
-                Simple 4-Step Process
-              </span>
-              <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900">
-                How It Works
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600">
-                Booking professional cleaning across Perth takes under 60 seconds with zero
-                obligation.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
-              {HOW_IT_WORKS_STEPS.map((step) => (
-                <div
-                  key={step.stepNumber}
-                  className="scroll-card-snap group bg-slate-50/80 hover:bg-white rounded-3xl p-6 border border-slate-200/90 hover:border-brandBlue/40 shadow-sm hover:shadow-md transition-all"
-                >
-                  <span className="scroll-icon-bounce hover-icon-bounce inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brandBlue text-white font-heading font-extrabold text-base mb-4 shadow-sm">
-                    {step.stepNumber}
-                  </span>
-                  <h3 className="font-heading font-bold text-lg text-slate-900 mb-1.5">
-                    {step.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+      <section className="py-14 sm:py-20 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
+          <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1">
+            <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
+              Local Client Feedback
+            </span>
+            <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
+              Trusted Across Perth Suburbs
+            </h3>
           </div>
 
-          {/* Compact Perth Customer Reviews */}
-          <div className="pt-8 border-t border-slate-100 space-y-8">
-            <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1">
-              <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
-                Local Client Feedback
-              </span>
-              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
-                Trusted Across Perth Suburbs
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-              {TESTIMONIALS.map((t, idx) => (
-                <div
-                  key={idx}
-                  className="scroll-card-snap bg-slate-50/70 rounded-3xl p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4"
-                >
-                  <div className="space-y-2.5">
-                    <div className="flex items-center gap-1 text-amber-400">
-                      {[...Array(t.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400" />
-                      ))}
-                    </div>
-                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {TESTIMONIALS.map((t, idx) => (
+              <div
+                key={idx}
+                className="scroll-card-snap bg-slate-50/70 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4"
+              >
+                <div className="space-y-2.5">
+                  <div className="flex items-center gap-1 text-amber-400">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    ))}
                   </div>
-                  <div className="pt-3 border-t border-slate-200/60">
-                    <p className="font-heading font-bold text-sm text-slate-900">{t.name}</p>
-                    <p className="text-xs text-slate-500">
-                      {t.suburb}, WA • <span className="text-brandBlue">{t.service}</span>
-                    </p>
-                  </div>
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
                 </div>
-              ))}
-            </div>
+                <div className="pt-3 border-t border-slate-200/60">
+                  <p className="font-heading font-bold text-sm text-slate-900">{t.name}</p>
+                  <p className="text-xs text-slate-500">
+                    {t.suburb}, WA • <span className="text-brandBlue">{t.service}</span>
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

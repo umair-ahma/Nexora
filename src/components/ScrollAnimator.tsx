@@ -36,7 +36,7 @@ export default function ScrollAnimator() {
       );
 
       if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        elements.forEach((el) => el.classList.add('is-inview'));
+        elements.forEach((el) => el.setAttribute('data-inview', 'true'));
         return;
       }
 
@@ -57,12 +57,12 @@ export default function ScrollAnimator() {
           entries.forEach((entry) => {
             const target = entry.target as HTMLElement;
             if (entry.isIntersecting) {
-              target.classList.add('is-inview');
+              target.setAttribute('data-inview', 'true');
             } else {
               // If element scrolled back down below viewport, reset so scrolling down replays animation
               const rect = entry.boundingClientRect;
               if (rect.top > window.innerHeight * 0.96) {
-                target.classList.remove('is-inview');
+                target.removeAttribute('data-inview');
               }
             }
           });

@@ -434,7 +434,7 @@ export default function Footer() {
 
       {/* Bottom Copyright Bar */}
       <div className="border-t border-white/10 bg-[#020409] py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>
             © {new Date().getFullYear()} <strong className="text-white">Nexora Cleaning Co</strong> (
             {BRAND_INFO.domain}). All rights reserved. Western Australia.

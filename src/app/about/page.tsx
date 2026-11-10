@@ -92,105 +92,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Light Verified Credentials Strip (Icon + Heading) */}
-      <section className="py-16 bg-slate-50/70 border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1.5">
-            <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
-              Compliance &amp; Peace of Mind
-            </span>
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
-              Credentials We Hold &amp; Maintain
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {TRUST_CREDENTIALS.map((cred) => (
-              <div
-                key={cred.title}
-                className="scroll-card-snap group bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-2xl p-5 flex flex-col items-center text-center justify-center gap-3 shadow-sm hover:shadow-md transition-all"
-              >
-                <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center">
-                  <DynamicIcon name={cred.iconName} className="w-6 h-6" />
-                </div>
-                <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900">
-                  {cred.title}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Story & Operational Standards */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-6 space-y-5">
-              <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
-                Our Approach
-              </span>
-              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-                Built on Checklists, Screening &amp; Clear Communication
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                Across Perth, too many customers experience cleaners who arrive late, rush through
-                rooms without a checklist, or add unexpected fees after the job is done.
-              </p>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                At <strong>Nexora Cleaning Co</strong> ({BRAND_INFO.domain}), every booking begins
-                with a free, no-obligation quote where your price is confirmed before work begins.
-                On the day of service, our fully vaccinated, police-checked team follows a
-                documented room-by-room checklist and conducts quality inspections to ensure nothing
-                is missed.
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="scroll-card-snap p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                  <ClipboardCheck className="w-6 h-6 text-brandBlue" />
-                  <h3 className="font-heading font-bold text-sm text-slate-900">
-                    Documented Checklists
-                  </h3>
-                  <p className="text-xs text-slate-600">
-                    Structured task lists for bond cleans, regular homes, schools, and builders.
-                  </p>
-                </div>
-
-                <div className="scroll-card-snap p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                  <UserCheck className="w-6 h-6 text-brandBlue" />
-                  <h3 className="font-heading font-bold text-sm text-slate-900">
-                    Screened WA Personnel
-                  </h3>
-                  <p className="text-xs text-slate-600">
-                    Police-checked, insured, WWCC-screened &amp; NDIS approved cleaners.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {WHY_CHOOSE_NEXORA.map((item) => (
-                <div
-                  key={item.title}
-                  className="scroll-card-snap group bg-slate-50/80 hover:bg-white rounded-2xl p-5 border border-slate-200/90 hover:border-brandBlue/50 shadow-sm transition-all space-y-2"
-                >
-                  <div className="scroll-icon-bounce hover-icon-bounce w-10 h-10 rounded-xl bg-sky-100 text-brandBlue flex items-center justify-center">
-                    <DynamicIcon name={item.iconName} className="w-5 h-5" />
-                  </div>
-                  <h3 className="font-heading font-bold text-base text-slate-900">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Aboriginal & Torres Strait Islander Inclusivity & Employment Banner (Oct 23 Meeting Notes + PDF p. 8 & 9) */}
-          <div className="scroll-card-snap rounded-3xl bg-gradient-to-r from-slate-50 via-sky-50/60 to-slate-50 border border-slate-200 p-6 sm:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="space-y-3 max-w-3xl">
+      {/* Top Community Inclusivity & Acknowledgement of Country Banner */}
+      <section className="py-10 sm:py-14 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="scroll-card-snap rounded-3xl bg-gradient-to-r from-slate-50 via-sky-50/60 to-slate-50 border border-slate-200 p-5 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="space-y-2.5 max-w-3xl">
               <div className="flex items-center gap-2.5">
                 <svg
                   width="28"
@@ -221,14 +127,14 @@ export default function AboutPage() {
                   />
                   <circle cx="12" cy="8.2" r="0.9" fill="#FFFFFF" />
                 </svg>
-                <span className="text-xs font-heading font-bold uppercase tracking-wider text-brandBlue">
+                <span className="text-[11px] sm:text-xs font-heading font-bold uppercase tracking-wider text-brandBlue">
                   Community Inclusivity &amp; Equal Opportunity
                 </span>
               </div>
 
-              <h3 className="font-heading text-2xl font-extrabold text-slate-900">
+              <h2 className="font-heading text-xl sm:text-2xl font-extrabold text-slate-900">
                 Proudly Supporting Aboriginal &amp; Torres Strait Islander Communities
-              </h3>
+              </h2>
 
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 We acknowledge and pay respect to the Traditional Custodians and Elders of this
@@ -240,11 +146,119 @@ export default function AboutPage() {
 
             <a
               href={`mailto:${BRAND_INFO.mainEmail}?subject=Careers%20%26%20Employment%20Enquiry%20-%20Nexora%20Cleaning`}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md transition-colors"
             >
               <Mail className="w-4 h-4" />
               <span>Careers &amp; Employment Enquiry</span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Light Verified Credentials Strip (Icon + Heading) */}
+      <section className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1.5">
+            <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
+              Compliance &amp; Peace of Mind
+            </span>
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
+              Credentials We Hold &amp; Maintain
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+            {TRUST_CREDENTIALS.map((cred) => (
+              <div
+                key={cred.title}
+                className="scroll-card-snap group bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all"
+              >
+                <div className="scroll-icon-bounce hover-icon-bounce w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center">
+                  <DynamicIcon name={cred.iconName} className="w-5 h-5 sm:w-6 sm:h-6" />
+                </div>
+                <h3 className="font-heading font-bold text-xs sm:text-sm text-slate-900 leading-snug">
+                  {cred.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Story & Operational Standards */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            <div className="lg:col-span-6 space-y-5">
+              <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
+                Our Approach
+              </span>
+              <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900">
+                Built on Checklists, Screening &amp; Clear Communication
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Across Perth, too many customers experience cleaners who arrive late, rush through
+                rooms without a checklist, or add unexpected fees after the job is done.
+              </p>
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                At <strong>Nexora Cleaning Co</strong> ({BRAND_INFO.domain}), every booking begins
+                with a free, no-obligation quote where your price is confirmed before work begins.
+                On the day of service, our fully vaccinated, police-checked team follows a
+                documented room-by-room checklist and conducts quality inspections to ensure nothing
+                is missed.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+                <div className="scroll-card-snap p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-sky-100 text-brandBlue flex items-center justify-center shrink-0">
+                    <ClipboardCheck className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h3 className="font-heading font-bold text-sm text-slate-900">
+                      Documented Checklists
+                    </h3>
+                    <p className="text-xs text-slate-600">
+                      Structured task lists for bond cleans, regular homes, schools, and builders.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="scroll-card-snap p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-sky-100 text-brandBlue flex items-center justify-center shrink-0">
+                    <UserCheck className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-0.5">
+                    <h3 className="font-heading font-bold text-sm text-slate-900">
+                      Screened WA Personnel
+                    </h3>
+                    <p className="text-xs text-slate-600">
+                      Police-checked, insured, WWCC-screened &amp; NDIS approved cleaners.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {WHY_CHOOSE_NEXORA.map((item) => (
+                <div
+                  key={item.title}
+                  className="scroll-card-snap group bg-slate-50/80 hover:bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 hover:border-brandBlue/50 shadow-sm transition-all flex items-start gap-3.5"
+                >
+                  <div className="scroll-icon-bounce hover-icon-bounce w-10 h-10 rounded-xl bg-sky-100 text-brandBlue flex items-center justify-center shrink-0">
+                    <DynamicIcon name={item.iconName} className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

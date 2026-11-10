@@ -25,32 +25,32 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   };
 
   return (
-    <div className="scroll-card-snap group bg-white rounded-2xl border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6">
+    <div className="group bg-white rounded-2xl border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-5 sm:p-6">
       <div>
-        {/* Top Row: Icon + Status Badge */}
-        <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center shadow-sm transition-transform">
-            <DynamicIcon name={service.iconName} className="w-6 h-6" />
+        {/* Top Row: Icon + Title/Category + Status Badge */}
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="flex items-start gap-3">
+            <div className="hover-icon-bounce w-11 h-11 rounded-xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center shrink-0 shadow-sm transition-transform">
+              <DynamicIcon name={service.iconName} className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-brandBlue">
+                {service.categoryName}
+              </p>
+              <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 group-hover:text-brandBlue transition-colors leading-snug">
+                <Link href={`/services/${service.slug}`}>{service.title}</Link>
+              </h3>
+            </div>
           </div>
           <span
-            className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${getBadgeStyles()}`}
+            className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border shrink-0 ${getBadgeStyles()}`}
           >
             {service.badgeText}
           </span>
         </div>
 
-        {/* Category Label */}
-        <p className="text-xs font-semibold uppercase tracking-wider text-brandBlue mb-1">
-          {service.categoryName}
-        </p>
-
-        {/* Service Title */}
-        <h3 className="font-heading font-bold text-xl text-slate-900 group-hover:text-brandBlue transition-colors mb-2">
-          <Link href={`/services/${service.slug}`}>{service.title}</Link>
-        </h3>
-
         {/* 1-Liner Description */}
-        <p className="text-sm text-slate-600 leading-relaxed mb-4">{service.oneLiner}</p>
+        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">{service.oneLiner}</p>
 
         {/* Top 3 Checklist Preview */}
         <ul className="space-y-1.5 mb-6 border-t border-slate-100 pt-4">

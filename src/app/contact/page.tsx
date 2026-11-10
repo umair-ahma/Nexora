@@ -95,17 +95,17 @@ export default function ContactPage() {
                 <div className="space-y-3">
                   <a
                     href={`mailto:${BRAND_INFO.mainEmail}`}
-                    className="block p-4 rounded-2xl bg-sky-50/80 border border-brandBlue/30 hover:border-brandBlue transition-all"
+                    className="block p-3.5 sm:p-4 rounded-2xl bg-sky-50/80 border border-brandBlue/30 hover:border-brandBlue transition-all"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-brandBlue text-white flex items-center justify-center shrink-0">
-                        <Mail className="w-5 h-5" />
+                    <div className="flex items-start sm:items-center gap-3">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-brandBlue text-white flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+                        <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
-                      <div>
-                        <span className="text-[11px] font-extrabold uppercase tracking-wider text-brandBlue block">
+                      <div className="min-w-0 flex-1">
+                        <span className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-brandBlue block">
                           General Enquiries &amp; Customer Quotes
                         </span>
-                        <span className="font-heading font-bold text-base text-slate-900">
+                        <span className="font-heading font-bold text-sm sm:text-base text-slate-900 block break-all">
                           {BRAND_INFO.mainEmail}
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5">
@@ -117,17 +117,17 @@ export default function ContactPage() {
 
                   <a
                     href={`mailto:${BRAND_INFO.adminEmail}`}
-                    className="block p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brandBlue/50 transition-all"
+                    className="block p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brandBlue/50 transition-all"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center shrink-0">
-                        <Mail className="w-5 h-5" />
+                    <div className="flex items-start sm:items-center gap-3">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+                        <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
-                      <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                      <div className="min-w-0 flex-1">
+                        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
                           Management &amp; Commercial Contracts
                         </span>
-                        <span className="font-heading font-bold text-base text-slate-900">
+                        <span className="font-heading font-bold text-sm sm:text-base text-slate-900 block break-all">
                           {BRAND_INFO.adminEmail}
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5">
@@ -139,17 +139,17 @@ export default function ContactPage() {
 
                   <a
                     href={`mailto:${BRAND_INFO.accountsEmail}`}
-                    className="block p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brandBlue/50 transition-all"
+                    className="block p-3.5 sm:p-4 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brandBlue/50 transition-all"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center shrink-0">
-                        <Mail className="w-5 h-5" />
+                    <div className="flex items-start sm:items-center gap-3">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+                        <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
-                      <div>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
+                      <div className="min-w-0 flex-1">
+                        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
                           Customer Support, Accounts &amp; NDIS Billing
                         </span>
-                        <span className="font-heading font-bold text-base text-slate-900">
+                        <span className="font-heading font-bold text-sm sm:text-base text-slate-900 block break-all">
                           {BRAND_INFO.accountsEmail}
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5">

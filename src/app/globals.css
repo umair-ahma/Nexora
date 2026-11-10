@@ -83,7 +83,7 @@ body {
     will-change: opacity, transform;
   }
 
-  .scroll-heading-reveal.is-inview {
+  .scroll-heading-reveal[data-inview='true'] {
     opacity: 1;
     transform: translateY(0);
   }
@@ -102,7 +102,7 @@ body {
     will-change: opacity, transform;
   }
 
-  .scroll-card-snap.is-inview {
+  .scroll-card-snap[data-inview='true'] {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
@@ -131,8 +131,8 @@ body {
     transform: scale(0.6);
   }
 
-  .scroll-icon-bounce.is-inview,
-  .scroll-card-snap.is-inview .scroll-icon-bounce {
+  .scroll-icon-bounce[data-inview='true'],
+  .scroll-card-snap[data-inview='true'] .scroll-icon-bounce {
     opacity: 1;
     transform: scale(1);
     animation: icon-pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
