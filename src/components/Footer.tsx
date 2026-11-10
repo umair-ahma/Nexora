@@ -5,25 +5,37 @@ import {
   Mail,
   MapPin,
   Clock,
-  ShieldCheck,
   ArrowRight,
   BadgePercent,
   CheckCircle2,
   ExternalLink,
+  MessageSquare,
 } from 'lucide-react';
 import {
   BRAND_INFO,
-  SERVICE_CATEGORIES,
+  CLEANING_SUPPLIES,
   getServicesByCategory,
 } from '@/data/nexoraData';
 
 export default function Footer() {
   return (
     <footer className="bg-[#040710] text-slate-300 border-t border-brandCyan/20 pb-20 lg:pb-0">
-      {/* Top Quote Banner Strip */}
-      <div className="bg-gradient-to-r from-[#08132B] via-[#0B1E42] to-[#08132B] border-b border-brandCyan/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center md:text-left">
+      {/* Top Quote Banner Strip with Translucent Background Photo (PDF p. 8) */}
+      <div className="relative overflow-hidden bg-[#07132B] border-b border-brandCyan/20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          style={{
+            backgroundImage: "url('/images/bg/nexora-residential-surface.jpg')",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040A18]/90 via-[#081632]/85 to-[#040A18]/90"
+        />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-1.5 text-center md:text-left">
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brandCyan">
               <BadgePercent className="w-4 h-4" />
               <span>We Beat All Comparable Written Quotes by 5%</span>
@@ -31,8 +43,9 @@ export default function Footer() {
             <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
               Let&apos;s Get Your Space Clean.
             </h3>
-            <p className="text-sm text-slate-300">
-              100% free, no-obligation quote within a few minutes — price confirmed before work begins.
+            <p className="text-sm text-slate-200">
+              100% free, no-obligation quote within a few minutes — price confirmed before work
+              begins.
             </p>
           </div>
 
@@ -46,7 +59,7 @@ export default function Footer() {
             </Link>
             <a
               href={BRAND_INFO.phoneHref}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm transition-all"
+              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm backdrop-blur-sm transition-all"
             >
               <Phone className="w-4 h-4 text-brandCyan" />
               <span>{BRAND_INFO.phoneDisplay}</span>
@@ -58,7 +71,7 @@ export default function Footer() {
       {/* Main Footer Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
-          {/* Column 1: Brand & Credentials (4 cols) */}
+          {/* Column 1: Brand, Credentials & Acknowledgement of Country (4 cols — PDF p. 8 & 9) */}
           <div className="lg:col-span-4 space-y-5">
             <Link href="/" className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl overflow-hidden border border-brandCyan/40 bg-black flex items-center justify-center">
@@ -80,23 +93,82 @@ export default function Footer() {
 
             <p className="text-sm text-slate-400 leading-relaxed">
               Professional Cleaning Solutions Across Western Australia. Reliable cleaning for homes,
-              businesses, builders, and specialist facilities—backed by documented checklists,
-              screened staff, and clear upfront pricing.
+              businesses, builders, and NDIS participants—backed by documented checklists, screened
+              staff, and clear upfront pricing.
             </p>
 
-            <div className="space-y-2 pt-1 text-xs text-slate-300">
+            <div className="space-y-1.5 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brandCyan shrink-0" />
-                <span>WA-Based & Comprehensive Public Liability Insurance</span>
+                <span>WA-Based • $20M Public Liability Insurance</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brandCyan shrink-0" />
-                <span>National Police-Checked & WWCC Screened Personnel</span>
+                <span>Police-Checked, WWCC, White Card &amp; NDIS Approved</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brandCyan shrink-0" />
-                <span>100% Free Quote Within Minutes • 5% Price-Beat Guarantee</span>
+                <span>Fully Vaccinated Staff • 5% Price-Beat Guarantee</span>
               </div>
+            </div>
+
+            {/* Acknowledgement of Country with Mini Flags (PDF p. 8 & p. 9) */}
+            <div className="pt-3 border-t border-white/10 space-y-2">
+              <div className="flex items-center gap-2">
+                {/* Mini Australian Aboriginal Flag SVG */}
+                <svg
+                  width="24"
+                  height="16"
+                  viewBox="0 0 24 16"
+                  aria-label="Australian Aboriginal Flag"
+                  className="rounded-[2px] border border-white/20 shrink-0"
+                >
+                  <rect width="24" height="8" y="0" fill="#000000" />
+                  <rect width="24" height="8" y="8" fill="#CC0000" />
+                  <circle cx="12" cy="8" r="4" fill="#FFCC00" />
+                </svg>
+
+                {/* Mini Torres Strait Islander Flag SVG */}
+                <svg
+                  width="24"
+                  height="16"
+                  viewBox="0 0 24 16"
+                  aria-label="Torres Strait Islander Flag"
+                  className="rounded-[2px] border border-white/20 shrink-0"
+                >
+                  <rect width="24" height="3.2" y="0" fill="#009966" />
+                  <rect width="24" height="1" y="3.2" fill="#000000" />
+                  <rect width="24" height="7.6" y="4.2" fill="#003399" />
+                  <rect width="24" height="1" y="11.8" fill="#000000" />
+                  <rect width="24" height="3.2" y="12.8" fill="#009966" />
+                  <path
+                    d="M9 10.5 C9 7, 15 7, 15 10.5 L13.6 10.5 C13.6 8.5, 10.4 8.5, 10.4 10.5 Z"
+                    fill="#FFFFFF"
+                  />
+                  <circle cx="12" cy="8.2" r="0.9" fill="#FFFFFF" />
+                </svg>
+
+                <span className="text-[11px] font-heading font-bold uppercase tracking-wider text-slate-300">
+                  Acknowledgement of Country
+                </span>
+              </div>
+
+              <p className="text-[11px] text-slate-400 leading-relaxed">
+                We acknowledge and pay respect to the Traditional Custodians and Elders of this
+                nation, both past, present and emerging. We honour the continuation of cultural and
+                educational practices of Aboriginal and Torres Strait Islander peoples.
+              </p>
+
+              <p className="text-[11px] text-slate-400">
+                Proudly supporting Indigenous employment opportunities —{' '}
+                <a
+                  href={`mailto:${BRAND_INFO.mainEmail}?subject=Careers%20%26%20Employment%20Enquiry%20-%20Nexora%20Cleaning`}
+                  className="text-brandCyan hover:underline"
+                >
+                  enquire about joining our team
+                </a>
+                .
+              </p>
             </div>
           </div>
 
@@ -118,10 +190,18 @@ export default function Footer() {
               ))}
               <li>
                 <Link
+                  href="/services/pre-sale-cleaning"
+                  className="text-slate-400 hover:text-brandCyan transition-colors block"
+                >
+                  Pre-Sale &amp; Open-Home Cleaning
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/services/kitchen-oven-appliance-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Kitchen & Oven Cleaning</span>
+                  <span>Kitchen &amp; Oven Cleaning</span>
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-brandCyan/20 text-brandCyan font-semibold">
                     Add-On
                   </span>
@@ -132,7 +212,7 @@ export default function Footer() {
                   href="/services/carpet-upholstery-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Carpet & Upholstery</span>
+                  <span>Carpet &amp; Upholstery</span>
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-semibold">
                     Partner
                   </span>
@@ -152,7 +232,7 @@ export default function Footer() {
           {/* Column 3: Commercial, Builders & Quick Links (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
             <h4 className="font-heading font-bold text-white text-sm uppercase tracking-wider border-b border-white/10 pb-2">
-              Commercial & Quick Links
+              Commercial &amp; Links
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
@@ -160,7 +240,7 @@ export default function Footer() {
                   href="/services/office-commercial-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors"
                 >
-                  Office & Commercial
+                  Office &amp; Commercial
                 </Link>
               </li>
               <li>
@@ -168,7 +248,7 @@ export default function Footer() {
                   href="/services/school-education-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors"
                 >
-                  School & Education
+                  School &amp; Education
                 </Link>
               </li>
               <li>
@@ -176,7 +256,15 @@ export default function Footer() {
                   href="/services/childcare-daycare-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors"
                 >
-                  Childcare & Day-Care
+                  Childcare &amp; Day-Care
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/ndis-domestic-cleaning"
+                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                >
+                  NDIS Approved Cleaning
                 </Link>
               </li>
               <li>
@@ -184,16 +272,16 @@ export default function Footer() {
                   href="/services/builders-construction-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors"
                 >
-                  Builders & Construction
+                  Builders &amp; Construction
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/services/strata-common-area-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                <a
+                  href={CLEANING_SUPPLIES.mailtoHref}
+                  className="text-brandCyan hover:underline font-medium"
                 >
-                  Strata Common Areas
-                </Link>
+                  Cleaning Supplies
+                </a>
               </li>
               <li className="pt-2 border-t border-white/10">
                 <Link
@@ -224,7 +312,7 @@ export default function Footer() {
                   href="/privacy-terms"
                   className="text-slate-300 hover:text-brandCyan font-medium transition-colors"
                 >
-                  Privacy Policy & Terms
+                  Privacy Policy &amp; Terms
                 </Link>
               </li>
             </ul>
@@ -250,12 +338,27 @@ export default function Footer() {
                 </div>
               </a>
 
+              <a
+                href={`${BRAND_INFO.smsHref}?body=${encodeURIComponent(
+                  "G'day Nexora Cleaning! I'd like a free quote in Perth."
+                )}`}
+                className="flex items-start gap-3 text-slate-300 hover:text-brandCyan transition-colors"
+              >
+                <MessageSquare className="w-4 h-4 text-brandCyan shrink-0 mt-1" />
+                <div>
+                  <span className="block font-semibold text-white">
+                    Text / SMS: {BRAND_INFO.mobileDisplay}
+                  </span>
+                  <span className="text-xs text-slate-400">Send a quick text message</span>
+                </div>
+              </a>
+
               <div className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-brandCyan shrink-0 mt-1" />
                 <div className="space-y-1">
                   <div>
                     <span className="text-[11px] uppercase tracking-wider text-brandCyan block font-semibold">
-                      Main Enquiries & Quotes:
+                      Enquiries &amp; Quotes:
                     </span>
                     <a
                       href={`mailto:${BRAND_INFO.mainEmail}`}
@@ -266,7 +369,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <span className="text-[11px] text-slate-400 block">
-                      Admin:{' '}
+                      Management:{' '}
                       <a
                         href={`mailto:${BRAND_INFO.adminEmail}`}
                         className="text-slate-300 hover:text-brandCyan"
@@ -277,7 +380,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <span className="text-[11px] text-slate-400 block">
-                      Accounts:{' '}
+                      Support &amp; Accounts:{' '}
                       <a
                         href={`mailto:${BRAND_INFO.accountsEmail}`}
                         className="text-slate-300 hover:text-brandCyan"
@@ -296,7 +399,7 @@ export default function Footer() {
                     Perth Metropolitan Area, WA
                   </span>
                   <span className="text-xs text-slate-400">
-                    Covering all Northern, Southern, Eastern & Western Suburbs
+                    Covering all Northern, Southern, Eastern &amp; Western Suburbs
                   </span>
                 </div>
               </div>
@@ -313,7 +416,7 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <a
                   href="https://www.google.com/maps/search/Nexora+Cleaning+Perth+WA"
                   target="_blank"

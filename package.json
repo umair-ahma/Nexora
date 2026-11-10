@@ -2,7 +2,7 @@
   "name": "nexora-cleaning-wa",
   "version": "1.0.0",
   "private": true,
-  "description": "Nexora Cleaning Co — Professional Cleaning Solutions Across Western Australia (nexoraCleaning.com.au)",
+  "description": "Nexora Cleaning Co — Professional Cleaning Solutions Across Western Australia (nexoracleaning.au)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

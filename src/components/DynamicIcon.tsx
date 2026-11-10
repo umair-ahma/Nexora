@@ -36,6 +36,9 @@ import {
   MessageSquare,
   ShieldAlert,
   Check,
+  Syringe,
+  Tag,
+  Package,
 } from 'lucide-react';
 
 interface DynamicIconProps {
@@ -80,6 +83,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   MessageSquare,
   ShieldAlert,
   Check,
+  Syringe,
+  Tag,
+  Package,
 };
 
 export default function DynamicIcon({ name, className = 'w-6 h-6' }: DynamicIconProps) {

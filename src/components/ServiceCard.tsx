@@ -25,11 +25,11 @@ export default function ServiceCard({ service }: ServiceCardProps) {
   };
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6">
+    <div className="scroll-card-snap group bg-white rounded-2xl border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between p-6">
       <div>
         {/* Top Row: Icon + Status Badge */}
         <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#070E20] to-[#0D1E40] text-brandCyan flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+          <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center shadow-sm transition-transform">
             <DynamicIcon name={service.iconName} className="w-6 h-6" />
           </div>
           <span

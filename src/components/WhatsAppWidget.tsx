@@ -1,7 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MessageCircle, X, Send, Sparkles, CheckCircle2 } from 'lucide-react';
+import {
+  MessageCircle,
+  MessageSquare,
+  X,
+  Send,
+  CheckCircle2,
+} from 'lucide-react';
 import { BRAND_INFO } from '@/data/nexoraData';
 
 const QUICK_STARTERS = [
@@ -16,9 +22,9 @@ const QUICK_STARTERS = [
       "G'day Nexora! Looking for a reliable regular house cleaner in Perth. What's your availability?",
   },
   {
-    label: '🏢 Office / Commercial Cleaning',
+    label: '🏢 Office / Commercial / NDIS Cleaning',
     message:
-      "Hi Nexora Cleaning team! We need a quote for regular office / commercial facility cleaning in WA.",
+      'Hi Nexora Cleaning team! We need a quote for regular commercial / NDIS facility cleaning in WA.',
   },
   {
     label: '🏷️ Beat My Existing Written Quote by 5%',
@@ -71,14 +77,14 @@ export default function WhatsAppWidget() {
                   <CheckCircle2 className="w-3.5 h-3.5 text-brandCyan" />
                 </h4>
                 <p className="text-[11px] text-emerald-300 font-medium">
-                  Online • Typically replies within minutes
+                  Online • Replies via WhatsApp or SMS
                 </p>
               </div>
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              aria-label="Close WhatsApp Chat"
+              aria-label="Close Chat"
               className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
             >
               <X className="w-4 h-4" />
@@ -113,6 +119,18 @@ export default function WhatsAppWidget() {
                 </button>
               ))}
             </div>
+
+            {/* Direct Text / SMS Alternative Option (PDF p. 13) */}
+            <a
+              href={`${BRAND_INFO.smsHref}?body=${encodeURIComponent(
+                customMessage.trim() ||
+                  "G'day Nexora Cleaning! I would like a free cleaning quote in Perth."
+              )}`}
+              className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-brandBlue font-heading font-bold text-xs transition-colors"
+            >
+              <MessageSquare className="w-3.5 h-3.5" />
+              <span>Prefer Text Message (SMS)? Tap Here</span>
+            </a>
           </div>
 
           {/* Custom Message Input */}
@@ -138,22 +156,35 @@ export default function WhatsAppWidget() {
         </div>
       )}
 
-      {/* Floating Trigger Button */}
-      <button
-        type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Open WhatsApp Chat"
-        className="group relative flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-heading font-bold text-sm shadow-[0_8px_25px_rgba(37,211,102,0.45)] hover:shadow-[0_10px_30px_rgba(37,211,102,0.6)] transition-all transform hover:-translate-y-0.5"
-      >
-        <span className="absolute -top-1 -right-1 flex h-4 w-4">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75" />
-          <span className="relative inline-flex rounded-full h-4 w-4 bg-white text-[#128C7E] text-[10px] font-extrabold items-center justify-center">
-            1
+      {/* Floating Trigger Buttons: SMS Pill + WhatsApp Button */}
+      <div className="flex items-center gap-2">
+        <a
+          href={`${BRAND_INFO.smsHref}?body=${encodeURIComponent(
+            "G'day Nexora Cleaning! I would like a free quote in Perth."
+          )}`}
+          aria-label="Send SMS Text Message to Nexora Cleaning"
+          className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-3 rounded-full bg-white hover:bg-sky-50 text-brandBlue border border-slate-200 font-heading font-bold text-xs shadow-lg transition-all transform hover:-translate-y-0.5"
+        >
+          <MessageSquare className="w-4 h-4 text-brandBlue" />
+          <span>Text / SMS</span>
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Open WhatsApp Chat"
+          className="group relative flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-heading font-bold text-sm shadow-[0_8px_25px_rgba(37,211,102,0.45)] hover:shadow-[0_10px_30px_rgba(37,211,102,0.6)] transition-all transform hover:-translate-y-0.5"
+        >
+          <span className="absolute -top-1 -right-1 flex h-4 w-4">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75" />
+            <span className="relative inline-flex rounded-full h-4 w-4 bg-white text-[#128C7E] text-[10px] font-extrabold items-center justify-center">
+              1
+            </span>
           </span>
-        </span>
-        <MessageCircle className="w-5 h-5 fill-white" />
-        <span className="hidden sm:inline">WhatsApp Chat</span>
-      </button>
+          <MessageCircle className="w-5 h-5 fill-white" />
+          <span className="hidden sm:inline">WhatsApp Chat</span>
+        </button>
+      </div>
     </div>
   );
 }

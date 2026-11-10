@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppWidget from '@/components/WhatsAppWidget';
 import StickyMobileBar from '@/components/StickyMobileBar';
+import ScrollAnimator from '@/components/ScrollAnimator';
 import { BRAND_INFO } from '@/data/nexoraData';
 
 const inter = Inter({
@@ -105,6 +106,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col bg-white text-slate-900">
+        <ScrollAnimator />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

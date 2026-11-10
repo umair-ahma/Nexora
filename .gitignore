@@ -42,6 +42,8 @@ next-env.d.ts
 # Local private client & agent context (keep out of public Git)
 /.agents
 /CLIENT_CONTEXT.md
+/MEETING_NOTES_OCT_23.md
+/ITERATION_2_PLAN.md
 /invoices
 /invoice
 

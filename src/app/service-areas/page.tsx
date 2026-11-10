@@ -9,159 +9,232 @@ import {
   ArrowRight,
   CheckCircle2,
   BadgePercent,
+  X,
 } from 'lucide-react';
 import { PERTH_REGIONS, SERVICE_CATEGORIES } from '@/data/nexoraData';
 import QuoteForm from '@/components/QuoteForm';
 
 export default function ServiceAreasPage() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [quoteForcedOpen, setQuoteForcedOpen] = useState(false);
 
-  const filteredRegions = PERTH_REGIONS.map((region) => {
-    if (!searchQuery.trim()) return region;
-    const q = searchQuery.toLowerCase();
-    const matchingSuburbs = region.suburbs.filter(
-      (s) =>
-        s.toLowerCase().includes(q) ||
-        region.regionName.toLowerCase().includes(q) ||
-        region.postcodeRange.toLowerCase().includes(q)
-    );
-    return {
-      ...region,
-      suburbs: matchingSuburbs,
-    };
-  }).filter((r) => r.suburbs.length > 0);
+  const isQuoteDrawerOpen = searchQuery.trim().length > 0 || quoteForcedOpen;
+
+  const handleSelectRegion = (regionLabel: string) => {
+    setSearchQuery(regionLabel);
+    setQuoteForcedOpen(true);
+    const el = document.getElementById('postcode-quote-drawer');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-[#040814] via-[#08132B] to-[#0B1936] text-white py-16 sm:py-20 border-b border-brandCyan/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brandCyan/15 border border-brandCyan/30 text-brandCyan text-xs font-bold uppercase tracking-wider">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>All Over Perth &amp; Greater Western Australia</span>
+    <div className="flex flex-col bg-white">
+      {/* =====================================================================
+          HERO SECTION (Driveway Pressure Background + Centerpiece Postcode Bar — PDF p. 10)
+      ===================================================================== */}
+      <section className="relative overflow-hidden bg-[#061024] text-white py-16 sm:py-20 border-b border-slate-200/20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          style={{
+            backgroundImage: "url('/images/bg/nexora-driveway-pressure.jpg')",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040B1A]/90 via-[#071530]/85 to-[#040B1A]/90"
+        />
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-brandCyan/40 text-brandCyan text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+            <MapPin className="w-3.5 h-3.5" />
+            <span>All Over Perth &amp; Greater Western Australia</span>
+          </div>
+
+          <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+            Check Your Perth <span className="text-brandCyan">Postcode &amp; Book</span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto">
+            Enter your postcode or suburb below — our instant quote form will pop down right away
+            with your area pre-filled and zero metro travel surcharges.
+          </p>
+
+          {/* Centerpiece Postcode / Suburb Bar (PDF p. 10) */}
+          <div className="pt-2 max-w-2xl mx-auto">
+            <div className="relative flex items-center bg-white rounded-2xl p-2 shadow-2xl border-2 border-brandCyan/60">
+              <Search className="w-5 h-5 text-brandBlue ml-3 shrink-0" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Type your Perth postcode or suburb (e.g. 6000, Subiaco, Joondalup)..."
+                aria-label="Enter Perth postcode or suburb"
+                className="flex-1 px-3 py-3 text-slate-900 placeholder:text-slate-400 text-sm sm:text-base font-medium focus:outline-none"
+              />
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setQuoteForcedOpen(false);
+                  }}
+                  aria-label="Clear postcode"
+                  className="p-2 text-slate-400 hover:text-slate-700"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => setQuoteForcedOpen(true)}
+                className="px-5 py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md"
+              >
+                Start Quote
+              </button>
             </div>
 
-            <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Areas We Service Across <span className="text-brandCyan">Perth, WA</span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
-              Our mobile cleaning teams cover the entire Perth metropolitan area—from Yanchep and
-              Joondalup in the north to Fremantle, Rockingham, and Mandurah in the south, and out
-              to Midland, Ellenbrook, and the Perth Hills in the east.
-            </p>
-
-            {/* Interactive Suburb Search Bar */}
-            <div className="pt-2 max-w-xl">
-              <div className="relative">
-                <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search your Perth suburb or postcode (e.g. Subiaco, Joondalup, 6000)..."
-                  className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white text-slate-900 placeholder:text-slate-400 text-sm font-medium shadow-lg focus:outline-none focus:ring-2 focus:ring-brandCyan"
-                />
-              </div>
+            {/* Quick Postcode Pills */}
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-3 text-xs">
+              <span className="text-slate-300">Quick select:</span>
+              {['Perth CBD 6000', 'Subiaco 6008', 'Joondalup 6027', 'Fremantle 6160', 'Canning Vale 6155', 'Midland 6056'].map(
+                (sample) => (
+                  <button
+                    key={sample}
+                    type="button"
+                    onClick={() => handleSelectRegion(sample)}
+                    className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-brandBlue text-white border border-white/20 transition-colors font-medium"
+                  >
+                    {sample}
+                  </button>
+                )
+              )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Regional Suburb Directory */}
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          {filteredRegions.length === 0 ? (
-            <div className="bg-white rounded-3xl p-10 text-center border border-slate-200 space-y-4">
-              <MapPin className="w-10 h-10 text-brandBlue mx-auto" />
-              <h2 className="font-heading font-bold text-2xl text-slate-900">
-                Don&apos;t see &ldquo;{searchQuery}&rdquo; listed? We still cover your area!
-              </h2>
-              <p className="text-sm text-slate-600 max-w-xl mx-auto">
-                We service all suburbs across Greater Perth and surrounding WA regions. Enter your
-                suburb or postcode in the quote form below and we&apos;ll confirm availability
-                within minutes.
-              </p>
-              <a
-                href="#area-quote"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brandBlue text-white font-heading font-bold text-sm"
-              >
-                <span>Request a Quote for {searchQuery}</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredRegions.map((region) => (
-                <div
-                  key={region.id}
-                  className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-5"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-2.5">
-                        <div className="w-10 h-10 rounded-xl bg-brandBlue/10 text-brandBlue flex items-center justify-center shrink-0">
-                          <MapPin className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <h2 className="font-heading font-extrabold text-xl text-slate-900">
-                            {region.regionName}
-                          </h2>
-                          <span className="text-xs font-semibold text-brandBlue">
-                            Postcodes: {region.postcodeRange}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                      {region.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-1.5 pt-2">
-                      {region.suburbs.map((suburb) => (
-                        <a
-                          key={suburb}
-                          href="#area-quote"
-                          className="text-xs px-2.5 py-1 rounded-lg bg-slate-50 hover:bg-brandBlue hover:text-white border border-slate-200/90 text-slate-700 font-medium transition-colors"
-                        >
-                          {suburb}
-                        </a>
-                      ))}
-                    </div>
+      {/* =====================================================================
+          POP-DOWN QUOTE PROCESS (Appears as soon as Postcode / Suburb is entered — PDF p. 10)
+      ===================================================================== */}
+      <div id="postcode-quote-drawer" className="bg-sky-50/70 border-b border-sky-100 scroll-mt-24">
+        <div className={`pop-down-drawer ${isQuoteDrawerOpen ? 'is-open' : ''}`}>
+          <div className="pop-down-inner">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-emerald-200 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-6 h-6" />
                   </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                      No extra metro travel surcharge
-                    </span>
-                    <a
-                      href="#area-quote"
-                      className="inline-flex items-center gap-1 font-bold text-brandBlue hover:underline"
-                    >
-                      Book in this region <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
+                  <div>
+                    <p className="font-heading font-extrabold text-base text-slate-900">
+                      {searchQuery.trim()
+                        ? `Yes! Our Perth Crew Services "${searchQuery.trim()}"`
+                        : 'Instant Perth Metro Quote'}
+                    </p>
+                    <p className="text-xs text-slate-600">
+                      No extra metro travel surcharge • 100% Free Quote in 3 Minutes • 5% Price Beat
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setQuoteForcedOpen(false);
+                  }}
+                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 self-end sm:self-center"
+                >
+                  Close Drawer ✕
+                </button>
+              </div>
 
-          {/* Services Available in All Regions */}
-          <div className="bg-gradient-to-r from-[#071022] to-[#0D1E40] rounded-3xl p-6 sm:p-10 text-white flex flex-col lg:flex-row items-center justify-between gap-8">
+              <QuoteForm defaultSuburb={searchQuery.trim()} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* =====================================================================
+          6 MAIN REGION PILLARS (Compact Cards Only — No 120-Tag Wall — PDF p. 10)
+      ===================================================================== */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
+            <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
+              6 Core Perth Metro Corridors
+            </span>
+            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
+              Main Service Regions Across Greater Perth
+            </h2>
+            <p className="text-sm sm:text-base text-slate-600">
+              Click any region pillar below to pre-fill its postcode corridor into our quote form.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PERTH_REGIONS.map((region) => (
+              <div
+                key={region.id}
+                id={region.id}
+                onClick={() =>
+                  handleSelectRegion(`${region.regionName} (${region.postcodeRange})`)
+                }
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleSelectRegion(`${region.regionName} (${region.postcodeRange})`);
+                  }
+                }}
+                className="scroll-card-snap group cursor-pointer bg-slate-50/70 hover:bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/90 hover:border-brandBlue shadow-sm hover:shadow-xl transition-all flex flex-col justify-between space-y-5"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue group-hover:bg-brandBlue group-hover:text-white flex items-center justify-center transition-colors shadow-sm">
+                      <MapPin className="w-6 h-6" />
+                    </div>
+                    <span className="text-xs font-heading font-extrabold px-3 py-1 rounded-full bg-white border border-slate-200 text-brandBlue">
+                      Postcodes: {region.postcodeRange}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-extrabold text-xl text-slate-900 group-hover:text-brandBlue transition-colors">
+                    {region.regionName}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    {region.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between text-xs">
+                  <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    Zero travel surcharge
+                  </span>
+                  <span className="inline-flex items-center gap-1 font-heading font-bold text-brandBlue group-hover:translate-x-0.5 transition-transform">
+                    Select &amp; Quote <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* All Services Available Strip */}
+          <div className="scroll-card-snap bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/90 flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="space-y-2 max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brandCyan">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brandBlue">
                 <Sparkles className="w-4 h-4" />
                 Full Service Availability Across Perth
               </span>
-              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
-                All 25 Cleaning Services Available in Every Suburb
+              <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
+                All Cleaning Divisions Available in Every Suburb
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 From End-of-Lease Bond Cleaning and Regular House Cleaning to Office, School,
-                Childcare, Builders Cleans, Pressure Washing, and Oven Add-Ons.
+                Childcare, NDIS Approved Cleaning, Pre-Sale &amp; Builders Cleans, and Pressure
+                Washing.
               </p>
             </div>
 
@@ -170,36 +243,13 @@ export default function ServiceAreasPage() {
                 <Link
                   key={cat.id}
                   href={`/services#${cat.id}`}
-                  className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-brandBlue text-white text-xs font-heading font-bold border border-white/15 transition-colors"
+                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-brandBlue hover:text-white text-slate-800 text-xs font-heading font-bold border border-slate-200 transition-colors shadow-sm"
                 >
                   {cat.shortName}
                 </Link>
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Quote Section */}
-      <section
-        id="area-quote"
-        className="py-20 bg-white border-t border-slate-200 scroll-mt-20"
-      >
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="text-center space-y-2">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-brandBlue">
-              <BadgePercent className="w-4 h-4" />
-              We Beat All Comparable Quotes by 5%
-            </span>
-            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
-              Get a Free Quote for Your Perth Suburb
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600">
-              Enter your Name, Phone, and Suburb/Postcode below — we&apos;ll respond within minutes.
-            </p>
-          </div>
-
-          <QuoteForm />
         </div>
       </section>
     </div>

@@ -16,6 +16,7 @@ import {
 import {
   BRAND_INFO,
   CLEANING_SERVICES,
+  TRUST_BADGE_PILLS,
   getServiceBySlug,
   getServicesByCategory,
 } from '@/data/nexoraData';
@@ -75,10 +76,22 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
   return (
     <div className="flex flex-col">
       {/* =====================================================================
-          HERO BANNER: 1-Liner Intro + Immediate Request a Quote / Book Now CTA
+          HERO BANNER: Translucent Background Photo + 1-Liner Intro + CTA
       ===================================================================== */}
-      <section className="bg-gradient-to-b from-[#040814] via-[#08132B] to-[#0B1936] text-white py-14 sm:py-20 border-b border-brandCyan/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <section className="relative overflow-hidden bg-[#061024] text-white py-14 sm:py-20 border-b border-slate-200/20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          style={{
+            backgroundImage: "url('/images/bg/nexora-collage-upholstery.jpg')",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040B1A]/90 via-[#071530]/85 to-[#040B1A]/90"
+        />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           {/* Breadcrumbs */}
           <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
             <Link href="/" className="hover:text-brandCyan transition-colors">
@@ -123,9 +136,22 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 {service.oneLiner}
               </p>
 
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-3xl">
                 {service.overview}
               </p>
+
+              {/* Compliance Badge Pills */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                {TRUST_BADGE_PILLS.map((badge) => (
+                  <span
+                    key={badge.label}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
+                  >
+                    <DynamicIcon name={badge.iconName} className="w-3.5 h-3.5 text-brandCyan" />
+                    <span>{badge.label}</span>
+                  </span>
+                ))}
+              </div>
 
               {/* Special Status Callout Box if Coming Soon / Add-On / Trusted Partner */}
               {service.addOnNote && (

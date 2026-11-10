@@ -10,29 +10,33 @@ import {
   ShieldCheck,
   Send,
   MessageCircle,
+  MessageSquare,
   RotateCcw,
   AlertCircle,
 } from 'lucide-react';
 import {
   BRAND_INFO,
   SERVICE_CATEGORIES,
+  CLEANING_SUPPLIES,
   getServicesByCategory,
 } from '@/data/nexoraData';
 
 interface QuoteFormProps {
   defaultService?: string;
+  defaultSuburb?: string;
   compact?: boolean;
 }
 
 export default function QuoteForm({
-  defaultService = 'End-of-lease / bond / vacate cleaning',
+  defaultService = 'End-of-Lease / Bond / Vacate Cleaning',
+  defaultSuburb = '',
   compact = false,
 }: QuoteFormProps) {
   const [service, setService] = useState(defaultService);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-  const [suburb, setSuburb] = useState('');
+  const [suburb, setSuburb] = useState(defaultSuburb);
   const [preferredDate, setPreferredDate] = useState('');
   const [preferredTimeMode, setPreferredTimeMode] = useState<'flexible' | 'specific'>('flexible');
   const [preferredTimeValue, setPreferredTimeValue] = useState('09:00');
@@ -50,12 +54,27 @@ export default function QuoteForm({
     }
   }, [defaultService]);
 
+  useEffect(() => {
+    if (defaultSuburb !== undefined && defaultSuburb !== '') {
+      setSuburb(defaultSuburb);
+    }
+  }, [defaultSuburb]);
+
+  // Read URL query params (?service=...&suburb=...) on client mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const serviceParam = params.get('service');
+    const suburbParam = params.get('suburb');
+    if (serviceParam) setService(serviceParam);
+    if (suburbParam) setSuburb(suburbParam);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
 
     if (websiteUrl.trim() !== '') {
-      // Honeypot caught
       setIsSubmitted(true);
       return;
     }
@@ -69,23 +88,25 @@ export default function QuoteForm({
 
     setIsSubmitting(true);
 
+    const preferredTimeFormatted =
+      preferredTimeMode === 'specific'
+        ? `Specific Time (${preferredTimeValue})`
+        : 'Flexible';
+
     const submissionData = {
       service,
       name: name.trim(),
       phone: phone.trim(),
-      email: email.trim(),
+      email: email.trim() || 'Not provided',
       suburb: suburb.trim(),
       preferredDate: preferredDate || 'Flexible',
-      preferredTime:
-        preferredTimeMode === 'specific'
-          ? `Specific Time (${preferredTimeValue})`
-          : 'Flexible',
+      preferredTime: preferredTimeFormatted,
       propertySize: propertySize || 'Not specified',
-      notes: notes.trim(),
+      notes: notes.trim() || 'None',
       submittedAt: new Date().toISOString(),
     };
 
-    // Store in localStorage for audit & fallback
+    // 1. Store in localStorage for local audit & fallback
     try {
       if (typeof window !== 'undefined') {
         const existing = JSON.parse(
@@ -98,8 +119,31 @@ export default function QuoteForm({
       // ignore storage error
     }
 
-    // Brief realistic delay for polish
-    await new Promise((res) => setTimeout(res, 600));
+    // 2. Relay to Nexora main inbox via FormSubmit AJAX endpoint (non-blocking)
+    try {
+      await fetch(BRAND_INFO.formEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: `New Nexora Quote Request — ${submissionData.service} (${submissionData.suburb})`,
+          _template: 'table',
+          Service: submissionData.service,
+          Name: submissionData.name,
+          Phone: submissionData.phone,
+          Suburb_Postcode: submissionData.suburb,
+          Email: submissionData.email,
+          Preferred_Date: submissionData.preferredDate,
+          Preferred_Time: submissionData.preferredTime,
+          Property_Size: submissionData.propertySize,
+          Notes: submissionData.notes,
+        }),
+      });
+    } catch {
+      // Fallback gracefully if offline or blocked by adblocker
+    }
 
     setIsSubmitting(false);
     setIsSubmitted(true);
@@ -110,7 +154,7 @@ export default function QuoteForm({
     setName('');
     setPhone('');
     setEmail('');
-    setSuburb('');
+    setSuburb(defaultSuburb || '');
     setPreferredDate('');
     setPreferredTimeMode('flexible');
     setPreferredTimeValue('09:00');
@@ -119,12 +163,12 @@ export default function QuoteForm({
     setErrorMessage('');
   };
 
-  const getWhatsAppEnquiryLink = () => {
+  const buildSummaryText = () => {
     const timeText =
       preferredTimeMode === 'specific'
         ? `Specific Time (${preferredTimeValue})`
         : 'Flexible';
-    const text = `G'day Nexora Cleaning! I just submitted an online quote request:
+    return `G'day Nexora Cleaning! I just submitted an online quote request:
 - Service: ${service}
 - Name: ${name}
 - Phone: ${phone}
@@ -132,15 +176,21 @@ export default function QuoteForm({
 - Preferred Date: ${preferredDate || 'Flexible'}
 - Time: ${timeText}
 ${notes ? `- Notes: ${notes}` : ''}`;
+  };
 
+  const getWhatsAppEnquiryLink = () => {
     return `https://wa.me/${BRAND_INFO.whatsappNumber}?text=${encodeURIComponent(
-      text
+      buildSummaryText()
     )}`;
+  };
+
+  const getSmsEnquiryLink = () => {
+    return `${BRAND_INFO.smsHref}?body=${encodeURIComponent(buildSummaryText())}`;
   };
 
   if (isSubmitted) {
     return (
-      <div className="bg-white rounded-3xl border-2 border-emerald-500/40 shadow-2xl p-6 sm:p-10 text-center space-y-6 animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-white rounded-3xl border-2 border-emerald-500/40 shadow-xl p-6 sm:p-10 text-center space-y-6 animate-in fade-in zoom-in-95 duration-200">
         <div className="w-16 h-16 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-600 flex items-center justify-center mx-auto">
           <CheckCircle2 className="w-9 h-9" />
         </div>
@@ -186,15 +236,23 @@ ${notes ? `- Notes: ${notes}` : ''}`;
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 pt-2">
           <a
             href={getWhatsAppEnquiryLink()}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-heading font-bold text-sm shadow-md transition-all hover:scale-[1.02]"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-heading font-bold text-sm shadow-md transition-all hover:scale-[1.02]"
           >
             <MessageCircle className="w-4 h-4 fill-white" />
             <span>Fast-Track via WhatsApp</span>
+          </a>
+
+          <a
+            href={getSmsEnquiryLink()}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-sm shadow-md transition-all"
+          >
+            <MessageSquare className="w-4 h-4" />
+            <span>Send via Text / SMS</span>
           </a>
 
           <button
@@ -213,11 +271,11 @@ ${notes ? `- Notes: ${notes}` : ''}`;
   return (
     <div
       id="quote-form"
-      className="bg-white rounded-3xl border border-slate-200/90 shadow-2xl overflow-hidden"
+      className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden"
     >
-      {/* Top Dark Header Bar */}
-      <div className="bg-gradient-to-r from-[#060B18] via-[#0B1730] to-[#060B18] p-6 sm:p-8 text-white border-b border-brandCyan/30">
-        <div className="flex flex-wrap items-center gap-2 mb-3">
+      {/* Clean Header Bar */}
+      <div className="bg-gradient-to-r from-[#071126] via-[#0B1B3B] to-[#071126] p-6 sm:p-7 text-white border-b border-brandCyan/30">
+        <div className="flex flex-wrap items-center gap-2 mb-2.5">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brandCyan/20 border border-brandCyan/40 text-brandCyan text-xs font-extrabold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
             100% Free Quote in 3 Minutes
@@ -229,10 +287,10 @@ ${notes ? `- Notes: ${notes}` : ''}`;
         </div>
 
         <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-          NEXORA CLEANING — ENQUIRY
+          NEXORA CLEANING — FREE QUOTE
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 mt-1">
-          Free, no-obligation quote — price confirmed before work begins. No hidden fees.
+          Free, no-obligation quote — price confirmed upfront before work begins.
         </p>
       </div>
 
@@ -271,8 +329,8 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             onChange={(e) => setService(e.target.value)}
             className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 font-medium focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
           >
-            <option value="End-of-lease / bond / vacate cleaning">
-              End-of-lease / bond cleaning (Default)
+            <option value="End-of-Lease / Bond / Vacate Cleaning">
+              End-of-Lease / Bond / Vacate Cleaning (Popular)
             </option>
             {SERVICE_CATEGORIES.map((cat) => (
               <optgroup key={cat.id} label={cat.name}>
@@ -290,9 +348,14 @@ ${notes ? `- Notes: ${notes}` : ''}`;
                 ))}
               </optgroup>
             ))}
-            <option value="Custom / Multiple Cleaning Services">
-              Custom / Multiple Cleaning Services
-            </option>
+            <optgroup label="Supplies & Custom Bundles">
+              <option value={CLEANING_SUPPLIES.quoteValue}>
+                {CLEANING_SUPPLIES.quoteValue}
+              </option>
+              <option value="Custom / Multiple Cleaning Services">
+                Custom / Multiple Cleaning Services
+              </option>
+            </optgroup>
           </select>
         </div>
 
@@ -342,7 +405,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               htmlFor="nexora-suburb"
               className="block text-xs font-bold uppercase tracking-wider text-slate-800 mb-1.5"
             >
-              Suburb / Postcode (Address) <span className="text-red-500">*</span>
+              Suburb / Postcode <span className="text-red-500">*</span>
             </label>
             <input
               id="nexora-suburb"
@@ -414,8 +477,8 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               <option value="Commercial / School / Childcare / Strata">
                 Commercial / School / Childcare / Strata
               </option>
-              <option value="Builders / Handover / Custom Scope">
-                Builders / Handover / Custom Scope
+              <option value="Builders / Pre-Sale / Handover">
+                Builders / Pre-Sale / Handover
               </option>
             </select>
           </div>
@@ -522,7 +585,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_25px_rgba(0,128,240,0.4)] hover:shadow-[0_12px_30px_rgba(16,192,255,0.5)] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_25px_rgba(0,128,240,0.35)] hover:shadow-[0_12px_30px_rgba(16,192,255,0.45)] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
         >
           <Send className="w-4 h-4" />
           <span>
