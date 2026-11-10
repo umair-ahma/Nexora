@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -7,19 +6,6 @@ import WhatsAppWidget from '@/components/WhatsAppWidget';
 import StickyMobileBar from '@/components/StickyMobileBar';
 import ScrollAnimator from '@/components/ScrollAnimator';
 import { BRAND_INFO } from '@/data/nexoraData';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-jakarta',
-  weight: ['600', '700', '800'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(BRAND_INFO.siteUrl),
@@ -103,8 +89,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en-AU" className={`${inter.variable} ${jakarta.variable}`}>
+    <html lang="en-AU">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

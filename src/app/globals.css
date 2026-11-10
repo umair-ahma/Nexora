@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --bg-obsidian: #050811;
   --bg-navy-card: #0b1120;
   --bg-slate-light: #f8fafc;
