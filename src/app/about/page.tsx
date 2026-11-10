@@ -29,17 +29,17 @@ export default function AboutPage() {
   return (
     <div className="flex flex-col bg-white">
       {/* Hero Section with Translucent Background Photo (/images/bg/nexora-collage-window.jpg) */}
-      <section className="relative overflow-hidden bg-[#061024] text-white py-16 sm:py-20 border-b border-slate-200/20">
+      <section className="relative overflow-hidden bg-slate-900 text-white py-16 sm:py-24 border-b border-slate-200">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/bg/nexora-collage-window.jpg')",
           }}
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040B1A]/90 via-[#071530]/85 to-[#040B1A]/90"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/65 to-slate-950/45"
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

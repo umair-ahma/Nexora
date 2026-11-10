@@ -78,17 +78,17 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
       {/* =====================================================================
           HERO BANNER: Translucent Background Photo + 1-Liner Intro + CTA
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-[#061024] text-white py-14 sm:py-20 border-b border-slate-200/20">
+      <section className="relative overflow-hidden bg-slate-900 text-white py-14 sm:py-24 border-b border-slate-200">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/bg/nexora-collage-upholstery.jpg')",
           }}
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040B1A]/90 via-[#071530]/85 to-[#040B1A]/90"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/70 to-slate-950/55"
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

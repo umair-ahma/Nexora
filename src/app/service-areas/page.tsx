@@ -32,17 +32,17 @@ export default function ServiceAreasPage() {
       {/* =====================================================================
           HERO SECTION (Driveway Pressure Background + Centerpiece Postcode Bar — PDF p. 10)
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-[#061024] text-white py-16 sm:py-20 border-b border-slate-200/20">
+      <section className="relative overflow-hidden bg-slate-900 text-white py-16 sm:py-24 border-b border-slate-200">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/bg/nexora-driveway-pressure.jpg')",
           }}
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040B1A]/90 via-[#071530]/85 to-[#040B1A]/90"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/65 via-slate-950/75 to-slate-950/65"
         />
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">

@@ -21,17 +21,17 @@ export default function Footer() {
   return (
     <footer className="bg-[#040710] text-slate-300 border-t border-brandCyan/20 pb-20 lg:pb-0">
       {/* Top Quote Banner Strip with Translucent Background Photo (PDF p. 8) */}
-      <div className="relative overflow-hidden bg-[#07132B] border-b border-brandCyan/20">
+      <div className="relative overflow-hidden bg-slate-900 border-b border-brandCyan/20">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-25"
+          className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-center"
           style={{
             backgroundImage: "url('/images/bg/nexora-residential-surface.jpg')",
           }}
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040A18]/90 via-[#081632]/85 to-[#040A18]/90"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/65 to-slate-950/50"
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">

@@ -56,7 +56,7 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="fixed bottom-20 lg:bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end">
+    <div className="hidden lg:flex fixed bottom-6 right-6 z-50 flex-col items-end">
       {/* Expanded Chat Popup */}
       {isOpen && (
         <div className="mb-3 w-[330px] sm:w-[360px] rounded-2xl overflow-hidden bg-white shadow-2xl border border-slate-200 animate-in fade-in slide-in-from-bottom-4 duration-200">

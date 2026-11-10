@@ -6,13 +6,10 @@ import {
   ArrowRight,
   Phone,
   Mail,
-  Clock,
-  MapPin,
   ShieldCheck,
   BadgePercent,
   Sparkles,
   CheckCircle2,
-  MessageCircle,
   MessageSquare,
   Star,
   ChevronDown,
@@ -43,6 +40,10 @@ export default function HomePage() {
   );
   const [homePostcodeQuery, setHomePostcodeQuery] = useState<string>('');
 
+  const canHover = () =>
+    typeof window !== 'undefined' &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
   const handleTileQuoteClick = (serviceTitle: string) => {
     setSelectedQuoteService(serviceTitle);
     const el = document.getElementById('final-enquiry');
@@ -58,50 +59,49 @@ export default function HomePage() {
   return (
     <div className="flex flex-col bg-white">
       {/* =====================================================================
-          SECTION 1: HERO SECTION (Dual Background Photos + Icon-Only Trust Pills)
+          SECTION 1: HERO SECTION (Dual Background Photos + Icon Trust Pills — PDF p. 1)
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-[#061024] text-white py-16 sm:py-20 lg:py-24 border-b border-slate-200/20">
-        {/* Dual Side Background Photos Behind Translucent Overlay (PDF p. 1) */}
+      <section className="relative overflow-hidden bg-slate-900 text-white py-14 sm:py-24 lg:py-28 border-b border-slate-200">
+        {/* Dual Side Background Photos at Full Base Opacity Behind Translucent Overlay */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 grid grid-cols-1 md:grid-cols-2"
+          className="pointer-events-none absolute inset-0 grid grid-rows-2 md:grid-rows-1 md:grid-cols-2 overflow-hidden"
         >
           <div
-            className="bg-cover bg-center opacity-25"
+            className="hero-bg-motion bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/bg/nexora-driveway-pressure.jpg')",
             }}
           />
           <div
-            className="hidden md:block bg-cover bg-center opacity-25"
+            className="hero-bg-motion bg-cover bg-center"
             style={{
               backgroundImage: "url('/images/bg/nexora-van-crew.jpg')",
             }}
           />
         </div>
-        {/* Soft Translucent Gradient Overlay */}
+
+        {/* Translucent Overlay: Clear on Left/Right Flanks so Both Photos Show, Darker in Center for Crisp Text */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#040B1A]/90 via-[#071530]/85 to-[#040B1A]/90"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/50 via-slate-950/75 to-slate-950/50"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/40"
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center space-y-7">
-            {/* Top Kicker Badge */}
-            <div className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-brandCyan/40 text-xs sm:text-sm font-semibold text-brandCyan backdrop-blur-sm">
-              <Sparkles className="w-4 h-4 shrink-0 text-brandCyan" />
-              <span>Perth &amp; Western Australia • Homes, Commercial, Builders &amp; NDIS</span>
-            </div>
-
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
             {/* Compact Compliance Icon Badges Above Headline (PDF p. 1) */}
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <div className="scroll-heading-reveal flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
               {TRUST_BADGE_PILLS.map((badge) => (
                 <div
                   key={badge.label}
-                  className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white shadow-sm transition-all"
+                  className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/60 hover:bg-slate-950/80 border border-white/25 backdrop-blur-md text-[11px] sm:text-xs font-heading font-bold text-white shadow-sm transition-all"
                 >
-                  <span className="scroll-icon-bounce hover-icon-bounce text-brandCyan">
-                    <DynamicIcon name={badge.iconName} className="w-4 h-4" />
+                  <span className="hover-icon-bounce text-brandCyan">
+                    <DynamicIcon name={badge.iconName} className="w-3.5 h-3.5" />
                   </span>
                   <span>{badge.label}</span>
                 </div>
@@ -109,23 +109,23 @@ export default function HomePage() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
+            <h1 className="scroll-heading-reveal font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] drop-shadow-sm">
               Professional Cleaning Solutions Across{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-sky-300 to-brandBlue">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-sky-200 to-brandCyan">
                 Western Australia.
               </span>
             </h1>
 
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto">
+            <p className="scroll-heading-reveal text-sm sm:text-lg text-slate-100 leading-relaxed max-w-2xl mx-auto font-medium drop-shadow-sm">
               Reliable, police-checked cleaning for Perth homes, offices, schools, builders, and
               NDIS participants — with upfront pricing locked in before work begins.
             </p>
 
             {/* Primary CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-4 pt-1">
+            <div className="scroll-heading-reveal flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
               <a
                 href="#final-enquiry"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_30px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_30px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5"
               >
                 <span>Request a Free Quote</span>
                 <ArrowRight className="w-5 h-5" />
@@ -133,29 +133,18 @@ export default function HomePage() {
 
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-white/15 hover:bg-white/20 border border-white/25 text-white font-heading font-bold text-base backdrop-blur-sm transition-all"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white font-heading font-bold text-sm sm:text-base backdrop-blur-md transition-all"
               >
                 <span>Explore Our Services</span>
               </Link>
             </div>
 
-            {/* Fast Quote & Price Beat Highlight Strip */}
-            <div className="pt-4 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-slate-200">
-              <span className="inline-flex items-center gap-1.5 font-semibold text-brandCyan">
-                <Sparkles className="w-4 h-4" />
-                100% Free Quote in 3 Minutes
+            {/* Concise Price-Beat Guarantee Strip */}
+            <div className="scroll-heading-reveal pt-2 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-white">
+              <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 bg-slate-950/60 border border-emerald-400/40 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+                <BadgePercent className="w-4 h-4 text-emerald-400 shrink-0" />
+                100% Free Quote in 3 Minutes • We Beat Any Comparable Quote by 5%
               </span>
-              <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-400/30 px-3 py-1 rounded-full">
-                <BadgePercent className="w-4 h-4 text-emerald-400" />
-                We Beat Any Comparable Quote by 5%
-              </span>
-              <a
-                href={BRAND_INFO.phoneHref}
-                className="inline-flex items-center gap-1.5 hover:text-brandCyan transition-colors font-semibold"
-              >
-                <Phone className="w-4 h-4 text-brandCyan" />
-                <span>{BRAND_INFO.phoneDisplay}</span>
-              </a>
             </div>
           </div>
         </div>
@@ -164,7 +153,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 2: TRUST & CREDENTIALS STRIP — Icon + Heading ONLY (PDF p. 2)
       ===================================================================== */}
-      <section className="bg-white py-14 sm:py-16 border-b border-slate-100">
+      <section className="bg-white py-14 sm:py-20 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1.5">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
@@ -175,16 +164,16 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-5">
             {TRUST_CREDENTIALS.map((cred) => (
               <div
                 key={cred.title}
-                className="scroll-card-snap group bg-slate-50/80 hover:bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-2xl p-5 flex flex-col items-center text-center justify-center gap-3 shadow-sm hover:shadow-md transition-all"
+                className="scroll-card-snap group bg-slate-50/70 hover:bg-white border border-slate-200/80 hover:border-brandBlue/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all"
               >
-                <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center shadow-sm">
-                  <DynamicIcon name={cred.iconName} className="w-6 h-6" />
+                <div className="scroll-icon-bounce hover-icon-bounce w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center shadow-sm">
+                  <DynamicIcon name={cred.iconName} className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900 leading-snug">
+                <h3 className="font-heading font-bold text-xs sm:text-sm text-slate-900 leading-snug">
                   {cred.title}
                 </h3>
               </div>
@@ -196,33 +185,33 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 3: OUR CLEANING SERVICES — 6 Hover/Tap Pop-Down Tiles (PDF p. 3 & 7)
       ===================================================================== */}
-      <section className="py-20 sm:py-24 bg-slate-50/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="scroll-heading-reveal flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <section className="py-16 sm:py-24 bg-slate-50/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+          <div className="scroll-heading-reveal flex flex-col md:flex-row md:items-end justify-between gap-5">
             <div className="space-y-2 max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                 Our Cleaning Services
               </span>
-              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
+              <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900">
                 Tailored Cleaning Solutions Across Perth &amp; WA
               </h2>
               <p className="text-sm sm:text-base text-slate-600">
-                Hover or tap any division below to reveal our specialised services, or request a
+                Tap or hover any division below to reveal our specialised services, or request a
                 free upfront quote in under 60 seconds.
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3 shrink-0">
+            <div className="flex flex-wrap items-center gap-2.5 shrink-0">
               <a
                 href={CLEANING_SUPPLIES.mailtoHref}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-sky-50 border border-slate-200 text-brandBlue font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-sky-50 border border-slate-200 text-brandBlue font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
               >
                 <Package className="w-4 h-4" />
-                <span>Cleaning Supplies Inquiry</span>
+                <span>Cleaning Supplies</span>
               </a>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-slate-900 hover:bg-brandBlue text-white font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-brandBlue text-white font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
               >
                 <span>All Services</span>
                 <ArrowRight className="w-4 h-4" />
@@ -231,17 +220,19 @@ export default function HomePage() {
           </div>
 
           {/* 6 Core Hover / Tap Pop-Down Service Tiles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-start">
             {HOME_CORE_TILES.map((tile) => {
               const isExpanded = activeTileId === tile.id;
               return (
                 <div
                   key={tile.id}
-                  onMouseEnter={() => setActiveTileId(tile.id)}
-                  onMouseLeave={() =>
-                    setActiveTileId((prev) => (prev === tile.id ? null : prev))
-                  }
-                  className={`scroll-card-snap group bg-white rounded-3xl border transition-all duration-300 p-6 sm:p-7 ${
+                  onMouseEnter={() => {
+                    if (canHover()) setActiveTileId(tile.id);
+                  }}
+                  onMouseLeave={() => {
+                    if (canHover()) setActiveTileId((prev) => (prev === tile.id ? null : prev));
+                  }}
+                  className={`scroll-card-snap group bg-white rounded-3xl border transition-all duration-300 p-5 sm:p-7 ${
                     isExpanded
                       ? 'border-brandBlue shadow-xl ring-1 ring-brandBlue/20'
                       : 'border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-lg'
@@ -251,14 +242,14 @@ export default function HomePage() {
                     type="button"
                     onClick={() => setActiveTileId(isExpanded ? null : tile.id)}
                     aria-expanded={isExpanded}
-                    className="w-full text-left flex items-start justify-between gap-4"
+                    className="w-full text-left flex items-start justify-between gap-3.5"
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="scroll-icon-bounce hover-icon-bounce w-14 h-14 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center shrink-0 shadow-md">
-                        <DynamicIcon name={tile.iconName} className="w-7 h-7" />
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center shrink-0 shadow-md">
+                        <DynamicIcon name={tile.iconName} className="w-6 h-6 sm:w-7 sm:h-7" />
                       </div>
                       <div className="space-y-1">
-                        <h3 className="font-heading font-extrabold text-lg sm:text-xl text-slate-900 group-hover:text-brandBlue transition-colors">
+                        <h3 className="font-heading font-extrabold text-base sm:text-xl text-slate-900 group-hover:text-brandBlue transition-colors">
                           {tile.title}
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
@@ -277,25 +268,21 @@ export default function HomePage() {
                   </button>
 
                   {/* Smooth Pop-Down Sub-Services Drawer */}
-                  <div
-                    className={`pop-down-drawer hover-open ${
-                      isExpanded ? 'is-open' : ''
-                    }`}
-                  >
+                  <div className={`pop-down-drawer ${isExpanded ? 'is-open' : ''}`}>
                     <div className="pop-down-inner">
-                      <div className="pt-5 mt-5 border-t border-slate-100 space-y-4">
-                        <ul className="space-y-2">
+                      <div className="pt-4 mt-4 border-t border-slate-100 space-y-4">
+                        <ul className="space-y-1.5">
                           {tile.links.map((sub) => (
                             <li key={sub.href}>
                               <Link
                                 href={sub.href}
-                                className="flex items-center justify-between text-xs sm:text-sm font-medium text-slate-700 hover:text-brandBlue py-1 px-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                                className="flex items-center justify-between text-xs sm:text-sm font-medium text-slate-700 hover:text-brandBlue py-1.5 px-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                               >
                                 <span className="flex items-center gap-2">
                                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                                  {sub.label}
+                                  <span>{sub.label}</span>
                                 </span>
-                                <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+                                <ArrowRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
                               </Link>
                             </li>
                           ))}
@@ -332,13 +319,13 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 4: INDUSTRIES WE SUPPORT — Icon + Heading Only + Hover Pop (PDF p. 4)
       ===================================================================== */}
-      <section className="py-20 sm:py-24 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="py-16 sm:py-24 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
               Industries We Support
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
+            <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900">
               Equipped &amp; Screened for WA&apos;s Core Sectors
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
@@ -346,22 +333,22 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {INDUSTRIES_DATA.map((industry) => (
               <Link
                 key={industry.id}
                 href={`/industries#${industry.id}`}
-                className="scroll-card-snap group bg-slate-50/70 hover:bg-white rounded-3xl p-6 border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center justify-center"
+                className="scroll-card-snap group bg-slate-50/70 hover:bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center justify-center"
               >
-                <div className="scroll-icon-bounce hover-icon-bounce w-14 h-14 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue group-hover:bg-brandBlue group-hover:text-white flex items-center justify-center mb-3.5 transition-colors shadow-sm">
-                  <DynamicIcon name={industry.iconName} className="w-7 h-7" />
+                <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue group-hover:bg-brandBlue group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
+                  <DynamicIcon name={industry.iconName} className="w-6 h-6 sm:w-7 sm:h-7" />
                 </div>
 
-                <h3 className="font-heading font-bold text-base sm:text-lg text-slate-900 group-hover:text-brandBlue transition-colors">
+                <h3 className="font-heading font-bold text-sm sm:text-lg text-slate-900 group-hover:text-brandBlue transition-colors leading-snug">
                   {industry.title}
                 </h3>
 
-                {/* Concise 1-liner smoothly pops down on hover */}
+                {/* Concise 1-liner smoothly pops down on desktop hover */}
                 <div className="pop-down-drawer hover-open w-full">
                   <div className="pop-down-inner">
                     <p className="text-xs text-slate-600 leading-relaxed pt-2.5 mt-2.5 border-t border-slate-100">
@@ -378,13 +365,13 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 5: WHY CHOOSE NEXORA (Light, High-Whitespace Layout)
       ===================================================================== */}
-      <section className="py-20 sm:py-24 bg-slate-50/80 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="py-16 sm:py-24 bg-slate-50/70 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
               Why Choose Nexora?
             </span>
-            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
+            <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900">
               The Real Differences That Set Us Apart
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
@@ -393,7 +380,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {WHY_CHOOSE_NEXORA.map((item) => (
               <div
                 key={item.title}
@@ -417,14 +404,14 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 6: HOW IT WORKS (4 Simple Steps + Client Reviews)
       ===================================================================== */}
-      <section className="py-20 sm:py-24 bg-white border-t border-slate-100">
+      <section className="py-16 sm:py-24 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
               <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                 Simple 4-Step Process
               </span>
-              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900">
+              <h2 className="font-heading text-2xl sm:text-4xl font-extrabold text-slate-900">
                 How It Works
               </h2>
               <p className="text-sm sm:text-base text-slate-600">
@@ -433,7 +420,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
               {HOW_IT_WORKS_STEPS.map((step) => (
                 <div
                   key={step.stepNumber}
@@ -496,16 +483,16 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 7: COMBINED PERTH COVERAGE + HOVER-OPENING FAQS (PDF p. 5 & 6)
       ===================================================================== */}
-      <section className="py-20 sm:py-24 bg-slate-50/80 border-t border-slate-100">
+      <section className="py-16 sm:py-24 bg-slate-50/80 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column (5 Cols): Concise Tailored Perth Coverage + Postcode Check */}
             <div className="lg:col-span-5 space-y-6">
               <div className="scroll-heading-reveal space-y-2.5">
                 <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                   Areas We Service
                 </span>
-                <h2 className="font-heading text-3xl font-extrabold text-slate-900">
+                <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
                   Tailored Across Perth &amp; WA
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
@@ -517,7 +504,7 @@ export default function HomePage() {
               {/* Quick Postcode / Suburb Bar that pre-fills Quote Form */}
               <form
                 onSubmit={handlePostcodeCheck}
-                className="scroll-card-snap bg-white p-3 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2"
+                className="scroll-card-snap bg-white p-2.5 sm:p-3 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2"
               >
                 <Search className="w-5 h-5 text-brandBlue ml-2 shrink-0" />
                 <input
@@ -525,7 +512,7 @@ export default function HomePage() {
                   value={homePostcodeQuery}
                   onChange={(e) => setHomePostcodeQuery(e.target.value)}
                   placeholder="Enter your Perth postcode or suburb..."
-                  className="flex-1 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2"
+                  className="flex-1 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
                 />
                 <button
                   type="submit"
@@ -593,11 +580,11 @@ export default function HomePage() {
                 <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                   Common Questions
                 </span>
-                <h2 className="font-heading text-3xl font-extrabold text-slate-900">
+                <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-slate-900">
                   Frequently Asked Questions
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600">
-                  Hover or tap any question below to view the answer right away.
+                  Tap or hover any question below to view the answer right away.
                 </p>
               </div>
 
@@ -612,10 +599,10 @@ export default function HomePage() {
       ===================================================================== */}
       <section
         id="final-enquiry"
-        className="py-20 sm:py-24 bg-white border-t border-slate-100 scroll-mt-20"
+        className="py-16 sm:py-24 bg-white border-t border-slate-100 scroll-mt-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column (5 Cols) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="scroll-heading-reveal space-y-3">
@@ -628,7 +615,7 @@ export default function HomePage() {
                   Let&apos;s Get Your Space Clean.
                 </h2>
 
-                <p className="text-base text-slate-600 leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                   Request a quote without having to call first. Only your{' '}
                   <strong className="text-slate-900">Name</strong>,{' '}
                   <strong className="text-slate-900">Phone</strong>, and{' '}
@@ -649,7 +636,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              {/* Direct Contact Cards (Phone, SMS, WhatsApp, Email) */}
+              {/* Direct Contact Cards (Phone, SMS, Email) */}
               <div className="space-y-3 pt-1">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <a
