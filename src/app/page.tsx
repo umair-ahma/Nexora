@@ -31,6 +31,7 @@ import {
 import DynamicIcon from '@/components/DynamicIcon';
 import QuoteForm from '@/components/QuoteForm';
 import FaqAccordion from '@/components/FaqAccordion';
+import ScrollLogoBackground from '@/components/ScrollLogoBackground';
 
 export default function HomePage() {
   const [activeTileId, setActiveTileId] = useState<string | null>(null);
@@ -56,11 +57,14 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="relative flex flex-col bg-transparent">
+      {/* Negative Z-Space Scroll-Driven Nexora Logo & Floor-Brush Drawing Animation */}
+      <ScrollLogoBackground />
+
       {/* =====================================================================
           SECTION 1: HERO SECTION (Dual Background Photos + Icon Trust Pills — PDF p. 1)
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-900 text-white py-14 sm:py-24 lg:py-28 border-b border-slate-200">
+      <section className="relative z-10 overflow-hidden bg-slate-900 text-white py-14 sm:py-24 lg:py-28 border-b border-slate-200">
         {/* Dual Side Background Photos at Full Base Opacity Behind Translucent Overlay */}
         <div
           aria-hidden="true"
@@ -152,7 +156,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 2: TRUST & CREDENTIALS STRIP — Icon + Heading ONLY (PDF p. 2)
       ===================================================================== */}
-      <section className="bg-white py-14 sm:py-20 border-b border-slate-100">
+      <section className="relative z-10 bg-white/80 backdrop-blur-[2px] py-14 sm:py-20 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1.5">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
@@ -167,7 +171,7 @@ export default function HomePage() {
             {TRUST_CREDENTIALS.map((cred) => (
               <div
                 key={cred.title}
-                className="scroll-card-snap group bg-slate-50/70 hover:bg-white border border-slate-200/80 hover:border-brandBlue/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all"
+                className="scroll-card-snap group bg-white/90 hover:bg-white border border-slate-200/80 hover:border-brandBlue/50 rounded-2xl p-4 sm:p-5 flex flex-col items-center text-center justify-center gap-2.5 shadow-sm hover:shadow-md transition-all"
               >
                 <div className="scroll-icon-bounce hover-icon-bounce w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue flex items-center justify-center shadow-sm">
                   <DynamicIcon name={cred.iconName} className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -184,7 +188,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 3: OUR CLEANING SERVICES — 6 Hover/Tap Pop-Down Tiles (PDF p. 3 & 7)
       ===================================================================== */}
-      <section className="py-16 sm:py-24 bg-slate-50/60">
+      <section className="relative z-10 py-16 sm:py-24 bg-slate-50/70 backdrop-blur-[2px]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           <div className="scroll-heading-reveal flex flex-col md:flex-row md:items-end justify-between gap-5">
             <div className="space-y-2 max-w-2xl">
@@ -318,7 +322,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 4: INDUSTRIES WE SUPPORT — Icon + Heading Only + Hover Pop (PDF p. 4)
       ===================================================================== */}
-      <section className="py-16 sm:py-24 bg-white border-t border-slate-100">
+      <section className="relative z-10 py-16 sm:py-24 bg-white/75 backdrop-blur-[2px] border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
@@ -337,7 +341,7 @@ export default function HomePage() {
               <Link
                 key={industry.id}
                 href={`/industries#${industry.id}`}
-                className="scroll-card-snap group bg-slate-50/70 hover:bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center justify-center"
+                className="scroll-card-snap group bg-white/90 hover:bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 hover:border-brandBlue/50 shadow-sm hover:shadow-xl transition-all flex flex-col items-center text-center justify-center"
               >
                 <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-sky-50 border border-sky-200/80 text-brandBlue group-hover:bg-brandBlue group-hover:text-white flex items-center justify-center mb-3 transition-colors shadow-sm">
                   <DynamicIcon name={industry.iconName} className="w-6 h-6 sm:w-7 sm:h-7" />
@@ -364,7 +368,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 5: WHY CHOOSE NEXORA (Light, High-Whitespace Layout)
       ===================================================================== */}
-      <section className="py-16 sm:py-24 bg-slate-50/70 border-t border-slate-100">
+      <section className="relative z-10 py-16 sm:py-24 bg-slate-50/70 backdrop-blur-[2px] border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           <div className="scroll-heading-reveal text-center max-w-3xl mx-auto space-y-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
@@ -383,7 +387,7 @@ export default function HomePage() {
             {WHY_CHOOSE_NEXORA.map((item) => (
               <div
                 key={item.title}
-                className="scroll-card-snap group bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all flex items-start gap-3.5 sm:gap-4"
+                className="scroll-card-snap group bg-white/95 hover:bg-white border border-slate-200/90 hover:border-brandBlue/50 rounded-3xl p-5 sm:p-6 shadow-sm hover:shadow-lg transition-all flex items-start gap-3.5 sm:gap-4"
               >
                 <div className="scroll-icon-bounce hover-icon-bounce w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center shrink-0 shadow-md">
                   <DynamicIcon name={item.iconName} className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -405,7 +409,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 6: CLIENT REVIEWS across Perth Suburbs
       ===================================================================== */}
-      <section className="py-14 sm:py-20 bg-white border-t border-slate-100">
+      <section className="relative z-10 py-14 sm:py-20 bg-white/75 backdrop-blur-[2px] border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
           <div className="scroll-heading-reveal text-center max-w-2xl mx-auto space-y-1">
             <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
@@ -420,7 +424,7 @@ export default function HomePage() {
             {TESTIMONIALS.map((t, idx) => (
               <div
                 key={idx}
-                className="scroll-card-snap bg-slate-50/70 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4"
+                className="scroll-card-snap bg-white/90 rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-2.5">
                   <div className="flex items-center gap-1 text-amber-400">
@@ -447,7 +451,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 7: COMBINED PERTH COVERAGE + HOVER-OPENING FAQS (PDF p. 5 & 6)
       ===================================================================== */}
-      <section className="py-16 sm:py-24 bg-slate-50/80 border-t border-slate-100">
+      <section className="relative z-10 py-16 sm:py-24 bg-slate-50/75 backdrop-blur-[2px] border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column (5 Cols): Concise Tailored Perth Coverage + Postcode Check */}
@@ -563,7 +567,7 @@ export default function HomePage() {
       ===================================================================== */}
       <section
         id="final-enquiry"
-        className="py-16 sm:py-24 bg-white border-t border-slate-100 scroll-mt-20"
+        className="relative z-10 py-16 sm:py-24 bg-white/80 backdrop-blur-[2px] border-t border-slate-100 scroll-mt-20"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">

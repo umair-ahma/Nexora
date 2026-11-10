@@ -19,7 +19,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#040710] text-slate-300 border-t border-brandCyan/20 pb-20 lg:pb-0">
+    <footer className="relative z-10 bg-[#040710] text-slate-300 border-t border-brandCyan/20 pb-20 lg:pb-0">
       {/* Top Quote Banner Strip with Translucent Background Photo (PDF p. 8) */}
       <div className="relative overflow-hidden bg-slate-900 border-b border-brandCyan/20">
         <div
