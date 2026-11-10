@@ -63,12 +63,9 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || 'nexora-gsc-ready',
   },
   icons: {
-    icon: [
-      { url: '/favicon.png', sizes: '64x64', type: 'image/png' },
-      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
-    ],
-    shortcut: '/favicon.png',
-    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
+    icon: '/images/nexora-logo.jpg',
+    shortcut: '/images/nexora-logo.jpg',
+    apple: '/images/nexora-logo.jpg',
   },
 };
 
@@ -108,9 +105,6 @@ export default function RootLayout({
   return (
     <html lang="en-AU" className={`${inter.variable} ${jakarta.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" sizes="64x64" />
-        <link rel="icon" href="/icon.png" type="image/png" sizes="192x192" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" sizes="180x180" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
