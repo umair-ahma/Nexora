@@ -52,7 +52,8 @@ export default function ServiceAreasPage() {
           </div>
 
           <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Check Your Perth <span className="text-brandCyan">Postcode &amp; Book</span>
+            <span>Check Your Perth </span>
+            <span className="text-brandCyan">Postcode &amp; Book</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-200 leading-relaxed max-w-2xl mx-auto">
@@ -63,14 +64,19 @@ export default function ServiceAreasPage() {
           {/* Centerpiece Postcode / Suburb Bar (PDF p. 10) */}
           <div className="pt-2 max-w-2xl mx-auto">
             <div className="relative flex items-center bg-white rounded-2xl p-1.5 sm:p-2 shadow-2xl border-2 border-brandCyan/60">
+              <label htmlFor="service-area-postcode-input" className="sr-only">
+                Enter Perth postcode or suburb
+              </label>
               <Search className="w-4 h-4 sm:w-5 sm:h-5 text-brandBlue ml-2.5 sm:ml-3 shrink-0" />
               <input
+                id="service-area-postcode-input"
+                name="postcode"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Enter Perth postcode or suburb..."
                 aria-label="Enter Perth postcode or suburb"
-                className="flex-1 min-w-0 px-2.5 sm:px-3 py-2.5 sm:py-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-base font-medium focus:outline-none"
+                className="flex-1 min-w-0 min-h-[44px] px-2.5 sm:px-3 py-2.5 sm:py-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-base font-medium focus:outline-none"
               />
               {searchQuery && (
                 <button
@@ -80,7 +86,7 @@ export default function ServiceAreasPage() {
                     setQuoteForcedOpen(false);
                   }}
                   aria-label="Clear postcode"
-                  className="p-1.5 sm:p-2 text-slate-400 hover:text-slate-700 shrink-0"
+                  className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center p-2 text-slate-400 hover:text-slate-700 shrink-0"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -88,7 +94,7 @@ export default function ServiceAreasPage() {
               <button
                 type="button"
                 onClick={() => setQuoteForcedOpen(true)}
-                className="px-3.5 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md whitespace-nowrap"
+                className="min-h-[44px] px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md whitespace-nowrap"
               >
                 Start Quote
               </button>
@@ -103,7 +109,7 @@ export default function ServiceAreasPage() {
                     key={sample}
                     type="button"
                     onClick={() => handleSelectRegion(sample)}
-                    className="px-2.5 py-1 rounded-full bg-white/10 hover:bg-brandBlue text-white border border-white/20 transition-colors font-medium"
+                    className="min-h-[44px] px-3.5 py-2 rounded-full bg-white/10 hover:bg-brandBlue text-white border border-white/20 transition-colors font-medium inline-flex items-center"
                   >
                     {sample}
                   </button>
@@ -143,7 +149,7 @@ export default function ServiceAreasPage() {
                     setSearchQuery('');
                     setQuoteForcedOpen(false);
                   }}
-                  className="text-xs font-semibold text-slate-500 hover:text-slate-800 self-end sm:self-center"
+                  className="min-h-[44px] px-3 inline-flex items-center text-xs font-semibold text-slate-500 hover:text-slate-800 self-end sm:self-center"
                 >
                   Close Drawer ✕
                 </button>
@@ -236,8 +242,8 @@ export default function ServiceAreasPage() {
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 From End-of-Lease Bond Cleaning and Regular House Cleaning to Office, School,
-                Childcare, NDIS Approved Cleaning, Pre-Sale &amp; Builders Cleans, and Pressure
-                Washing.
+                Childcare, NDIS Cleaning (Self &amp; Plan-Managed), Pre-Sale &amp; Builders Cleans,
+                and Pressure Washing.
               </p>
             </div>
 
@@ -246,7 +252,7 @@ export default function ServiceAreasPage() {
                 <Link
                   key={cat.id}
                   href={`/services#${cat.id}`}
-                  className="px-4 py-2.5 rounded-xl bg-white hover:bg-brandBlue hover:text-white text-slate-800 text-xs font-heading font-bold border border-slate-200 transition-colors shadow-sm"
+                  className="min-h-[44px] inline-flex items-center px-4 py-2.5 rounded-xl bg-white hover:bg-brandBlue hover:text-white text-slate-800 text-xs font-heading font-bold border border-slate-200 transition-colors shadow-sm"
                 >
                   {cat.shortName}
                 </Link>

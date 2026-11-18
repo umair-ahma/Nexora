@@ -22,7 +22,7 @@ import QuoteForm from '@/components/QuoteForm';
 export const metadata: Metadata = {
   title: 'About Nexora Cleaning Co | Trusted WA Cleaning Company',
   description:
-    'Learn about Nexora Cleaning Co in Perth, Western Australia. Police-checked, WWCC-screened, White Card certified & NDIS approved cleaning across Perth Metro.',
+    'Learn about Nexora Cleaning Co in Perth, Western Australia. Police-checked, WWCC-screened, White Card certified & NDIS self/plan-managed cleaning across Perth Metro.',
 };
 
 export default function AboutPage() {
@@ -50,14 +50,14 @@ export default function AboutPage() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              Raising the Standard of Professional Cleaning Across{' '}
+              <span>Raising the Standard of Professional Cleaning Across </span>
               <span className="text-brandCyan">Western Australia.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
               Nexora Cleaning Co was founded to deliver what Western Australian homeowners, tenants,
               builders, and facility managers value most: screened staff you can trust, documented
-              checklists on every job, and honest quotes confirmed before work begins.
+              checklists on every job, and honest quotes confirmed in 3 minutes before work begins.
             </p>
 
             {/* Compliance Badge Pills */}
@@ -74,16 +74,16 @@ export default function AboutPage() {
             </div>
 
             <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href="#about-quote"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-sm shadow-lg"
+              <Link
+                href="/contact#quote-form"
+                className="min-h-[48px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-sm shadow-lg"
               >
                 <span>Request a Free Quote</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/20 border border-white/25 text-white font-heading font-bold text-sm backdrop-blur-sm"
+                className="min-h-[48px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/20 border border-white/25 text-white font-heading font-bold text-sm backdrop-blur-sm"
               >
                 <span>Explore Services</span>
               </Link>
@@ -202,8 +202,8 @@ export default function AboutPage() {
               </p>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
                 At <strong>Nexora Cleaning Co</strong> ({BRAND_INFO.domain}), every booking begins
-                with a free, no-obligation quote where your price is confirmed before work begins.
-                On the day of service, our fully vaccinated, police-checked team follows a
+                with a free, no-obligation quote in 3 minutes where your price is confirmed before
+                work begins. On the day of service, our police-checked, WWCC-screened team follows a
                 documented room-by-room checklist and conducts quality inspections to ensure nothing
                 is missed.
               </p>
@@ -232,7 +232,7 @@ export default function AboutPage() {
                       Screened WA Personnel
                     </h3>
                     <p className="text-xs text-slate-600">
-                      Police-checked, insured, WWCC-screened &amp; NDIS approved cleaners.
+                      Police-checked, insured, WWCC-screened &amp; NDIS self/plan-managed cleaners.
                     </p>
                   </div>
                 </div>

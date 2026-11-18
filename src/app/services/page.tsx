@@ -72,7 +72,7 @@ export default function ServicesOverviewPage() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Professional Cleaning Services Across{' '}
+              <span>Professional Cleaning Services Across </span>
               <span className="text-brandCyan">Western Australia</span>
             </h1>
 
@@ -94,13 +94,13 @@ export default function ServicesOverviewPage() {
                   <span>{badge.label}</span>
                 </div>
               ))}
-              <a
-                href={CLEANING_SUPPLIES.mailtoHref}
-                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-brandBlue/90 hover:bg-brandBlue border border-brandCyan/40 text-xs font-heading font-bold text-white transition-colors"
+              <Link
+                href={CLEANING_SUPPLIES.contactHref}
+                className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brandBlue/90 hover:bg-brandBlue border border-brandCyan/40 text-xs font-heading font-bold text-white transition-colors"
               >
                 <Package className="w-4 h-4 text-brandCyan" />
                 <span>Cleaning Supplies</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function ServicesOverviewPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
           <span className="inline-flex items-center gap-2 font-semibold text-brandBlue">
             <Sparkles className="w-4 h-4" />
-            100% Free Quote Within a Few Minutes
+            100% Free Quote in 3 Minutes
           </span>
           <span className="inline-flex items-center gap-2 font-semibold text-emerald-700">
             <BadgePercent className="w-4 h-4 text-emerald-600" />
@@ -191,17 +191,19 @@ export default function ServicesOverviewPage() {
                         <button
                           type="button"
                           onClick={() => setOpenDivisionId(isOpen ? null : category.id)}
-                          className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-heading font-bold text-xs transition-colors"
+                          className="min-h-[44px] px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-heading font-bold text-xs transition-colors"
                         >
                           {isOpen ? 'Hide Services' : `Show ${services.length} Services`}
                         </button>
-                        <a
-                          href="#services-quote"
-                          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shadow-md"
+                        <Link
+                          href={`/contact?service=${encodeURIComponent(
+                            services[0]?.title || category.name
+                          )}#quote-form`}
+                          className="min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shadow-md"
                         >
-                          <span>Get Quote</span>
+                          <span>Get a Quote</span>
                           <ArrowRight className="w-4 h-4" />
-                        </a>
+                        </Link>
                       </div>
                     </div>
 
@@ -220,7 +222,7 @@ export default function ServicesOverviewPage() {
               );
             })}
 
-            {/* 5th Banner Card: Cleaning Supplies & Washroom Consumables (PDF p. 12 & Meeting Notes) */}
+            {/* 5th Banner Card: Cleaning Supplies & Washroom Consumables */}
             <section id="cleaning-supplies" className="scroll-card-snap scroll-mt-28">
               <div className="bg-gradient-to-r from-sky-50 via-white to-sky-50 rounded-3xl p-6 sm:p-8 border border-sky-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div className="flex items-start gap-4">
@@ -236,26 +238,19 @@ export default function ServicesOverviewPage() {
                     </h2>
                     <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
                       Need toilet tissue, hand towels, soap refills, bin liners, or commercial
-                      cleaning supplies delivered alongside your scheduled clean? Send us an email
-                      enquiry for bulk pricing.
+                      cleaning supplies delivered alongside your scheduled clean? Request a supply
+                      quote using our online form for bulk pricing.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 shrink-0">
-                  <a
-                    href={CLEANING_SUPPLIES.mailtoHref}
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm shadow-md transition-colors"
-                  >
-                    <Mail className="w-4 h-4" />
-                    <span>Email Supply Inquiry</span>
-                  </a>
                   <Link
                     href={CLEANING_SUPPLIES.contactHref}
-                    className="inline-flex items-center justify-center gap-1.5 px-4 py-3 rounded-xl bg-white hover:bg-slate-100 border border-slate-200 text-slate-800 font-heading font-bold text-xs sm:text-sm transition-colors"
+                    className="min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm shadow-md transition-colors"
                   >
-                    <span>Enquire via Form</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <Package className="w-4 h-4" />
+                    <span>Request Supply Quote</span>
                   </Link>
                 </div>
               </div>

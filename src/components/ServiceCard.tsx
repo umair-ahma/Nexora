@@ -63,11 +63,11 @@ export default function ServiceCard({ service }: ServiceCardProps) {
         </ul>
       </div>
 
-      {/* Bottom Action Links: Learn More + Get a Quote */}
+      {/* Bottom Action Links: Learn More + Get a Quote (44px+ Tap Targets) */}
       <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
         <Link
           href={`/services/${service.slug}`}
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-800 hover:text-brandBlue transition-colors"
+          className="min-h-[44px] inline-flex items-center gap-1.5 px-2 py-2.5 text-xs font-bold text-slate-800 hover:text-brandBlue transition-colors"
         >
           <span>Learn More</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -75,10 +75,10 @@ export default function ServiceCard({ service }: ServiceCardProps) {
 
         <Link
           href={`/contact?service=${encodeURIComponent(service.title)}#quote-form`}
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-brandBlue text-white text-xs font-heading font-semibold transition-colors"
+          className="min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-brandBlue text-white text-xs font-heading font-semibold transition-colors"
         >
           <FileText className="w-3.5 h-3.5 text-brandCyan group-hover:text-white" />
-          <span>{service.badgeType === 'coming-soon' ? 'Register Interest' : 'Get a Quote'}</span>
+          <span>Get a Quote</span>
         </Link>
       </div>
     </div>

@@ -15,7 +15,7 @@ import QuoteForm from '@/components/QuoteForm';
 export const metadata: Metadata = {
   title: 'Industries We Serve | Homes, Offices, Schools, Childcare, NDIS & Builders WA',
   description:
-    'Nexora Cleaning Co supports homes, corporate offices, construction builders, schools, childcare centres, aged care, NDIS approved cleaning, events, and property managers across Western Australia.',
+    'Nexora Cleaning Co supports homes, corporate offices, construction builders, schools, childcare centres, aged care, NDIS self & plan-managed participants, events, and property managers across Western Australia.',
 };
 
 export default function IndustriesPage() {
@@ -45,11 +45,12 @@ export default function IndustriesPage() {
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Industries We <span className="text-brandCyan">Serve</span>
+              <span>Industries We </span>
+              <span className="text-brandCyan">Serve</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
-              Homes, offices, construction, education, childcare, aged care, NDIS approved homes,
+              Homes, offices, construction, education, childcare, aged care, NDIS participant homes,
               events, and property managers across Perth and Western Australia.
             </p>
 
@@ -142,7 +143,7 @@ export default function IndustriesPage() {
                     <li key={srv.slug}>
                       <Link
                         href={`/services/${srv.slug}`}
-                        className="flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 hover:border-brandBlue text-xs sm:text-sm font-semibold text-slate-800 hover:text-brandBlue transition-all"
+                        className="min-h-[44px] flex items-center justify-between p-3 rounded-xl bg-white border border-slate-200 hover:border-brandBlue text-xs sm:text-sm font-semibold text-slate-800 hover:text-brandBlue transition-all"
                       >
                         <span className="flex items-center gap-2">
                           <CheckCircle2 className="w-4 h-4 text-brandBlue shrink-0" />
@@ -155,13 +156,15 @@ export default function IndustriesPage() {
                 </ul>
 
                 <div className="pt-2">
-                  <a
-                    href="#industry-quote"
-                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shadow-md"
+                  <Link
+                    href={`/contact?service=${encodeURIComponent(
+                      industry.recommendedServices[0]?.title || industry.title
+                    )}#quote-form`}
+                    className="w-full min-h-[44px] inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shadow-md"
                   >
                     <span>Request a Sector Quote</span>
                     <ArrowRight className="w-4 h-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -184,7 +187,7 @@ export default function IndustriesPage() {
               Request a Free Quote for Your Home or Facility
             </h2>
             <p className="text-sm sm:text-base text-slate-600">
-              100% free quote within a few minutes — price confirmed before work begins.
+              100% free quote in 3 minutes — price confirmed before work begins.
             </p>
           </div>
 

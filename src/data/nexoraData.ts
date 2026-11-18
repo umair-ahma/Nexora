@@ -74,53 +74,47 @@ export const BRAND_INFO = {
   shortName: 'Nexora Cleaning',
   domain: 'nexoracleaning.au',
   siteUrl: 'https://nexoracleaning.au',
-  // Business mailboxes (nexoracleaning.au)
+  // Business mailboxes (nexoracleaning.au — Cloudflare Email Routing + SMTP)
   mainEmail: 'info@nexoracleaning.au', // General enquiries & quotes
-  adminEmail: 'hamza@nexoracleaning.au', // Owner — contracts, tenders & partnerships
+  adminEmail: 'partner@nexoracleaning.au', // Partnerships, tenders & corporate contracts
   accountsEmail: 'support@nexoracleaning.au', // Customer support, accounts & invoicing
-  // Quote form delivery endpoint (FormSubmit relays submissions to the main inbox).
-  // The first submission triggers a one-time activation email to info@ — click it once.
+  // Quote form delivery endpoint (FormSubmit relays submissions to info@nexoracleaning.au)
   formEndpoint: 'https://formsubmit.co/ajax/info@nexoracleaning.au',
-  phoneDisplay: '(08) 6100 0000',
-  phoneHref: 'tel:+61861000000',
-  mobileDisplay: '0400 000 000',
-  smsHref: 'sms:+61400000000',
-  whatsappNumber: '61400000000',
+  phoneDisplay: '0493 848 764',
+  phoneHref: 'tel:+61493848764',
+  mobileDisplay: '0493 848 764',
+  smsHref: 'sms:+61493848764',
+  whatsappNumber: '61493848764',
   location: 'Perth & Western Australia',
   businessHours: 'Mon – Sun: 7:00 AM – 8:00 PM AWST',
   commercialHours: '24/7 Scheduled Commercial & After-Hours Available',
-  priceBeatText: 'We Beat Any Comparable Written Quote by 5%',
-  fastQuoteText: '100% Free Quote in Under 3 Minutes',
-  quoteSubtext: 'Free, no-obligation quote — price confirmed upfront before work begins.',
+  priceBeatText: 'We Beat Any Comparable Written WA Quote by 5%',
+  fastQuoteText: '100% Free Quote in 3 Minutes',
+  quoteSubtext: 'Free, no-obligation quote in 3 minutes — price confirmed upfront before work begins.',
   confirmationMessage:
     "Thanks for contacting Nexora Cleaning. We've received your request and will contact you to confirm the details.",
 };
 
 // ----------------------------------------------------------------------------
-// Cleaning Supplies (enquiry-only for now — full product list to follow)
+// Cleaning Supplies (routed via the interactive quote & supply form)
 // ----------------------------------------------------------------------------
 export const CLEANING_SUPPLIES = {
   label: 'Cleaning Supplies',
   quoteValue: 'Cleaning Supplies & Washroom Consumables',
   tagline: 'Toilet tissue, hand towel, soap & washroom consumables — delivered.',
-  mailtoHref: `mailto:info@nexoracleaning.au?subject=${encodeURIComponent(
-    'Cleaning Supplies Enquiry - Nexora WA'
-  )}&body=${encodeURIComponent(
-    "G'day Nexora team,\n\nI'm interested in cleaning supplies / washroom consumables.\n\nBusiness or site name:\nSuburb:\nItems needed (e.g. toilet tissue, hand towel, soap):\nApprox. quantity / frequency:\n\nThanks!"
-  )}`,
   contactHref: '/contact?service=Cleaning%20Supplies%20%26%20Washroom%20Consumables#quote-form',
 };
 
 // ----------------------------------------------------------------------------
-// Compliance pills — short "icon + label" badges (Home hero, /services, /industries)
+// Compliance pills — verifiable "icon + label" badges (Home hero, /services, /industries)
 // ----------------------------------------------------------------------------
 export const TRUST_BADGE_PILLS = [
-  { label: 'Fully Insured', iconName: 'ShieldCheck' },
+  { label: '$20M Insured', iconName: 'ShieldCheck' },
   { label: 'Police Checked', iconName: 'UserCheck' },
-  { label: 'NDIS Approved', iconName: 'HeartHandshake' },
-  { label: 'WWCC', iconName: 'Award' },
-  { label: 'White Card', iconName: 'HardHat' },
-  { label: 'Fully Vaccinated', iconName: 'Syringe' },
+  { label: 'NDIS Self & Plan-Managed', iconName: 'HeartHandshake' },
+  { label: 'WWCC Screened', iconName: 'Award' },
+  { label: 'White Card Certified', iconName: 'HardHat' },
+  { label: 'REIWA Checklist Aligned', iconName: 'ClipboardCheck' },
 ];
 
 // ----------------------------------------------------------------------------
@@ -162,7 +156,7 @@ export const HOME_CORE_TILES: HomeCoreTile[] = [
     links: [
       { label: 'Bond / Vacate Clean', href: '/services/end-of-lease-bond-cleaning' },
       { label: 'Oven & Appliance Add-On', href: '/services/kitchen-oven-appliance-cleaning' },
-      { label: 'Carpet Steam (Partner)', href: '/services/carpet-upholstery-cleaning' },
+      { label: 'Carpet Steam (Partnered Service)', href: '/services/carpet-upholstery-cleaning' },
       { label: 'Window & Track Detailing', href: '/services/window-cleaning' },
     ],
   },
@@ -177,7 +171,7 @@ export const HOME_CORE_TILES: HomeCoreTile[] = [
       { label: 'Office & Commercial', href: '/services/office-commercial-cleaning' },
       { label: 'Strata Common Areas', href: '/services/strata-common-area-cleaning' },
       { label: 'Industrial & Warehouse', href: '/services/industrial-warehouse-cleaning' },
-      { label: 'Medical & Hospital (Soon)', href: '/services/medical-healthcare-cleaning' },
+      { label: 'Commercial Washroom Deep Clean', href: '/services/bathroom-toilet-deep-cleaning' },
     ],
   },
   {
@@ -191,7 +185,7 @@ export const HOME_CORE_TILES: HomeCoreTile[] = [
       { label: 'School & Education', href: '/services/school-education-cleaning' },
       { label: 'Childcare & Day-Care', href: '/services/childcare-daycare-cleaning' },
       { label: 'Aged-Care Facilities', href: '/services/aged-care-cleaning' },
-      { label: 'NDIS Approved Cleaning', href: '/services/ndis-domestic-cleaning' },
+      { label: 'NDIS Cleaning (Self & Plan-Managed)', href: '/services/ndis-domestic-cleaning' },
     ],
   },
   {
@@ -219,7 +213,7 @@ export const HOME_CORE_TILES: HomeCoreTile[] = [
       { label: 'High-Pressure Washing', href: '/services/high-pressure-washing' },
       { label: 'Window Cleaning', href: '/services/window-cleaning' },
       { label: 'Tile & Grout', href: '/services/tile-grout-cleaning' },
-      { label: 'Cleaning Supplies (Enquire)', href: '/contact?service=Cleaning%20Supplies%20%26%20Washroom%20Consumables#quote-form' },
+      { label: 'Cleaning Supplies & Consumables', href: '/contact?service=Cleaning%20Supplies%20%26%20Washroom%20Consumables#quote-form' },
     ],
   },
 ];
@@ -571,48 +565,17 @@ export const CLEANING_SERVICES: CleaningServiceItem[] = [
     iconName: 'HeartHandshake',
   },
   {
-    slug: 'medical-healthcare-cleaning',
-    title: 'Medical, Hospital & Healthcare Cleaning',
-    shortTitle: 'Medical & Hospital',
-    categoryId: 'commercial',
-    categoryName: 'Commercial & Specialist Facilities',
-    badgeText: 'COMING SOON',
-    badgeType: 'coming-soon',
-    oneLiner:
-      'Clinical-grade disinfection for hospitals, GP clinics, dental surgeries and allied health — launching soon across Perth.',
-    overview:
-      'COMING SOON: Nexora is finalising our clinical division for private hospitals, day-surgery centres, GP clinics, dental surgeries and allied health practices. Register your facility’s interest below to secure priority onboarding or discuss upcoming tenders.',
-    whoItsFor: [
-      'Private hospitals, day-surgery centres and medical centres',
-      'Dental surgeries, orthodontists and allied health practices (physio, chiro, podiatry)',
-      'Practice and facility managers planning upcoming contract renewals',
-    ],
-    checklist: [
-      'Consultation rooms, treatment benches (non-invasive) and waiting area sanitisation',
-      'High-touch point disinfection: door hardware, reception counters, EFTPOS terminals',
-      'Patient and staff washroom clinical-grade deep disinfection',
-      'Colour-coded zoning and documented infection-control compliance logs',
-      'Mechanical scrubbing and sanitisation of clinical vinyl and sealed floors',
-      'Safety Data Sheet (SDS) registers and waste handling protocols',
-      'After-hours cleaning ensuring zero downtime for patient appointments',
-      'Priority registration open now via info@nexoracleaning.au',
-    ],
-    addOnNote:
-      'Launching Soon: Register your medical facility today and our clinical coordinator will contact you with availability.',
-    iconName: 'Stethoscope',
-  },
-  {
     slug: 'ndis-domestic-cleaning',
-    title: 'NDIS Approved Cleaning',
-    shortTitle: 'NDIS Approved Cleaning',
+    title: 'NDIS Cleaning (Self & Plan-Managed)',
+    shortTitle: 'NDIS Cleaning (Self & Plan-Managed)',
     categoryId: 'commercial',
     categoryName: 'Commercial & Specialist Facilities',
-    badgeText: 'NDIS APPROVED',
+    badgeText: 'SELF & PLAN-MANAGED NDIS',
     badgeType: 'standard',
     oneLiner:
-      'Reliable, respectful NDIS approved cleaning for self-managed and plan-managed participants across Perth.',
+      'Reliable, respectful domestic cleaning for self-managed and plan-managed NDIS participants across Perth.',
     overview:
-      'Everyone deserves a clean, comfortable, and safe home. Our NDIS approved team works alongside participants, carers, and plan managers across Perth — fully vaccinated, police-checked and WWCC-screened, with consistent cleaners and clear itemised invoices.',
+      'Everyone deserves a clean, comfortable, and safe home. Our team works alongside self-managed and plan-managed NDIS participants, carers, and Plan Managers across Perth — police-checked and WWCC-screened, with consistent cleaners and clear itemised invoices.',
     whoItsFor: [
       'Self-managed and Plan-managed NDIS participants across Perth Metro',
       'Support Coordinators seeking a dependable, responsive domestic provider',
@@ -623,7 +586,7 @@ export const CLEANING_SERVICES: CleaningServiceItem[] = [
       'Consistent cleaner allocation so you always see a familiar, trusted face',
       'Assistance with bed linen changes, laundry folding, and dishwashing upon request',
       'Direct itemised billing sent to participants or Plan Managers (support@nexoracleaning.au)',
-      'Fully vaccinated, police-checked and WWCC-screened team members',
+      'Police-checked and WWCC-screened team members (clearance records available on request)',
       'Low-scent or hypoallergenic cleaning product options on request',
       'Straightforward communication with Support Coordinators and family members',
       'Customisable weekly, fortnightly, or one-off deep cleaning support',
@@ -905,16 +868,16 @@ export const CLEANING_SERVICES: CleaningServiceItem[] = [
   },
   {
     slug: 'carpet-upholstery-cleaning',
-    title: 'Carpet & Upholstery Cleaning',
-    shortTitle: 'Carpet & Upholstery',
+    title: 'Carpet & Upholstery Steam Cleaning (Partnered Service)',
+    shortTitle: 'Carpet Steam (Partnered Service)',
     categoryId: 'specialist-exterior',
     categoryName: 'Specialist & Exterior Cleaning',
-    badgeText: 'TRUSTED PARTNER SERVICE',
+    badgeText: 'PARTNERED SPECIALIST SERVICE',
     badgeType: 'partner',
     oneLiner:
-      'Industrial hot-water steam extraction for carpets and sofas, coordinated via our trusted Perth specialist partner.',
+      'Industrial hot-water steam extraction for carpets and sofas, delivered by our vetted Perth carpet specialist partner.',
     overview:
-      'To ensure your carpets get dedicated truck-mount or industrial hot-water extraction machinery, Nexora delivers carpet steam cleaning through our vetted specialist partner. You get single-point booking with Nexora, combined scheduling, and official receipts required by WA property managers.',
+      'To ensure your carpets get dedicated truck-mount or industrial hot-water extraction machinery, Nexora coordinates carpet steam cleaning through our vetted Perth specialist partner. You get single-point booking with Nexora, combined scheduling, and official receipts required by WA property managers.',
     whoItsFor: [
       'Vacating tenants needing a certified carpet steam receipt for bond release',
       'Homeowners refreshing high-traffic carpets, rugs, and fabric lounge suites',
@@ -1159,19 +1122,19 @@ export const INDUSTRIES_DATA: IndustryItem[] = [
   {
     id: 'aged-care-ndis',
     title: 'Aged Care & NDIS Participant Homes',
-    shortDesc: 'Aged-care facilities, retirement living and NDIS approved cleaning.',
+    shortDesc: 'Aged-care facilities, retirement living and self/plan-managed NDIS cleaning.',
     fullDescription:
-      'Supporting aged-care facilities and NDIS participants across Perth with compassionate, respectful cleaning by fully vaccinated, screened staff. Clear itemised invoices sent straight to Plan Managers with zero fuss.',
+      'Supporting aged-care facilities and NDIS participants across Perth with compassionate, respectful cleaning by police-checked, WWCC-screened staff. Clear itemised invoices sent straight to Plan Managers with zero fuss.',
     complianceHighlights: [
-      'Fully Vaccinated & Screened Care Staff',
-      'NDIS Approved & Direct Plan Manager Invoicing',
-      'National Police Clearance & Valid WWCC',
+      'Police-Checked & WWCC-Screened Care Staff',
+      'Self & Plan-Managed NDIS Direct Invoicing',
+      'Verification & Immunisation Records on File',
       'Slip-Safe Floor Protocols & Infection Control',
     ],
     recommendedServices: [
       { title: 'Aged-Care Cleaning', slug: 'aged-care-cleaning' },
-      { title: 'NDIS Approved Cleaning', slug: 'ndis-domestic-cleaning' },
-      { title: 'Medical & Hospital (Coming Soon)', slug: 'medical-healthcare-cleaning' },
+      { title: 'NDIS Cleaning (Self & Plan-Managed)', slug: 'ndis-domestic-cleaning' },
+      { title: 'Bathroom & Toilet Deep Cleaning', slug: 'bathroom-toilet-deep-cleaning' },
     ],
     iconName: 'HeartHandshake',
   },
@@ -1201,7 +1164,7 @@ export const INDUSTRIES_DATA: IndustryItem[] = [
     fullDescription:
       'One reliable contact for WA property managers. We handle end-of-lease vacates, strata common corridors, Airbnb changeovers, and light industrial workshop amenities.',
     complianceHighlights: [
-      'Fast Written Quotes in Minutes (+ 5% Price Beat)',
+      '100% Free Quote in 3 Minutes (+ 5% Price Beat)',
       'Before & After Photo Proof for Agents',
       'Consolidated Monthly Account Billing',
       'One-Stop Bond + Oven + Partner Carpet Packages',
@@ -1431,9 +1394,9 @@ export const TRUST_CREDENTIALS = [
     iconName: 'Award',
   },
   {
-    title: 'NDIS Approved',
+    title: 'NDIS Self & Plan-Managed',
     description:
-      'NDIS approved cleaning with direct, itemised invoicing for participants and Plan Managers.',
+      'Dedicated domestic cleaning with direct, itemised invoicing for self-managed and plan-managed NDIS participants.',
     iconName: 'HeartHandshake',
   },
   {
@@ -1460,7 +1423,7 @@ export const WHY_CHOOSE_NEXORA = [
   {
     title: 'Upfront Pricing + 5% Price Beat',
     description:
-      '100% free quote in 3 minutes with price locked in before work starts. Found a cheaper written quote? We beat it by 5%.',
+      '100% free quote in 3 minutes with price locked in before work starts. Present any comparable written quote from an insured WA cleaner and we beat it by 5%.',
     iconName: 'BadgeDollarSign',
   },
   {
@@ -1488,13 +1451,13 @@ export const HOW_IT_WORKS_STEPS = [
     stepNumber: '01',
     title: 'Tell us the gig.',
     description:
-      'Fill out our quick 60-second mobile form, shoot us a WhatsApp, or give our Perth team a quick buzz with your suburb.',
+      'Fill out our quick mobile form, shoot us a WhatsApp, or give our Perth team a quick buzz with your suburb.',
   },
   {
     stepNumber: '02',
     title: 'Lock in your upfront quote.',
     description:
-      'We send a 100% free, fixed quote in minutes. Price confirmed before work begins — backed by our 5% Price Beat Guarantee.',
+      'We send a 100% free, fixed quote in 3 minutes. Price confirmed before work begins — backed by our 5% Price Beat Guarantee.',
   },
   {
     stepNumber: '03',
@@ -1549,22 +1512,22 @@ export const HOME_FAQS: FaqItem[] = [
   {
     question: 'How fast can I get a quote?',
     answer:
-      'Faster than the Fremantle Doctor rolls in! During business hours, we review your suburb and details and send your 100% free quote within a few minutes. All pricing is locked in upfront before work begins.',
+      'Faster than the Fremantle Doctor rolls in! During business hours, we review your suburb and details and send your 100% free quote in 3 minutes. All pricing is locked in upfront before work begins.',
   },
   {
     question: 'How does the 5% Price Beat Guarantee work?',
     answer:
-      'If you have a current written quote from another registered, insured WA cleaning business for the same scope of work, simply mention it when you enquire. We will beat their price by 5% — tell \'em they\'re dreamin\'!',
+      'If you have a current written quote from another ABN-registered, insured WA cleaning business for the identical scope of work, simply provide a copy when you enquire and we will beat their written price by 5%.',
   },
   {
     question: 'Do you supply cleaning products for businesses?',
     answer:
-      'Yes — alongside our cleaning services we supply toilet tissue, hand towel, soap and other washroom consumables for offices, strata and commercial sites. Send us a quick enquiry and we will come back with pricing.',
+      'Yes — alongside our cleaning services we supply toilet tissue, hand towel, soap and other washroom consumables for offices, strata and commercial sites. Select Cleaning Supplies in our quote form and we will send bulk pricing.',
   },
   {
     question: 'Are your cleaners insured and police-checked?',
     answer:
-      '100%. Nexora Cleaning Co holds comprehensive $20M Public Liability Insurance, and all staff carry verified National Police Clearances. Our teams are fully vaccinated, and cleaners assigned to schools, childcare and NDIS work also hold valid Working With Children Checks (WWCC).',
+      '100%. Nexora Cleaning Co holds comprehensive $20M Public Liability Insurance, and all staff carry verified National Police Clearances. Cleaners assigned to schools, childcare and NDIS participant homes also hold valid Working With Children Checks (WWCC), with certificates of currency and clearance records available on request.',
   },
   {
     question: 'Can I add Oven Cleaning or Carpet Steam Cleaning to my Bond Clean?',

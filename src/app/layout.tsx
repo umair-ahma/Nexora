@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: '%s | Nexora Cleaning Co WA',
   },
   description:
-    'Reliable cleaning for homes, businesses, builders and specialist facilities across Perth & Western Australia. 100% free quote within minutes — we beat all comparable quotes by 5%.',
+    'Reliable cleaning for homes, businesses, builders and specialist facilities across Perth & Western Australia. 100% free quote in 3 minutes — we beat any comparable written quote by 5%.',
   keywords: [
     'Nexora Cleaning Co',
     'cleaning company Perth',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title:
       'Nexora Cleaning Co — Professional Cleaning Solutions Across Western Australia',
     description:
-      'Reliable cleaning for homes, businesses, builders and specialist facilities across Perth. Insured, police-checked staff. We beat any comparable quote by 5%.',
+      'Reliable cleaning for homes, businesses, builders and specialist facilities across Perth. Insured, police-checked staff. 100% free quote in 3 minutes.',
     images: [
       {
         url: '/images/nexora-logo.jpg',
@@ -68,7 +68,7 @@ export default function RootLayout({
     logo: `${BRAND_INFO.siteUrl}/images/nexora-logo.jpg`,
     image: `${BRAND_INFO.siteUrl}/images/nexora-logo.jpg`,
     email: BRAND_INFO.mainEmail,
-    telephone: '+61861000000',
+    telephone: '+61493848764',
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
@@ -102,13 +102,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased min-h-screen flex flex-col bg-white text-slate-900">
-        <ScrollAnimator />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppWidget />
-        <StickyMobileBar />
+      <body className="font-sans antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900">
+        <div className="min-h-screen w-full max-w-[1920px] mx-auto flex flex-col bg-white shadow-sm">
+          <ScrollAnimator />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <WhatsAppWidget />
+          <StickyMobileBar />
+        </div>
       </body>
     </html>
   );

@@ -44,22 +44,21 @@ export default function Footer() {
               Let&apos;s Get Your Space Clean.
             </h3>
             <p className="text-sm text-slate-200">
-              100% free, no-obligation quote within a few minutes — price confirmed before work
-              begins.
+              100% free, no-obligation quote in 3 minutes — price confirmed before work begins.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact#quote-form"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-sm shadow-[0_8px_25px_rgba(0,128,240,0.4)] hover:opacity-95 transition-all"
+              className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-sm shadow-[0_8px_25px_rgba(0,128,240,0.4)] hover:opacity-95 transition-all"
             >
               <span>Request a Free Quote</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
               href={BRAND_INFO.phoneHref}
-              className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm backdrop-blur-sm transition-all"
+              className="min-h-[44px] inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-sm backdrop-blur-sm transition-all"
             >
               <Phone className="w-4 h-4 text-brandCyan" />
               <span>{BRAND_INFO.phoneDisplay}</span>
@@ -100,15 +99,15 @@ export default function Footer() {
             <div className="space-y-1.5 text-xs text-slate-300">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brandCyan shrink-0" />
-                <span>WA-Based • $20M Public Liability Insurance</span>
+                <span>Perth-Based • $20M Public Liability Insurance</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brandCyan shrink-0" />
-                <span>Police-Checked, WWCC, White Card &amp; NDIS Approved</span>
+                <span>Police-Checked, WWCC, White Card &amp; NDIS Self/Plan-Managed</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-brandCyan shrink-0" />
-                <span>Fully Vaccinated Staff • 5% Price-Beat Guarantee</span>
+                <span>REIWA-Aligned Checklists • 5% Written Quote Beat</span>
               </div>
             </div>
 
@@ -264,7 +263,7 @@ export default function Footer() {
                   href="/services/ndis-domestic-cleaning"
                   className="text-slate-400 hover:text-brandCyan transition-colors"
                 >
-                  NDIS Approved Cleaning
+                  NDIS Cleaning (Self &amp; Plan)
                 </Link>
               </li>
               <li>
@@ -276,12 +275,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href={CLEANING_SUPPLIES.mailtoHref}
+                <Link
+                  href={CLEANING_SUPPLIES.contactHref}
                   className="text-brandCyan hover:underline font-medium"
                 >
                   Cleaning Supplies
-                </a>
+                </Link>
               </li>
               <li className="pt-2 border-t border-white/10">
                 <Link
@@ -369,7 +368,7 @@ export default function Footer() {
                   </div>
                   <div>
                     <span className="text-[11px] text-slate-400 block">
-                      Management:{' '}
+                      Partnerships:{' '}
                       <a
                         href={`mailto:${BRAND_INFO.adminEmail}`}
                         className="text-slate-300 hover:text-brandCyan"

@@ -44,8 +44,8 @@ export function generateMetadata({ params }: ServiceDetailPageProps): Metadata {
   }
 
   return {
-    title: `${service.title} Perth WA | Free Quote Within Minutes`,
-    description: `${service.oneLiner} Insured, police-checked staff across Perth & Western Australia. We beat any comparable quote by 5%.`,
+    title: `${service.title} Perth WA | Free Quote in 3 Minutes`,
+    description: `${service.oneLiner} Insured, police-checked staff across Perth & Western Australia. We beat any comparable written quote by 5%.`,
   };
 }
 
@@ -163,21 +163,17 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
 
               {/* Primary CTA Buttons */}
               <div className="flex flex-wrap items-center gap-4 pt-2">
-                <a
-                  href="#book-this-service"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_25px_rgba(0,128,240,0.45)] transition-all"
+                <Link
+                  href={`/contact?service=${encodeURIComponent(service.title)}#quote-form`}
+                  className="min-h-[48px] inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_25px_rgba(0,128,240,0.45)] transition-all"
                 >
-                  <span>
-                    {service.badgeType === 'coming-soon'
-                      ? 'Register Your Interest Now'
-                      : 'Request a Quote / Book Now'}
-                  </span>
+                  <span>Request a Free Quote</span>
                   <ArrowRight className="w-5 h-5" />
-                </a>
+                </Link>
 
                 <a
                   href={BRAND_INFO.phoneHref}
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-heading font-bold text-sm sm:text-base transition-all"
+                  className="min-h-[48px] inline-flex items-center gap-2 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-heading font-bold text-sm sm:text-base transition-all"
                 >
                   <Phone className="w-4 h-4 text-brandCyan" />
                   <span>{BRAND_INFO.phoneDisplay}</span>
@@ -204,7 +200,7 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                   <li className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-5 h-5 text-brandCyan shrink-0" />
                     <span>
-                      <strong className="text-white">100% Free Quote Within Minutes:</strong> Fast
+                      <strong className="text-white">100% Free Quote in 3 Minutes:</strong> Fast
                       turnaround with price confirmed before work begins.
                     </span>
                   </li>
@@ -220,10 +216,10 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 <div className="pt-3 border-t border-white/10">
                   <Link
                     href="/services"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-brandCyan"
+                    className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-brandCyan"
                   >
                     <ArrowLeft className="w-3.5 h-3.5" />
-                    <span>Back to All 25 Cleaning Services</span>
+                    <span>Back to All 24 Cleaning Services</span>
                   </Link>
                 </div>
               </div>
@@ -274,23 +270,23 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 ))}
               </div>
 
-              {/* Bottom CTA Banner Inside Checklist Card (Per Client Sheet 3 Instruction) */}
+              {/* Bottom CTA Banner Inside Checklist Card */}
               <div className="mt-6 p-6 rounded-2xl bg-gradient-to-r from-[#071022] to-[#0D1E40] text-white flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div>
                   <h3 className="font-heading font-bold text-lg text-white">
                     Ready to book {service.title}?
                   </h3>
                   <p className="text-xs text-slate-300 mt-0.5">
-                    100% free quote within a few minutes • Price confirmed before work begins.
+                    100% free quote in 3 minutes • Price confirmed before work begins.
                   </p>
                 </div>
-                <a
-                  href="#book-this-service"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md"
+                <Link
+                  href={`/contact?service=${encodeURIComponent(service.title)}#quote-form`}
+                  className="min-h-[44px] inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md"
                 >
-                  <span>Request a Quote / Book Now</span>
+                  <span>Request a Free Quote</span>
                   <ArrowRight className="w-4 h-4" />
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -327,15 +323,15 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 <div className="space-y-2 pt-1">
                   <Link
                     href="/services/kitchen-oven-appliance-cleaning"
-                    className="block p-3 rounded-xl bg-white border border-sky-200 hover:border-brandBlue text-xs font-bold text-slate-900 transition-colors"
+                    className="min-h-[44px] flex items-center p-3 rounded-xl bg-white border border-sky-200 hover:border-brandBlue text-xs font-bold text-slate-900 transition-colors"
                   >
                     🔥 Kitchen, Oven &amp; Appliance Cleaning (Add-On) →
                   </Link>
                   <Link
                     href="/services/carpet-upholstery-cleaning"
-                    className="block p-3 rounded-xl bg-white border border-sky-200 hover:border-brandBlue text-xs font-bold text-slate-900 transition-colors"
+                    className="min-h-[44px] flex items-center p-3 rounded-xl bg-white border border-sky-200 hover:border-brandBlue text-xs font-bold text-slate-900 transition-colors"
                   >
-                    🛋️ Carpet &amp; Upholstery Steam Cleaning (Trusted Partner) →
+                    🛋️ Carpet &amp; Upholstery Steam Cleaning (Partnered) →
                   </Link>
                 </div>
               </div>
@@ -345,12 +341,12 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 <h3 className="font-heading font-bold text-base text-slate-900">
                   Other {service.categoryName} Services
                 </h3>
-                <ul className="space-y-2">
+                <ul className="space-y-1">
                   {relatedServices.map((rel) => (
                     <li key={rel.slug}>
                       <Link
                         href={`/services/${rel.slug}`}
-                        className="text-xs sm:text-sm text-slate-700 hover:text-brandBlue font-medium flex items-center justify-between py-1 border-b border-slate-100 last:border-0"
+                        className="min-h-[44px] text-xs sm:text-sm text-slate-700 hover:text-brandBlue font-medium flex items-center justify-between py-2 border-b border-slate-100 last:border-0"
                       >
                         <span>{rel.shortTitle}</span>
                         <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
@@ -382,7 +378,7 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
             <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
               Only your <strong>Name</strong>, <strong>Phone</strong>, and{' '}
               <strong>Suburb/Postcode</strong> are required. We&apos;ll confirm your details and
-              provide a 100% free quote within a few minutes.
+              provide a 100% free quote in 3 minutes.
             </p>
           </div>
 

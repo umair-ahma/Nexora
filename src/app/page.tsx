@@ -44,16 +44,12 @@ export default function HomePage() {
     typeof window !== 'undefined' &&
     window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  const handleTileQuoteClick = (serviceTitle: string) => {
-    setSelectedQuoteService(serviceTitle);
-    const el = document.getElementById('final-enquiry');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   const handlePostcodeCheck = (e: React.FormEvent) => {
     e.preventDefault();
-    const el = document.getElementById('final-enquiry');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const query = homePostcodeQuery.trim();
+    window.location.href = query
+      ? `/contact?suburb=${encodeURIComponent(query)}#quote-form`
+      : '/contact#quote-form';
   };
 
   return (
@@ -113,7 +109,7 @@ export default function HomePage() {
 
             {/* Main Headline */}
             <h1 className="scroll-heading-reveal font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] drop-shadow-sm">
-              Professional Cleaning Solutions Across{' '}
+              <span>Professional Cleaning Solutions Across </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-sky-200 to-brandCyan">
                 Western Australia.
               </span>
@@ -126,17 +122,17 @@ export default function HomePage() {
 
             {/* Primary CTAs */}
             <div className="scroll-heading-reveal flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
-              <a
-                href="#final-enquiry"
-                className="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_30px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5"
+              <Link
+                href="/contact#quote-form"
+                className="min-h-[48px] inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_30px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5"
               >
                 <span>Request a Free Quote</span>
                 <ArrowRight className="w-5 h-5" />
-              </a>
+              </Link>
 
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white font-heading font-bold text-sm sm:text-base backdrop-blur-md transition-all"
+                className="min-h-[48px] inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white font-heading font-bold text-sm sm:text-base backdrop-blur-md transition-all"
               >
                 <span>Explore Our Services</span>
               </Link>
@@ -146,7 +142,7 @@ export default function HomePage() {
             <div className="scroll-heading-reveal pt-2 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-white">
               <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 bg-slate-950/60 border border-emerald-400/40 px-3.5 py-1.5 rounded-full backdrop-blur-md">
                 <BadgePercent className="w-4 h-4 text-emerald-400 shrink-0" />
-                100% Free Quote in 3 Minutes • We Beat Any Comparable Quote by 5%
+                100% Free Quote in 3 Minutes • We Beat Any Comparable Written Quote by 5%
               </span>
             </div>
           </div>
@@ -200,21 +196,21 @@ export default function HomePage() {
               </h2>
               <p className="text-sm sm:text-base text-slate-600">
                 Tap or hover any division below to reveal our specialised services, or request a
-                free upfront quote in under 60 seconds.
+                free upfront quote in 3 minutes.
               </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-              <a
-                href={CLEANING_SUPPLIES.mailtoHref}
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-sky-50 border border-slate-200 text-brandBlue font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
+              <Link
+                href={CLEANING_SUPPLIES.contactHref}
+                className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-sky-50 border border-slate-200 text-brandBlue font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
               >
                 <Package className="w-4 h-4" />
                 <span>Cleaning Supplies</span>
-              </a>
+              </Link>
               <Link
                 href="/services"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-brandBlue text-white font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
+                className="min-h-[44px] inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-brandBlue text-white font-heading font-bold text-xs sm:text-sm transition-colors shadow-sm"
               >
                 <span>All Services</span>
                 <ArrowRight className="w-4 h-4" />
@@ -245,7 +241,7 @@ export default function HomePage() {
                     type="button"
                     onClick={() => setActiveTileId(isExpanded ? null : tile.id)}
                     aria-expanded={isExpanded}
-                    className="w-full text-left flex items-start justify-between gap-3.5"
+                    className="w-full min-h-[48px] text-left flex items-start justify-between gap-3.5"
                   >
                     <div className="flex items-start gap-3.5 sm:gap-4">
                       <div className="scroll-icon-bounce hover-icon-bounce w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center shrink-0 shadow-md">
@@ -262,7 +258,7 @@ export default function HomePage() {
                     </div>
 
                     <span
-                      className={`mt-1 p-1.5 rounded-xl bg-slate-100 text-slate-500 transition-transform duration-200 shrink-0 ${
+                      className={`mt-1 min-h-[36px] min-w-[36px] inline-flex items-center justify-center p-1.5 rounded-xl bg-slate-100 text-slate-500 transition-transform duration-200 shrink-0 ${
                         isExpanded ? 'rotate-180 bg-sky-50 text-brandBlue' : ''
                       }`}
                     >
@@ -274,12 +270,12 @@ export default function HomePage() {
                   <div className={`pop-down-drawer ${isExpanded ? 'is-open' : ''}`}>
                     <div className="pop-down-inner">
                       <div className="pt-4 mt-4 border-t border-slate-100 space-y-4">
-                        <ul className="space-y-1.5">
+                        <ul className="space-y-1">
                           {tile.links.map((sub) => (
                             <li key={sub.href}>
                               <Link
                                 href={sub.href}
-                                className="flex items-center justify-between text-xs sm:text-sm font-medium text-slate-700 hover:text-brandBlue py-1.5 px-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                                className="min-h-[44px] flex items-center justify-between text-xs sm:text-sm font-medium text-slate-700 hover:text-brandBlue py-2.5 px-3 rounded-xl hover:bg-slate-50 transition-colors"
                               >
                                 <span className="flex items-center gap-2">
                                   <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
@@ -294,20 +290,19 @@ export default function HomePage() {
                         <div className="flex items-center justify-between gap-3 pt-2 border-t border-slate-100">
                           <Link
                             href={tile.href}
-                            className="inline-flex items-center gap-1 text-xs font-heading font-bold text-slate-700 hover:text-brandBlue"
+                            className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-heading font-bold text-slate-700 hover:text-brandBlue hover:bg-slate-50 transition-colors"
                           >
                             <span>Explore Division</span>
                             <ArrowRight className="w-3.5 h-3.5" />
                           </Link>
 
-                          <button
-                            type="button"
-                            onClick={() => handleTileQuoteClick(tile.quoteService)}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs shadow-sm transition-colors"
+                          <Link
+                            href={`/contact?service=${encodeURIComponent(tile.quoteService)}#quote-form`}
+                            className="min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs shadow-sm transition-colors"
                           >
                             <span>Get a Quote</span>
                             <ArrowRight className="w-3.5 h-3.5" />
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -472,19 +467,25 @@ export default function HomePage() {
               {/* Quick Postcode / Suburb Bar that pre-fills Quote Form */}
               <form
                 onSubmit={handlePostcodeCheck}
-                className="scroll-card-snap bg-white p-2.5 sm:p-3 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2"
+                className="scroll-card-snap bg-white p-2 sm:p-2.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2"
               >
+                <label htmlFor="home-postcode-input" className="sr-only">
+                  Enter your Perth postcode or suburb
+                </label>
                 <Search className="w-5 h-5 text-brandBlue ml-2 shrink-0" />
                 <input
+                  id="home-postcode-input"
+                  name="suburb"
                   type="text"
                   value={homePostcodeQuery}
                   onChange={(e) => setHomePostcodeQuery(e.target.value)}
                   placeholder="Enter your Perth postcode or suburb..."
-                  className="flex-1 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
+                  className="flex-1 min-h-[44px] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
                 />
                 <button
                   type="submit"
-                  className="px-4 py-2.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs shrink-0 transition-colors"
+                  aria-label="Get Quote for Postcode or Suburb"
+                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs shrink-0 transition-colors"
                 >
                   Get Quote
                 </button>
@@ -496,7 +497,7 @@ export default function HomePage() {
                   <Link
                     key={region.id}
                     href={`/service-areas#${region.id}`}
-                    className="scroll-card-snap p-3.5 rounded-2xl bg-white border border-slate-200/90 hover:border-brandBlue/50 shadow-sm transition-all group"
+                    className="scroll-card-snap min-h-[56px] p-3.5 rounded-2xl bg-white border border-slate-200/90 hover:border-brandBlue/50 shadow-sm transition-all group flex flex-col justify-center"
                   >
                     <p className="font-heading font-bold text-xs text-slate-900 group-hover:text-brandBlue line-clamp-1">
                       {region.regionName}
@@ -513,15 +514,15 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-4 h-4 text-brandBlue shrink-0 mt-0.5" />
                   <p className="text-xs text-slate-700">
-                    <strong className="text-slate-900">Upfront Fixed Quotes:</strong> Confirmed
-                    before work begins with zero hidden callout fees.
+                    <strong className="text-slate-900">Upfront Fixed Quotes:</strong> Confirmed in 3
+                    minutes before work begins with zero hidden callout fees.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <BadgePercent className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <p className="text-xs text-slate-700">
                     <strong className="text-slate-900">5% Price-Beat Guarantee:</strong> We beat any
-                    comparable written WA quote by 5%.
+                    comparable written quote from an insured WA cleaner by 5%.
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
@@ -535,7 +536,7 @@ export default function HomePage() {
 
               <Link
                 href="/service-areas"
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-heading font-bold text-brandBlue hover:underline"
+                className="min-h-[44px] inline-flex items-center gap-1.5 py-2 text-xs sm:text-sm font-heading font-bold text-brandBlue hover:underline"
               >
                 <span>Check Postcode on Our Service Areas Page</span>
                 <ArrowRight className="w-4 h-4" />
@@ -659,7 +660,7 @@ export default function HomePage() {
                       {BRAND_INFO.mainEmail}
                     </span>
                     <span className="block text-[11px] text-slate-500">
-                      Management: {BRAND_INFO.adminEmail} • Support: {BRAND_INFO.accountsEmail}
+                      Partnerships: {BRAND_INFO.adminEmail} • Support: {BRAND_INFO.accountsEmail}
                     </span>
                   </div>
                 </a>

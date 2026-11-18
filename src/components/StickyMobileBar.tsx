@@ -9,7 +9,7 @@ export default function StickyMobileBar() {
       <div className="grid grid-cols-4 gap-1.5 max-w-md mx-auto">
         <a
           href={BRAND_INFO.phoneHref}
-          className="flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-heading font-bold text-[11px]"
+          className="min-h-[44px] flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-slate-100 border border-slate-200 text-slate-800 font-heading font-bold text-[11px]"
         >
           <Phone className="w-3.5 h-3.5 text-brandBlue shrink-0" />
           <span>Call</span>
@@ -19,7 +19,7 @@ export default function StickyMobileBar() {
           href={`${BRAND_INFO.smsHref}?body=${encodeURIComponent(
             "G'day Nexora Cleaning, I would like a free quote in Perth!"
           )}`}
-          className="flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-sky-50 border border-sky-200 text-brandBlue font-heading font-bold text-[11px]"
+          className="min-h-[44px] flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-sky-50 border border-sky-200 text-brandBlue font-heading font-bold text-[11px]"
         >
           <MessageSquare className="w-3.5 h-3.5 text-brandBlue shrink-0" />
           <span>Text</span>
@@ -27,7 +27,7 @@ export default function StickyMobileBar() {
 
         <Link
           href="/contact#quote-form"
-          className="flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-[11px] shadow-sm"
+          className="min-h-[44px] flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-[11px] shadow-sm"
         >
           <FileText className="w-3.5 h-3.5 shrink-0" />
           <span>Quote</span>
@@ -39,7 +39,7 @@ export default function StickyMobileBar() {
           )}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-[#25D366] text-white font-heading font-bold text-[11px] shadow-sm"
+          className="min-h-[44px] flex items-center justify-center gap-1 py-2.5 px-1.5 rounded-xl bg-[#25D366] text-white font-heading font-bold text-[11px] shadow-sm"
         >
           <MessageCircle className="w-3.5 h-3.5 fill-white shrink-0" />
           <span>WhatsApp</span>

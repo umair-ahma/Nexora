@@ -60,14 +60,23 @@ export default function QuoteForm({
     }
   }, [defaultSuburb]);
 
-  // Read URL query params (?service=...&suburb=...) on client mount
+  // Read URL query params (?service=...&suburb=...) on client mount and navigation
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    const serviceParam = params.get('service');
-    const suburbParam = params.get('suburb');
-    if (serviceParam) setService(serviceParam);
-    if (suburbParam) setSuburb(suburbParam);
+    const syncParams = () => {
+      const params = new URLSearchParams(window.location.search);
+      const serviceParam = params.get('service');
+      const suburbParam = params.get('suburb');
+      if (serviceParam) setService(serviceParam);
+      if (suburbParam) setSuburb(suburbParam);
+    };
+    syncParams();
+    window.addEventListener('popstate', syncParams);
+    window.addEventListener('hashchange', syncParams);
+    return () => {
+      window.removeEventListener('popstate', syncParams);
+      window.removeEventListener('hashchange', syncParams);
+    };
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -119,27 +128,33 @@ export default function QuoteForm({
       // ignore storage error
     }
 
-    // 2. Relay to Nexora main inbox via FormSubmit AJAX endpoint (non-blocking)
+    // 2. Relay to Nexora main inbox (info@nexoracleaning.au) with reply-to & department CC
     try {
+      const payload: Record<string, string> = {
+        _subject: `New Nexora Quote Request — ${submissionData.service} (${submissionData.suburb})`,
+        _template: 'table',
+        _cc: `${BRAND_INFO.accountsEmail},${BRAND_INFO.adminEmail}`,
+        Service: submissionData.service,
+        Name: submissionData.name,
+        Phone: submissionData.phone,
+        Suburb_Postcode: submissionData.suburb,
+        Email: submissionData.email,
+        Preferred_Date: submissionData.preferredDate,
+        Preferred_Time: submissionData.preferredTime,
+        Property_Size: submissionData.propertySize,
+        Notes: submissionData.notes,
+      };
+      if (email.trim()) {
+        payload._replyto = email.trim();
+      }
+
       await fetch(BRAND_INFO.formEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({
-          _subject: `New Nexora Quote Request — ${submissionData.service} (${submissionData.suburb})`,
-          _template: 'table',
-          Service: submissionData.service,
-          Name: submissionData.name,
-          Phone: submissionData.phone,
-          Suburb_Postcode: submissionData.suburb,
-          Email: submissionData.email,
-          Preferred_Date: submissionData.preferredDate,
-          Preferred_Time: submissionData.preferredTime,
-          Property_Size: submissionData.propertySize,
-          Notes: submissionData.notes,
-        }),
+        body: JSON.stringify(payload),
       });
     } catch {
       // Fallback gracefully if offline or blocked by adblocker
@@ -303,17 +318,20 @@ ${notes ? `- Notes: ${notes}` : ''}`;
           </div>
         )}
 
-        {/* Honeypot Spam Trap */}
-        <input
-          type="text"
-          name="website_url"
-          value={websiteUrl}
-          onChange={(e) => setWebsiteUrl(e.target.value)}
-          tabIndex={-1}
-          autoComplete="off"
-          className="hidden"
-          aria-hidden="true"
-        />
+        {/* Honeypot Spam Trap (Hidden from users & screen readers, labeled for form validators) */}
+        <div className="hidden" style={{ display: 'none' }} aria-hidden="true">
+          <label htmlFor="nexora-website-url">Website URL (leave blank)</label>
+          <input
+            id="nexora-website-url"
+            type="text"
+            name="website_url"
+            value={websiteUrl}
+            onChange={(e) => setWebsiteUrl(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+          />
+        </div>
 
         {/* Service Selection (Optional) */}
         <div>
@@ -325,9 +343,10 @@ ${notes ? `- Notes: ${notes}` : ''}`;
           </label>
           <select
             id="nexora-service"
+            name="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 font-medium focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+            className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 font-medium focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
           >
             <option value="End-of-Lease / Bond / Vacate Cleaning">
               End-of-Lease / Bond / Vacate Cleaning (Popular)
@@ -339,10 +358,8 @@ ${notes ? `- Notes: ${notes}` : ''}`;
                     {srv.title}
                     {srv.badgeType === 'add-on'
                       ? ' (Add-On)'
-                      : srv.badgeType === 'coming-soon'
-                      ? ' (Coming Soon - Register)'
                       : srv.badgeType === 'partner'
-                      ? ' (Trusted Partner)'
+                      ? ' (Partnered Service)'
                       : ''}
                   </option>
                 ))}
@@ -370,12 +387,13 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </label>
             <input
               id="nexora-name"
+              name="name"
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Liam Walker"
-              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
 
@@ -388,12 +406,13 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </label>
             <input
               id="nexora-phone"
+              name="phone"
               type="tel"
               required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder="e.g. 0412 345 678"
-              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              placeholder="e.g. 0493 848 764"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
         </div>
@@ -409,12 +428,13 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </label>
             <input
               id="nexora-suburb"
+              name="suburb"
               type="text"
               required
               value={suburb}
               onChange={(e) => setSuburb(e.target.value)}
               placeholder="e.g. Subiaco 6008 or Joondalup"
-              className="w-full rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
 
@@ -427,11 +447,12 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </label>
             <input
               id="nexora-email"
+              name="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com.au"
-              className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
         </div>
@@ -447,10 +468,11 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </label>
             <input
               id="nexora-date"
+              name="preferred_date"
               type="date"
               value={preferredDate}
               onChange={(e) => setPreferredDate(e.target.value)}
-              className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
 
@@ -463,9 +485,10 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </label>
             <select
               id="nexora-size"
+              name="property_size"
               value={propertySize}
               onChange={(e) => setPropertySize(e.target.value)}
-              className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             >
               <option value="">Select size (optional)...</option>
               <option value="Studio / 1 Bed, 1 Bath">Studio / 1 Bed, 1 Bath</option>
@@ -485,16 +508,23 @@ ${notes ? `- Notes: ${notes}` : ''}`;
         </div>
 
         {/* Preferred Time: 2 Explicit Options (Option 1: Flexible | Option 2: Time & Clock) */}
-        <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200/90 space-y-3">
-          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700">
+        <div
+          role="group"
+          aria-labelledby="nexora-time-group-label"
+          className="bg-slate-50 p-4 rounded-2xl border border-slate-200/90 space-y-3"
+        >
+          <span
+            id="nexora-time-group-label"
+            className="block text-xs font-bold uppercase tracking-wider text-slate-700"
+          >
             Preferred Time <span className="text-slate-400 font-normal">(Optional — Choose 1 of 2 Options)</span>
-          </label>
+          </span>
 
           <div className="grid grid-cols-2 gap-3">
             <button
               type="button"
               onClick={() => setPreferredTimeMode('flexible')}
-              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
+              className={`min-h-[44px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
                 preferredTimeMode === 'flexible'
                   ? 'bg-brandBlue text-white border-brandBlue shadow-sm'
                   : 'bg-white text-slate-700 border-slate-300 hover:border-brandBlue/50'
@@ -507,7 +537,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             <button
               type="button"
               onClick={() => setPreferredTimeMode('specific')}
-              className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
+              className={`min-h-[44px] flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
                 preferredTimeMode === 'specific'
                   ? 'bg-brandBlue text-white border-brandBlue shadow-sm'
                   : 'bg-white text-slate-700 border-slate-300 hover:border-brandBlue/50'
@@ -529,10 +559,11 @@ ${notes ? `- Notes: ${notes}` : ''}`;
                 </label>
                 <input
                   id="nexora-time-clock"
+                  name="preferred_time"
                   type="time"
                   value={preferredTimeValue}
                   onChange={(e) => setPreferredTimeValue(e.target.value)}
-                  className="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none"
+                  className="min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none"
                 />
               </div>
 
@@ -549,7 +580,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
                     key={preset.value}
                     type="button"
                     onClick={() => setPreferredTimeValue(preset.value)}
-                    className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
+                    className={`min-h-[44px] text-xs font-semibold px-3 py-2 rounded-lg border transition-colors ${
                       preferredTimeValue === preset.value
                         ? 'bg-brandCyan/20 border-brandBlue text-brandBlue'
                         : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'
@@ -573,6 +604,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
           </label>
           <textarea
             id="nexora-notes"
+            name="notes"
             rows={3}
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
@@ -585,7 +617,8 @@ ${notes ? `- Notes: ${notes}` : ''}`;
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_25px_rgba(0,128,240,0.35)] hover:shadow-[0_12px_30px_rgba(16,192,255,0.45)] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
+          aria-label="Request My 100% Free Quote"
+          className="w-full min-h-[52px] py-4 px-6 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-base shadow-[0_10px_25px_rgba(0,128,240,0.35)] hover:shadow-[0_12px_30px_rgba(16,192,255,0.45)] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
         >
           <Send className="w-4 h-4" />
           <span>

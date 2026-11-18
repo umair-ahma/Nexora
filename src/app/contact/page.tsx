@@ -18,7 +18,7 @@ import QuoteForm from '@/components/QuoteForm';
 export const metadata: Metadata = {
   title: 'Contact & Request a Free Quote | Nexora Cleaning Co Perth WA',
   description:
-    'Contact Nexora Cleaning Co in Perth, Western Australia. Get a 100% free quote within a few minutes at info@nexoracleaning.au or via our short mobile quote form. We beat any comparable quote by 5%.',
+    'Contact Nexora Cleaning Co in Perth, Western Australia. Get a 100% free quote in 3 minutes at info@nexoracleaning.au or via our short mobile quote form. We beat any comparable written quote by 5%.',
 };
 
 export default function ContactPage() {
@@ -42,17 +42,18 @@ export default function ContactPage() {
           <div className="max-w-3xl space-y-5">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-brandCyan/40 text-brandCyan text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>100% Free Quote Within a Few Minutes</span>
+              <span>100% Free Quote in 3 Minutes</span>
             </div>
 
             <h1 className="font-heading text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-              Let&apos;s Get Your <span className="text-brandCyan">Space Clean.</span>
+              <span>Let&apos;s Get Your </span>
+              <span className="text-brandCyan">Space Clean.</span>
             </h1>
 
             <p className="text-base sm:text-lg text-slate-200 leading-relaxed">
-              Free, no-obligation quote — price confirmed before work begins. Fill out our short
-              mobile-friendly form below, send a text message, chat on WhatsApp, or email our Perth
-              team directly.
+              Free, no-obligation quote in 3 minutes — price confirmed before work begins. Fill out
+              our short mobile-friendly form below, send a text message, chat on WhatsApp, or email
+              our Perth team directly.
             </p>
 
             {/* Compliance Badge Pills */}
@@ -125,13 +126,13 @@ export default function ContactPage() {
                       </div>
                       <div className="min-w-0 flex-1">
                         <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-500 block">
-                          Management &amp; Commercial Contracts
+                          Partnerships &amp; Commercial Contracts
                         </span>
                         <span className="font-heading font-bold text-sm sm:text-base text-slate-900 block break-all">
                           {BRAND_INFO.adminEmail}
                         </span>
                         <span className="block text-xs text-slate-600 mt-0.5">
-                          Commercial tenders, builder partnerships &amp; executive enquiries
+                          Commercial tenders, builder partnerships &amp; corporate contracts
                         </span>
                       </div>
                     </div>
