@@ -34,15 +34,18 @@ import FaqAccordion from '@/components/FaqAccordion';
 import ScrollLogoBackground from '@/components/ScrollLogoBackground';
 
 export default function HomePage() {
-  const [activeTileId, setActiveTileId] = useState<string | null>(null);
-  const [selectedQuoteService, setSelectedQuoteService] = useState<string>(
-    'End-of-Lease / Bond / Vacate Cleaning'
-  );
+  const [pinnedTileId, setPinnedTileId] = useState<string | null>(null);
+  const [hoveredTileId, setHoveredTileId] = useState<string | null>(null);
   const [homePostcodeQuery, setHomePostcodeQuery] = useState<string>('');
 
-  const canHover = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const handleTileToggle = (tileId: string) => {
+    if (pinnedTileId === tileId) {
+      setPinnedTileId(null);
+      setHoveredTileId(null);
+    } else {
+      setPinnedTileId(tileId);
+    }
+  };
 
   const handlePostcodeCheck = (e: React.FormEvent) => {
     e.preventDefault();
@@ -221,15 +224,17 @@ export default function HomePage() {
           {/* 6 Core Hover / Tap Pop-Down Service Tiles */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-start">
             {HOME_CORE_TILES.map((tile) => {
-              const isExpanded = activeTileId === tile.id;
+              const isExpanded = pinnedTileId === tile.id || hoveredTileId === tile.id;
               return (
                 <div
                   key={tile.id}
-                  onMouseEnter={() => {
-                    if (canHover()) setActiveTileId(tile.id);
+                  onPointerEnter={(e) => {
+                    if (e.pointerType === 'mouse') setHoveredTileId(tile.id);
                   }}
-                  onMouseLeave={() => {
-                    if (canHover()) setActiveTileId((prev) => (prev === tile.id ? null : prev));
+                  onPointerLeave={(e) => {
+                    if (e.pointerType === 'mouse') {
+                      setHoveredTileId((prev) => (prev === tile.id ? null : prev));
+                    }
                   }}
                   className={`scroll-card-snap group bg-white rounded-3xl border transition-all duration-300 p-5 sm:p-7 ${
                     isExpanded
@@ -239,7 +244,7 @@ export default function HomePage() {
                 >
                   <button
                     type="button"
-                    onClick={() => setActiveTileId(isExpanded ? null : tile.id)}
+                    onClick={() => handleTileToggle(tile.id)}
                     aria-expanded={isExpanded}
                     className="w-full min-h-[48px] text-left flex items-start justify-between gap-3.5"
                   >
@@ -465,30 +470,33 @@ export default function HomePage() {
               </div>
 
               {/* Quick Postcode / Suburb Bar that pre-fills Quote Form */}
-              <form
-                onSubmit={handlePostcodeCheck}
-                className="scroll-card-snap bg-white p-2 sm:p-2.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2"
-              >
-                <label htmlFor="home-postcode-input" className="sr-only">
-                  Enter your Perth postcode or suburb
-                </label>
-                <Search className="w-5 h-5 text-brandBlue ml-2 shrink-0" />
-                <input
-                  id="home-postcode-input"
-                  name="suburb"
-                  type="text"
-                  value={homePostcodeQuery}
-                  onChange={(e) => setHomePostcodeQuery(e.target.value)}
-                  placeholder="Enter your Perth postcode or suburb..."
-                  className="flex-1 min-h-[44px] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
-                />
-                <button
-                  type="submit"
-                  aria-label="Get Quote for Postcode or Suburb"
-                  className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs shrink-0 transition-colors"
+              <form onSubmit={handlePostcodeCheck} className="scroll-card-snap space-y-1.5">
+                <label
+                  htmlFor="home-postcode-input"
+                  className="block text-xs font-heading font-bold uppercase tracking-wider text-slate-700"
                 >
-                  Get Quote
-                </button>
+                  Check Your Perth Suburb or Postcode
+                </label>
+                <div className="bg-white p-2 sm:p-2.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-2">
+                  <Search className="w-5 h-5 text-brandBlue ml-2 shrink-0" />
+                  <input
+                    id="home-postcode-input"
+                    name="suburb"
+                    type="text"
+                    value={homePostcodeQuery}
+                    onChange={(e) => setHomePostcodeQuery(e.target.value)}
+                    placeholder="Enter your Perth postcode or suburb..."
+                    aria-label="Enter your Perth postcode or suburb"
+                    className="flex-1 min-h-[44px] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
+                  />
+                  <button
+                    type="submit"
+                    aria-label="Get Quote for Postcode or Suburb"
+                    className="min-h-[44px] px-4 py-2.5 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs shrink-0 transition-colors"
+                  >
+                    Get Quote
+                  </button>
+                </div>
               </form>
 
               {/* Compact 6 Region Badges */}
@@ -670,7 +678,7 @@ export default function HomePage() {
             {/* Right Column (7 Cols) */}
             <div className="lg:col-span-7">
               <QuoteForm
-                defaultService={selectedQuoteService}
+                defaultService="End-of-Lease / Bond / Vacate Cleaning"
                 defaultSuburb={homePostcodeQuery}
               />
             </div>

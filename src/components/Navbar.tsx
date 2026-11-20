@@ -93,9 +93,9 @@ export default function Navbar() {
                     />
                   </Link>
 
-                  {/* Clean 5-Column Division Dropdown (4 Core Divisions + Cleaning Supplies Tab per PDF p. 12) */}
+                  {/* Clean 5-Column Division Dropdown (4 Core Divisions + Cleaning Supplies Tab) */}
                   {servicesDropdownOpen && (
-                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[880px] max-w-[92vw] z-50">
+                    <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[1080px] max-w-[95vw] z-50">
                       <div className="bg-white border border-slate-200 rounded-3xl shadow-2xl p-6 grid grid-cols-5 gap-4">
                         {SERVICE_CATEGORIES.map((category) => {
                           const topServices = getServicesByCategory(category.id).slice(0, 4);
@@ -119,7 +119,7 @@ export default function Navbar() {
                                       <Link
                                         href={`/services/${srv.slug}`}
                                         onClick={() => setServicesDropdownOpen(false)}
-                                        className="text-xs text-slate-600 hover:text-brandBlue font-medium block py-0.5 truncate"
+                                        className="text-xs text-slate-600 hover:text-brandBlue font-medium block py-1 leading-snug"
                                       >
                                         {srv.shortTitle}
                                       </Link>

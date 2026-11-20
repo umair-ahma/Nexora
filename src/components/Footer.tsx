@@ -162,7 +162,7 @@ export default function Footer() {
                 Proudly supporting Indigenous employment opportunities —{' '}
                 <a
                   href={`mailto:${BRAND_INFO.mainEmail}?subject=Careers%20%26%20Employment%20Enquiry%20-%20Nexora%20Cleaning`}
-                  className="text-brandCyan hover:underline"
+                  className="min-h-[44px] inline-flex items-center py-2 text-brandCyan hover:underline"
                 >
                   enquire about joining our team
                 </a>
@@ -172,16 +172,16 @@ export default function Footer() {
           </div>
 
           {/* Column 2: Residential & Specialist Services (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="lg:col-span-3 space-y-2">
             <h4 className="font-heading font-bold text-white text-sm uppercase tracking-wider border-b border-white/10 pb-2">
               Popular Cleaning Services
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-0.5 text-sm">
               {getServicesByCategory('residential').map((srv) => (
                 <li key={srv.slug}>
                   <Link
                     href={`/services/${srv.slug}`}
-                    className="text-slate-400 hover:text-brandCyan transition-colors block"
+                    className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                   >
                     {srv.shortTitle}
                   </Link>
@@ -190,7 +190,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/pre-sale-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors block"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   Pre-Sale &amp; Open-Home Cleaning
                 </Link>
@@ -198,7 +198,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/kitchen-oven-appliance-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors inline-flex items-center gap-1.5"
+                  className="min-h-[44px] py-2 text-slate-400 hover:text-brandCyan transition-colors inline-flex items-center gap-1.5"
                 >
                   <span>Kitchen &amp; Oven Cleaning</span>
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-brandCyan/20 text-brandCyan font-semibold">
@@ -209,7 +209,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/carpet-upholstery-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors inline-flex items-center gap-1.5"
+                  className="min-h-[44px] py-2 text-slate-400 hover:text-brandCyan transition-colors inline-flex items-center gap-1.5"
                 >
                   <span>Carpet &amp; Upholstery</span>
                   <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-semibold">
@@ -220,7 +220,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/high-pressure-washing"
-                  className="text-slate-400 hover:text-brandCyan transition-colors block"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   High-Pressure Washing
                 </Link>
@@ -229,15 +229,15 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Commercial, Builders & Quick Links (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-2">
             <h4 className="font-heading font-bold text-white text-sm uppercase tracking-wider border-b border-white/10 pb-2">
               Commercial &amp; Links
             </h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-0.5 text-sm">
               <li>
                 <Link
                   href="/services/office-commercial-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   Office &amp; Commercial
                 </Link>
@@ -245,7 +245,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/school-education-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   School &amp; Education
                 </Link>
@@ -253,7 +253,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/childcare-daycare-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   Childcare &amp; Day-Care
                 </Link>
@@ -261,7 +261,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/ndis-domestic-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   NDIS Cleaning (Self &amp; Plan)
                 </Link>
@@ -269,7 +269,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/builders-construction-cleaning"
-                  className="text-slate-400 hover:text-brandCyan transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-400 hover:text-brandCyan transition-colors"
                 >
                   Builders &amp; Construction
                 </Link>
@@ -277,7 +277,7 @@ export default function Footer() {
               <li>
                 <Link
                   href={CLEANING_SUPPLIES.contactHref}
-                  className="text-brandCyan hover:underline font-medium"
+                  className="min-h-[44px] flex items-center py-2 text-brandCyan hover:underline font-medium"
                 >
                   Cleaning Supplies
                 </Link>
@@ -285,7 +285,7 @@ export default function Footer() {
               <li className="pt-2 border-t border-white/10">
                 <Link
                   href="/industries"
-                  className="text-slate-300 hover:text-brandCyan font-medium transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-300 hover:text-brandCyan font-medium transition-colors"
                 >
                   Industries We Serve
                 </Link>
@@ -293,7 +293,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/service-areas"
-                  className="text-slate-300 hover:text-brandCyan font-medium transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-300 hover:text-brandCyan font-medium transition-colors"
                 >
                   Perth Service Areas
                 </Link>
@@ -301,7 +301,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/about"
-                  className="text-slate-300 hover:text-brandCyan font-medium transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-300 hover:text-brandCyan font-medium transition-colors"
                 >
                   About Nexora
                 </Link>
@@ -309,7 +309,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/privacy-terms"
-                  className="text-slate-300 hover:text-brandCyan font-medium transition-colors"
+                  className="min-h-[44px] flex items-center py-2 text-slate-300 hover:text-brandCyan font-medium transition-colors"
                 >
                   Privacy Policy &amp; Terms
                 </Link>
@@ -323,12 +323,12 @@ export default function Footer() {
               Contact Our WA Team
             </h4>
 
-            <div className="space-y-3 text-sm">
+            <div className="space-y-2 text-sm">
               <a
                 href={BRAND_INFO.phoneHref}
-                className="flex items-start gap-3 text-slate-300 hover:text-brandCyan transition-colors"
+                className="min-h-[44px] flex items-center gap-3 py-1.5 text-slate-300 hover:text-brandCyan transition-colors"
               >
-                <Phone className="w-4 h-4 text-brandCyan shrink-0 mt-1" />
+                <Phone className="w-4 h-4 text-brandCyan shrink-0" />
                 <div>
                   <span className="block font-semibold text-white">
                     {BRAND_INFO.phoneDisplay}
@@ -341,9 +341,9 @@ export default function Footer() {
                 href={`${BRAND_INFO.smsHref}?body=${encodeURIComponent(
                   "G'day Nexora Cleaning! I'd like a free quote in Perth."
                 )}`}
-                className="flex items-start gap-3 text-slate-300 hover:text-brandCyan transition-colors"
+                className="min-h-[44px] flex items-center gap-3 py-1.5 text-slate-300 hover:text-brandCyan transition-colors"
               >
-                <MessageSquare className="w-4 h-4 text-brandCyan shrink-0 mt-1" />
+                <MessageSquare className="w-4 h-4 text-brandCyan shrink-0" />
                 <div>
                   <span className="block font-semibold text-white">
                     Text / SMS: {BRAND_INFO.mobileDisplay}
@@ -353,36 +353,36 @@ export default function Footer() {
               </a>
 
               <div className="flex items-start gap-3">
-                <Mail className="w-4 h-4 text-brandCyan shrink-0 mt-1" />
-                <div className="space-y-1">
+                <Mail className="w-4 h-4 text-brandCyan shrink-0 mt-3" />
+                <div className="space-y-0.5">
                   <div>
                     <span className="text-[11px] uppercase tracking-wider text-brandCyan block font-semibold">
                       Enquiries &amp; Quotes:
                     </span>
                     <a
                       href={`mailto:${BRAND_INFO.mainEmail}`}
-                      className="text-white hover:text-brandCyan font-medium transition-colors"
+                      className="min-h-[44px] inline-flex items-center py-2 text-white hover:text-brandCyan font-medium transition-colors"
                     >
                       {BRAND_INFO.mainEmail}
                     </a>
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-400 block">
-                      Partnerships:{' '}
+                    <span className="text-[11px] text-slate-400 flex flex-wrap items-center gap-1">
+                      <span>Partnerships:</span>
                       <a
                         href={`mailto:${BRAND_INFO.adminEmail}`}
-                        className="text-slate-300 hover:text-brandCyan"
+                        className="min-h-[44px] inline-flex items-center py-2 text-slate-300 hover:text-brandCyan"
                       >
                         {BRAND_INFO.adminEmail}
                       </a>
                     </span>
                   </div>
                   <div>
-                    <span className="text-[11px] text-slate-400 block">
-                      Support &amp; Accounts:{' '}
+                    <span className="text-[11px] text-slate-400 flex flex-wrap items-center gap-1">
+                      <span>Support &amp; Accounts:</span>
                       <a
                         href={`mailto:${BRAND_INFO.accountsEmail}`}
-                        className="text-slate-300 hover:text-brandCyan"
+                        className="min-h-[44px] inline-flex items-center py-2 text-slate-300 hover:text-brandCyan"
                       >
                         {BRAND_INFO.accountsEmail}
                       </a>
@@ -420,7 +420,7 @@ export default function Footer() {
                   href="https://www.google.com/maps/search/Nexora+Cleaning+Perth+WA"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs text-brandCyan hover:underline"
+                  className="min-h-[44px] inline-flex items-center gap-1.5 py-2 text-xs text-brandCyan hover:underline"
                 >
                   <span>Find Us on Google Business Profile</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -432,22 +432,31 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright Bar */}
-      <div className="border-t border-white/10 bg-[#020409] py-6">
+      <div className="border-t border-white/10 bg-[#020409] py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pr-80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>
             © {new Date().getFullYear()} <strong className="text-white">Nexora Cleaning Co</strong> (
             {BRAND_INFO.domain}). All rights reserved. Western Australia.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy-terms" className="hover:text-brandCyan transition-colors">
+            <Link
+              href="/privacy-terms"
+              className="min-h-[44px] inline-flex items-center py-2 hover:text-brandCyan transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link href="/privacy-terms#terms" className="hover:text-brandCyan transition-colors">
+            <Link
+              href="/privacy-terms#terms"
+              className="min-h-[44px] inline-flex items-center py-2 hover:text-brandCyan transition-colors"
+            >
               Terms of Service
             </Link>
-            <Link href="/sitemap.xml" className="hover:text-brandCyan transition-colors">
+            <a
+              href="/sitemap.xml"
+              className="min-h-[44px] inline-flex items-center py-2 hover:text-brandCyan transition-colors"
+            >
               Sitemap
-            </Link>
+            </a>
           </div>
         </div>
       </div>

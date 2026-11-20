@@ -26,11 +26,17 @@ import ServiceCard from '@/components/ServiceCard';
 import QuoteForm from '@/components/QuoteForm';
 
 export default function ServicesOverviewPage() {
-  const [openDivisionId, setOpenDivisionId] = useState<ServiceCategoryId | null>(null);
+  const [pinnedDivisionId, setPinnedDivisionId] = useState<ServiceCategoryId | null>(null);
+  const [hoveredDivisionId, setHoveredDivisionId] = useState<ServiceCategoryId | null>(null);
 
-  const canHover = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const handleDivisionToggle = (categoryId: ServiceCategoryId) => {
+    if (pinnedDivisionId === categoryId) {
+      setPinnedDivisionId(null);
+      setHoveredDivisionId(null);
+    } else {
+      setPinnedDivisionId(categoryId);
+    }
+  };
 
   // If user arrives via /services#commercial etc., automatically open that division
   useEffect(() => {
@@ -38,7 +44,7 @@ export default function ServicesOverviewPage() {
     const applyHash = () => {
       const hash = window.location.hash.replace('#', '') as ServiceCategoryId;
       if (SERVICE_CATEGORIES.some((c) => c.id === hash)) {
-        setOpenDivisionId(hash);
+        setPinnedDivisionId(hash);
       }
     };
     applyHash();
@@ -136,18 +142,20 @@ export default function ServicesOverviewPage() {
           <div className="space-y-5">
             {SERVICE_CATEGORIES.map((category, index) => {
               const services = getServicesByCategory(category.id);
-              const isOpen = openDivisionId === category.id;
+              const isOpen =
+                pinnedDivisionId === category.id || hoveredDivisionId === category.id;
 
               return (
                 <section
                   key={category.id}
                   id={category.id}
-                  onMouseEnter={() => {
-                    if (canHover()) setOpenDivisionId(category.id);
+                  onPointerEnter={(e) => {
+                    if (e.pointerType === 'mouse') setHoveredDivisionId(category.id);
                   }}
-                  onMouseLeave={() => {
-                    if (canHover())
-                      setOpenDivisionId((prev) => (prev === category.id ? null : prev));
+                  onPointerLeave={(e) => {
+                    if (e.pointerType === 'mouse') {
+                      setHoveredDivisionId((prev) => (prev === category.id ? null : prev));
+                    }
                   }}
                   className="scroll-card-snap scroll-mt-28"
                 >
@@ -162,9 +170,9 @@ export default function ServicesOverviewPage() {
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                       <button
                         type="button"
-                        onClick={() => setOpenDivisionId(isOpen ? null : category.id)}
+                        onClick={() => handleDivisionToggle(category.id)}
                         aria-expanded={isOpen}
-                        className="flex-1 text-left flex items-start gap-4 group"
+                        className="flex-1 min-h-[48px] text-left flex items-start gap-4 group"
                       >
                         <div className="scroll-icon-bounce hover-icon-bounce w-14 h-14 rounded-2xl bg-gradient-to-br from-brandBlue to-brandCyan text-white flex items-center justify-center shrink-0 shadow-md">
                           <DynamicIcon name={category.iconName} className="w-7 h-7" />
@@ -190,7 +198,7 @@ export default function ServicesOverviewPage() {
                       <div className="flex items-center gap-2.5 shrink-0">
                         <button
                           type="button"
-                          onClick={() => setOpenDivisionId(isOpen ? null : category.id)}
+                          onClick={() => handleDivisionToggle(category.id)}
                           className="min-h-[44px] px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-heading font-bold text-xs transition-colors"
                         >
                           {isOpen ? 'Hide Services' : `Show ${services.length} Services`}
@@ -274,23 +282,26 @@ export default function ServicesOverviewPage() {
                 Not Sure Which Cleaning Package Fits Best?
               </h2>
               <p className="text-base text-slate-600 leading-relaxed">
-                Tell us what needs cleaning using our quick mobile form. You can combine any house,
-                pre-sale, or end-of-lease clean with our{' '}
+                Tell us what needs cleaning using our quick mobile form. You can also bundle any
+                house, pre-sale, or end-of-lease clean with our popular add-ons:
+              </p>
+
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2.5">
                 <Link
                   href="/services/kitchen-oven-appliance-cleaning"
-                  className="text-brandBlue font-semibold underline"
+                  className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 border border-sky-200 text-brandBlue font-heading font-bold text-xs sm:text-sm transition-colors"
                 >
-                  Kitchen, Oven &amp; Appliance Add-On
-                </Link>{' '}
-                or{' '}
+                  <span>Kitchen, Oven &amp; Appliance Add-On</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" />
+                </Link>
                 <Link
                   href="/services/carpet-upholstery-cleaning"
-                  className="text-brandBlue font-semibold underline"
+                  className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-800 font-heading font-bold text-xs sm:text-sm transition-colors"
                 >
-                  Trusted Partner Carpet &amp; Upholstery Cleaning
+                  <span>Carpet &amp; Upholstery Steam (Partnered)</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </Link>
-                .
-              </p>
+              </div>
 
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
                 <p className="font-heading font-bold text-sm text-slate-900">
@@ -299,7 +310,7 @@ export default function ServicesOverviewPage() {
                 <div className="flex flex-wrap gap-2.5">
                   <a
                     href={BRAND_INFO.phoneHref}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold"
+                    className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-bold"
                   >
                     <Phone className="w-3.5 h-3.5 text-brandCyan" />
                     <span>{BRAND_INFO.phoneDisplay}</span>
@@ -308,14 +319,14 @@ export default function ServicesOverviewPage() {
                     href={`${BRAND_INFO.smsHref}?body=${encodeURIComponent(
                       "G'day Nexora Cleaning! I'd like a free quote in Perth."
                     )}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-50 border border-sky-200 text-brandBlue text-xs font-bold"
+                    className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-sky-50 border border-sky-200 text-brandBlue text-xs font-bold"
                   >
                     <MessageSquare className="w-3.5 h-3.5" />
                     <span>Text SMS</span>
                   </a>
                   <a
                     href={`mailto:${BRAND_INFO.mainEmail}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs font-bold"
+                    className="min-h-[44px] inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-800 text-xs font-bold"
                   >
                     <Mail className="w-3.5 h-3.5 text-brandBlue" />
                     <span>{BRAND_INFO.mainEmail}</span>

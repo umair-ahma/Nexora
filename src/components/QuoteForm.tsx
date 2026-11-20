@@ -318,8 +318,19 @@ ${notes ? `- Notes: ${notes}` : ''}`;
           </div>
         )}
 
-        {/* Honeypot Spam Trap (Hidden from users & screen readers, labeled for form validators) */}
-        <div className="hidden" style={{ display: 'none' }} aria-hidden="true">
+        {/* Honeypot Spam Trap (Rendered in DOM, visually hidden off-screen from users) */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: '-9999px',
+            width: '1px',
+            height: '1px',
+            overflow: 'hidden',
+            opacity: 0,
+            pointerEvents: 'none',
+          }}
+        >
           <label htmlFor="nexora-website-url">Website URL (leave blank)</label>
           <input
             id="nexora-website-url"
@@ -329,7 +340,6 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             onChange={(e) => setWebsiteUrl(e.target.value)}
             tabIndex={-1}
             autoComplete="off"
-            className="hidden"
           />
         </div>
 
@@ -353,16 +363,22 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             </option>
             {SERVICE_CATEGORIES.map((cat) => (
               <optgroup key={cat.id} label={cat.name}>
-                {getServicesByCategory(cat.id).map((srv) => (
-                  <option key={srv.slug} value={srv.title}>
-                    {srv.title}
-                    {srv.badgeType === 'add-on'
-                      ? ' (Add-On)'
-                      : srv.badgeType === 'partner'
-                      ? ' (Partnered Service)'
-                      : ''}
-                  </option>
-                ))}
+                {getServicesByCategory(cat.id).map((srv) => {
+                  const needsAddOnSuffix =
+                    srv.badgeType === 'add-on' && !srv.title.includes('Add-On');
+                  const needsPartnerSuffix =
+                    srv.badgeType === 'partner' && !srv.title.includes('Partner');
+                  return (
+                    <option key={srv.slug} value={srv.title}>
+                      {srv.title}
+                      {needsAddOnSuffix
+                        ? ' (Add-On)'
+                        : needsPartnerSuffix
+                        ? ' (Partnered Service)'
+                        : ''}
+                    </option>
+                  );
+                })}
               </optgroup>
             ))}
             <optgroup label="Supplies & Custom Bundles">

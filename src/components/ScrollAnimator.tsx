@@ -40,13 +40,20 @@ export default function ScrollAnimator() {
         return;
       }
 
-      // Assign staggered cascade delays to sibling cards inside the same grid/flex parent
+      // Immediately reveal anything already visible in the initial viewport (critical for tall 4K screens)
+      // and assign staggered cascade delays only to below-the-fold sibling cards
       const parentCounts = new Map<Element, number>();
       elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 60) {
+          el.style.setProperty('--stagger-delay', '0ms');
+          el.setAttribute('data-inview', 'true');
+          return;
+        }
         if (el.classList.contains('scroll-card-snap') && el.parentElement) {
           const parent = el.parentElement;
           const idx = parentCounts.get(parent) || 0;
-          const delayMs = (idx % 6) * 85;
+          const delayMs = (idx % 6) * 70;
           el.style.setProperty('--stagger-delay', `${delayMs}ms`);
           parentCounts.set(parent, idx + 1);
         }
@@ -58,18 +65,12 @@ export default function ScrollAnimator() {
             const target = entry.target as HTMLElement;
             if (entry.isIntersecting) {
               target.setAttribute('data-inview', 'true');
-            } else {
-              // If element scrolled back down below viewport, reset so scrolling down replays animation
-              const rect = entry.boundingClientRect;
-              if (rect.top > window.innerHeight * 0.96) {
-                target.removeAttribute('data-inview');
-              }
             }
           });
         },
         {
-          threshold: 0.08,
-          rootMargin: '0px 0px -36px 0px',
+          threshold: 0.01,
+          rootMargin: '0px 0px 40px 0px',
         }
       );
 

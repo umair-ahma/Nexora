@@ -9,24 +9,32 @@ interface FaqAccordionProps {
 }
 
 export default function FaqAccordion({ items }: FaqAccordionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [pinnedIndex, setPinnedIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const canHover = () =>
-    typeof window !== 'undefined' &&
-    window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const handleToggle = (index: number) => {
+    if (pinnedIndex === index) {
+      setPinnedIndex(null);
+      setHoveredIndex(null);
+    } else {
+      setPinnedIndex(index);
+    }
+  };
 
   return (
     <div className="space-y-3">
       {items.map((faq, index) => {
-        const isOpen = openIndex === index;
+        const isOpen = pinnedIndex === index || hoveredIndex === index;
         return (
           <div
             key={index}
-            onMouseEnter={() => {
-              if (canHover()) setOpenIndex(index);
+            onPointerEnter={(e) => {
+              if (e.pointerType === 'mouse') setHoveredIndex(index);
             }}
-            onMouseLeave={() => {
-              if (canHover()) setOpenIndex((prev) => (prev === index ? null : prev));
+            onPointerLeave={(e) => {
+              if (e.pointerType === 'mouse') {
+                setHoveredIndex((prev) => (prev === index ? null : prev));
+              }
             }}
             className={`scroll-card-snap rounded-2xl border transition-all duration-200 ${
               isOpen
@@ -36,9 +44,9 @@ export default function FaqAccordion({ items }: FaqAccordionProps) {
           >
             <button
               type="button"
-              onClick={() => setOpenIndex(isOpen ? null : index)}
+              onClick={() => handleToggle(index)}
               aria-expanded={isOpen}
-              className="w-full text-left px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between gap-3"
+              className="w-full min-h-[48px] text-left px-4 sm:px-5 py-3.5 sm:py-4 flex items-center justify-between gap-3"
             >
               <span className="font-heading font-bold text-sm sm:text-base text-slate-900 flex items-center gap-2.5 sm:gap-3">
                 <HelpCircle

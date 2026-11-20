@@ -56,8 +56,10 @@ export default function WhatsAppWidget() {
   };
 
   return (
-    <div className="hidden lg:flex fixed bottom-6 right-6 z-50 flex-col items-end">
-      {/* Expanded Chat Popup */}
+    <div className="hidden lg:block fixed inset-x-0 bottom-6 z-50 pointer-events-none">
+      <div className="max-w-[1920px] mx-auto px-6 flex justify-end">
+        <div className="pointer-events-auto flex flex-col items-end">
+          {/* Expanded Chat Popup */}
       {isOpen && (
         <div className="mb-3 w-[330px] sm:w-[360px] rounded-2xl overflow-hidden bg-white shadow-2xl border border-slate-200 animate-in fade-in slide-in-from-bottom-4 duration-200">
           {/* Header */}
@@ -190,6 +192,8 @@ export default function WhatsAppWidget() {
           <MessageCircle className="w-5 h-5 fill-white" />
           <span className="hidden sm:inline">WhatsApp Chat</span>
         </button>
+      </div>
+        </div>
       </div>
     </div>
   );
