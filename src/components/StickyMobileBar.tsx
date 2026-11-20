@@ -5,7 +5,7 @@ import { BRAND_INFO } from '@/data/nexoraData';
 
 export default function StickyMobileBar() {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-40 lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-2.5 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+    <div className="landscape-hide-sticky fixed bottom-0 inset-x-0 z-40 lg:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-2.5 py-2 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
       <div className="grid grid-cols-4 gap-1.5 max-w-md mx-auto">
         <a
           href={BRAND_INFO.phoneHref}

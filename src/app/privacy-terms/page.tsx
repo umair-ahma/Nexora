@@ -84,7 +84,7 @@ export default function PrivacyTermsPage() {
                   Issue tax invoices or NDIS Plan Manager statements via{' '}
                   <a
                     href={`mailto:${BRAND_INFO.accountsEmail}`}
-                    className="text-brandBlue underline"
+                    className="min-h-[44px] inline-flex items-center py-2 px-1 text-brandBlue underline font-medium"
                   >
                     {BRAND_INFO.accountsEmail}
                   </a>
@@ -111,11 +111,17 @@ export default function PrivacyTermsPage() {
               <p>
                 You may request access to, correction of, or deletion of your personal information
                 at any time by emailing{' '}
-                <a href={`mailto:${BRAND_INFO.mainEmail}`} className="text-brandBlue underline">
+                <a
+                  href={`mailto:${BRAND_INFO.mainEmail}`}
+                  className="min-h-[44px] inline-flex items-center py-2 px-1 text-brandBlue underline font-medium"
+                >
                   {BRAND_INFO.mainEmail}
                 </a>{' '}
                 or{' '}
-                <a href={`mailto:${BRAND_INFO.adminEmail}`} className="text-brandBlue underline">
+                <a
+                  href={`mailto:${BRAND_INFO.adminEmail}`}
+                  className="min-h-[44px] inline-flex items-center py-2 px-1 text-brandBlue underline font-medium"
+                >
                   {BRAND_INFO.adminEmail}
                 </a>
                 .
@@ -189,7 +195,10 @@ export default function PrivacyTermsPage() {
                 Our team follows a documented checklist on every service and follows up after work
                 is completed. If you or your property manager have any feedback regarding a
                 checklist item, please notify us at{' '}
-                <a href={`mailto:${BRAND_INFO.mainEmail}`} className="text-brandBlue underline">
+                <a
+                  href={`mailto:${BRAND_INFO.mainEmail}`}
+                  className="min-h-[44px] inline-flex items-center py-2 px-1 text-brandBlue underline font-medium"
+                >
                   {BRAND_INFO.mainEmail}
                 </a>{' '}
                 within 72 hours so we can promptly assist.
@@ -198,12 +207,12 @@ export default function PrivacyTermsPage() {
 
             <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
               <div className="flex items-center gap-2 text-xs text-slate-500">
-                <Mail className="w-4 h-4 text-brandBlue" />
+                <Mail className="w-4 h-4 text-brandBlue shrink-0" />
                 <span>Questions? Contact {BRAND_INFO.mainEmail}</span>
               </div>
               <Link
                 href="/contact#quote-form"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brandBlue text-white font-heading font-bold text-xs"
+                className="min-h-[44px] inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brandBlue hover:bg-brandRoyal text-white font-heading font-bold text-xs sm:text-sm transition-colors"
               >
                 Request a Free Quote
               </Link>

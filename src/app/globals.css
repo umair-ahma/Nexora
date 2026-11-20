@@ -194,3 +194,57 @@ body {
 .pop-down-inner {
   overflow: hidden;
 }
+
+/* Mobile landscape optimization (e.g., 844x390): prevent sticky bars from slicing hero headline & keep CTAs visible */
+@media (max-height: 480px) and (max-width: 1023px) {
+  .landscape-hide-sticky {
+    display: none !important;
+  }
+
+  .landscape-compact-header {
+    height: 3.25rem !important;
+  }
+
+  .landscape-compact-hero {
+    padding-top: 1rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .landscape-compact-hero .hero-stack {
+    gap: 0.5rem !important;
+  }
+
+  .landscape-compact-hero .hero-stack > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 0.5rem !important;
+  }
+
+  .landscape-compact-hero .hero-pills,
+  .landscape-compact-hero .hero-guarantee {
+    display: none !important;
+  }
+
+  .landscape-compact-hero h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .landscape-compact-hero .hero-lead {
+    font-size: 0.8125rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .landscape-compact-hero .hero-cta-row {
+    flex-direction: row !important;
+    justify-content: center !important;
+    padding-top: 0.25rem !important;
+  }
+
+  .landscape-compact-hero .hero-cta-row a {
+    padding-top: 0.625rem !important;
+    padding-bottom: 0.625rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    min-height: 44px !important;
+    font-size: 0.875rem !important;
+  }
+}

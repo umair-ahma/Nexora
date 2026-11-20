@@ -29,22 +29,39 @@ export default function ScrollAnimator() {
 
     let observer: IntersectionObserver | null = null;
     let rafId: number | null = null;
-    let timerId: number | null = null;
+    let timerId1: number | null = null;
+    let timerId2: number | null = null;
+    let scrollRevealRaf: number | null = null;
 
-    const revealAboveFoldNow = () => {
+    const revealVisibleInViewport = (instant = true) => {
       const elements = document.querySelectorAll<HTMLElement>(
         '.scroll-card-snap, .scroll-heading-reveal, .scroll-icon-bounce'
       );
-      const viewportLimit = window.innerHeight + 120;
+      const viewportLimit = window.innerHeight + 160;
       elements.forEach((el) => {
         if (el.getAttribute('data-inview') === 'true') return;
         const rect = el.getBoundingClientRect();
         if (rect.top < viewportLimit && rect.bottom > -40) {
           el.style.setProperty('--stagger-delay', '0ms');
-          el.setAttribute('data-instant', 'true');
+          if (instant) {
+            el.setAttribute('data-instant', 'true');
+          }
           el.setAttribute('data-inview', 'true');
         }
       });
+    };
+
+    const onScrollRevealCheck = () => {
+      if (scrollRevealRaf !== null) return;
+      scrollRevealRaf = window.requestAnimationFrame(() => {
+        revealVisibleInViewport(false);
+        scrollRevealRaf = null;
+      });
+    };
+
+    const onHashReveal = () => {
+      window.requestAnimationFrame(() => revealVisibleInViewport(true));
+      window.setTimeout(() => revealVisibleInViewport(true), 120);
     };
 
     const initScrollReveals = () => {
@@ -60,13 +77,12 @@ export default function ScrollAnimator() {
         return;
       }
 
-      // Immediately reveal anything already visible in the initial viewport (critical for tall 4K screens)
-      // and assign staggered cascade delays only to below-the-fold sibling cards
+      // Immediately reveal anything visible at current scroll position (handles 4K & hash-anchor loads)
       const parentCounts = new Map<Element, number>();
-      const viewportLimit = window.innerHeight + 120;
+      const viewportLimit = window.innerHeight + 160;
       elements.forEach((el) => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < viewportLimit) {
+        if (rect.top < viewportLimit && rect.bottom > -40) {
           el.style.setProperty('--stagger-delay', '0ms');
           el.setAttribute('data-instant', 'true');
           el.setAttribute('data-inview', 'true');
@@ -92,7 +108,7 @@ export default function ScrollAnimator() {
         },
         {
           threshold: 0.01,
-          rootMargin: '0px 0px 80px 0px',
+          rootMargin: '0px 0px 100px 0px',
         }
       );
 
@@ -101,23 +117,34 @@ export default function ScrollAnimator() {
       });
     };
 
-    // Reveal immediately, then re-verify after paint and layout settlement
+    // Reveal immediately, then re-verify after paint, hash scroll, and layout settlement
     initScrollReveals();
     rafId = window.requestAnimationFrame(() => {
-      revealAboveFoldNow();
+      revealVisibleInViewport(true);
     });
-    timerId = window.setTimeout(() => {
-      revealAboveFoldNow();
+    timerId1 = window.setTimeout(() => {
+      revealVisibleInViewport(true);
     }, 150);
+    timerId2 = window.setTimeout(() => {
+      revealVisibleInViewport(true);
+    }, 450);
 
-    window.addEventListener('resize', revealAboveFoldNow, { passive: true });
+    const onResizeReveal = () => revealVisibleInViewport(true);
+
+    window.addEventListener('resize', onResizeReveal, { passive: true });
+    window.addEventListener('hashchange', onHashReveal, { passive: true });
+    window.addEventListener('scroll', onScrollRevealCheck, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', updateProgressBar);
       window.removeEventListener('resize', updateProgressBar);
-      window.removeEventListener('resize', revealAboveFoldNow);
+      window.removeEventListener('resize', onResizeReveal);
+      window.removeEventListener('hashchange', onHashReveal);
+      window.removeEventListener('scroll', onScrollRevealCheck);
       if (rafId !== null) window.cancelAnimationFrame(rafId);
-      if (timerId !== null) window.clearTimeout(timerId);
+      if (scrollRevealRaf !== null) window.cancelAnimationFrame(scrollRevealRaf);
+      if (timerId1 !== null) window.clearTimeout(timerId1);
+      if (timerId2 !== null) window.clearTimeout(timerId2);
       if (observer) observer.disconnect();
     };
   }, [pathname]);

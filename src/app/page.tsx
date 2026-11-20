@@ -63,7 +63,7 @@ export default function HomePage() {
       {/* =====================================================================
           SECTION 1: HERO SECTION (Dual Background Photos + Icon Trust Pills — PDF p. 1)
       ===================================================================== */}
-      <section className="relative z-10 overflow-hidden bg-slate-900 text-white py-14 sm:py-24 lg:py-28 border-b border-slate-200">
+      <section className="landscape-compact-hero relative z-10 overflow-hidden bg-slate-900 text-white py-12 sm:py-24 lg:py-28 border-b border-slate-200">
         {/* Dual Side Background Photos at Full Base Opacity Behind Translucent Overlay */}
         <div
           aria-hidden="true"
@@ -83,24 +83,24 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Translucent Overlay: Clear on Left/Right Flanks so Both Photos Show, Darker in Center for Crisp Text */}
+        {/* Translucent Overlay: Strong Contrast on Mobile, Clear Flanks on Desktop */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/50 via-slate-950/75 to-slate-950/50"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-950/82 to-slate-950/75 md:from-slate-950/55 md:via-slate-950/78 md:to-slate-950/55"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/40"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-slate-950/55"
         />
 
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center space-y-6">
-            {/* Compact Compliance Icon Badges Above Headline (PDF p. 1) */}
-            <div className="scroll-heading-reveal flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+          <div className="hero-stack max-w-3xl mx-auto text-center space-y-5 sm:space-y-6">
+            {/* Compact Compliance Icon Badges Above Headline */}
+            <div className="hero-pills flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
               {TRUST_BADGE_PILLS.map((badge) => (
                 <div
                   key={badge.label}
-                  className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/60 hover:bg-slate-950/80 border border-white/25 backdrop-blur-md text-[11px] sm:text-xs font-heading font-bold text-white shadow-sm transition-all"
+                  className="group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/75 hover:bg-slate-950/90 border border-white/25 backdrop-blur-md text-[11px] sm:text-xs font-heading font-bold text-white shadow-sm transition-all"
                 >
                   <span className="hover-icon-bounce text-brandCyan">
                     <DynamicIcon name={badge.iconName} className="w-3.5 h-3.5" />
@@ -111,20 +111,20 @@ export default function HomePage() {
             </div>
 
             {/* Main Headline */}
-            <h1 className="scroll-heading-reveal font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] drop-shadow-sm">
+            <h1 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] drop-shadow-sm">
               <span>Professional Cleaning Solutions Across </span>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan via-sky-200 to-brandCyan">
                 Western Australia.
               </span>
             </h1>
 
-            <p className="scroll-heading-reveal text-sm sm:text-lg text-slate-100 leading-relaxed max-w-2xl mx-auto font-medium drop-shadow-sm">
+            <p className="hero-lead text-sm sm:text-lg text-slate-100 leading-relaxed max-w-2xl mx-auto font-medium drop-shadow-sm">
               Reliable, police-checked cleaning for Perth homes, offices, schools, builders, and
               NDIS participants — with upfront pricing locked in before work begins.
             </p>
 
             {/* Primary CTAs */}
-            <div className="scroll-heading-reveal flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
+            <div className="hero-cta-row flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3.5 pt-2">
               <Link
                 href="/contact#quote-form"
                 className="min-h-[48px] inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_30px_rgba(0,128,240,0.45)] transition-all transform hover:-translate-y-0.5"
@@ -135,15 +135,15 @@ export default function HomePage() {
 
               <Link
                 href="/services"
-                className="min-h-[48px] inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/30 text-white font-heading font-bold text-sm sm:text-base backdrop-blur-md transition-all"
+                className="min-h-[48px] inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-slate-950/85 hover:bg-slate-900 border border-white/40 text-white font-heading font-bold text-sm sm:text-base shadow-lg backdrop-blur-md transition-all"
               >
                 <span>Explore Our Services</span>
               </Link>
             </div>
 
             {/* Concise Price-Beat Guarantee Strip */}
-            <div className="scroll-heading-reveal pt-2 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-white">
-              <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 bg-slate-950/60 border border-emerald-400/40 px-3.5 py-1.5 rounded-full backdrop-blur-md">
+            <div className="hero-guarantee pt-2 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-white">
+              <span className="inline-flex items-center gap-1.5 font-semibold text-emerald-300 bg-slate-950/75 border border-emerald-400/40 px-3.5 py-1.5 rounded-full backdrop-blur-md">
                 <BadgePercent className="w-4 h-4 text-emerald-400 shrink-0" />
                 100% Free Quote in 3 Minutes • We Beat Any Comparable Written Quote by 5%
               </span>
@@ -483,11 +483,12 @@ export default function HomePage() {
                     id="home-postcode-input"
                     name="suburb"
                     type="text"
+                    autoComplete="postal-code"
                     value={homePostcodeQuery}
                     onChange={(e) => setHomePostcodeQuery(e.target.value)}
                     placeholder="Enter your Perth postcode or suburb..."
                     aria-label="Enter your Perth postcode or suburb"
-                    className="flex-1 min-h-[44px] text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
+                    className="flex-1 min-h-[44px] text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none py-2 min-w-0"
                   />
                   <button
                     type="submit"

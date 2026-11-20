@@ -27,23 +27,23 @@ export default function IndustriesPage() {
       {/* =====================================================================
           HERO BANNER (Patio Jet Background + Compliance Badge Tabs — PDF p. 11)
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-900 text-white py-16 sm:py-24 border-b border-slate-200">
+      <section className="relative overflow-hidden bg-slate-900 text-white py-14 sm:py-24 border-b border-slate-200">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-center"
+          className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-[center_82%] sm:bg-[center_35%]"
           style={{
             backgroundImage: "url('/images/bg/nexora-patio-jet.jpg')",
           }}
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/65 to-slate-950/45"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/82 to-slate-950/65 sm:from-slate-950/85 sm:via-slate-950/70 sm:to-slate-950/50"
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-5">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-brandCyan/40 text-brandCyan text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/75 border border-brandCyan/40 text-brandCyan text-xs font-bold uppercase tracking-wider backdrop-blur-sm">
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
               <span>Equipped, Insured &amp; Screened for Western Australia</span>
             </div>
 
@@ -62,9 +62,9 @@ export default function IndustriesPage() {
               {TRUST_BADGE_PILLS.map((badge) => (
                 <div
                   key={badge.label}
-                  className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
+                  className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-950/70 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
                 >
-                  <span className="scroll-icon-bounce hover-icon-bounce text-brandCyan">
+                  <span className="hover-icon-bounce text-brandCyan shrink-0">
                     <DynamicIcon name={badge.iconName} className="w-4 h-4" />
                   </span>
                   <span>{badge.label}</span>

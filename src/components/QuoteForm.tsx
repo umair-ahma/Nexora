@@ -60,7 +60,7 @@ export default function QuoteForm({
     }
   }, [defaultSuburb]);
 
-  // Read URL query params (?service=...&suburb=...) on client mount and navigation
+  // Read URL query params (?service=...&suburb=...) and align #quote-form below sticky header
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const syncParams = () => {
@@ -70,12 +70,27 @@ export default function QuoteForm({
       if (serviceParam) setService(serviceParam);
       if (suburbParam) setSuburb(suburbParam);
     };
+    const alignHashTarget = () => {
+      if (window.location.hash === '#quote-form') {
+        const el = document.getElementById('quote-form');
+        if (el) {
+          window.requestAnimationFrame(() => {
+            el.scrollIntoView({ behavior: 'auto', block: 'start' });
+          });
+        }
+      }
+    };
     syncParams();
+    alignHashTarget();
+    const timer = window.setTimeout(alignHashTarget, 120);
     window.addEventListener('popstate', syncParams);
     window.addEventListener('hashchange', syncParams);
+    window.addEventListener('hashchange', alignHashTarget);
     return () => {
+      window.clearTimeout(timer);
       window.removeEventListener('popstate', syncParams);
       window.removeEventListener('hashchange', syncParams);
+      window.removeEventListener('hashchange', alignHashTarget);
     };
   }, []);
 
@@ -286,7 +301,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
   return (
     <div
       id="quote-form"
-      className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden"
+      className="scroll-mt-24 bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden"
     >
       {/* Clean Header Bar */}
       <div className="bg-gradient-to-r from-[#071126] via-[#0B1B3B] to-[#071126] p-6 sm:p-7 text-white border-b border-brandCyan/30">
@@ -357,7 +372,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             name="service"
             value={service}
             onChange={(e) => setService(e.target.value)}
-            className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 font-medium focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+            className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-base md:text-sm text-slate-900 font-medium focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
           >
             <option value="End-of-Lease / Bond / Vacate Cleaning">
               End-of-Lease / Bond / Vacate Cleaning (Popular)
@@ -406,11 +421,12 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               id="nexora-name"
               name="name"
               type="text"
+              autoComplete="name"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Liam Walker"
-              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
 
@@ -425,11 +441,13 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               id="nexora-phone"
               name="phone"
               type="tel"
+              inputMode="tel"
+              autoComplete="tel"
               required
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="e.g. 0493 848 764"
-              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
         </div>
@@ -447,11 +465,12 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               id="nexora-suburb"
               name="suburb"
               type="text"
+              autoComplete="postal-code"
               required
               value={suburb}
               onChange={(e) => setSuburb(e.target.value)}
               placeholder="e.g. Subiaco 6008 or Joondalup"
-              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
 
@@ -466,10 +485,12 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               id="nexora-email"
               name="email"
               type="email"
+              inputMode="email"
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com.au"
-              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
         </div>
@@ -489,7 +510,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               type="date"
               value={preferredDate}
               onChange={(e) => setPreferredDate(e.target.value)}
-              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-base md:text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             />
           </div>
 
@@ -505,7 +526,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
               name="property_size"
               value={propertySize}
               onChange={(e) => setPropertySize(e.target.value)}
-              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+              className="w-full min-h-[44px] rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-base md:text-sm text-slate-900 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
             >
               <option value="">Select size (optional)...</option>
               <option value="Studio / 1 Bed, 1 Bath">Studio / 1 Bed, 1 Bath</option>
@@ -580,7 +601,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
                   type="time"
                   value={preferredTimeValue}
                   onChange={(e) => setPreferredTimeValue(e.target.value)}
-                  className="min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm font-semibold text-slate-900 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none"
+                  className="min-h-[44px] rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-base md:text-sm font-semibold text-slate-900 focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none"
                 />
               </div>
 
@@ -626,7 +647,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Let us know if we need to know anything like property size, special requirements, bore water glass stains, oven add-on, or lockbox code..."
-            className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
+            className="w-full rounded-xl border border-slate-300 bg-slate-50/70 px-3.5 py-3 text-base md:text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-brandBlue focus:ring-2 focus:ring-brandBlue/20 focus:outline-none transition-all"
           />
         </div>
 

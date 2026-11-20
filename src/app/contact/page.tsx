@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import {
   Phone,
@@ -81,7 +81,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Column: All 3 Required Client Emails, Phone, SMS, WhatsApp & Hours (5 Cols) */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="scroll-card-snap bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-widest text-brandBlue">
                     Direct Perth Contacts
@@ -239,7 +239,7 @@ export default function ContactPage() {
               </div>
 
               {/* Light 5% Price Beat Guarantee Card */}
-              <div className="scroll-card-snap bg-emerald-50/90 text-slate-900 rounded-3xl p-6 border border-emerald-200 space-y-2">
+              <div className="bg-emerald-50/90 text-slate-900 rounded-3xl p-6 border border-emerald-200 space-y-2">
                 <div className="flex items-center gap-2 text-emerald-800 font-heading font-bold text-base">
                   <BadgePercent className="w-5 h-5 text-emerald-600 shrink-0" />
                   <span>We Will Beat All Quotes by 5%</span>
@@ -257,9 +257,7 @@ export default function ContactPage() {
 
             {/* Right Column: Interactive Quote Form (7 Cols) */}
             <div className="lg:col-span-7">
-              <Suspense fallback={<div className="p-10 text-center">Loading form...</div>}>
-                <QuoteForm />
-              </Suspense>
+              <QuoteForm />
             </div>
           </div>
         </div>

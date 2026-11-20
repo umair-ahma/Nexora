@@ -92,9 +92,9 @@ export default function ServicesOverviewPage() {
               {TRUST_BADGE_PILLS.map((badge) => (
                 <div
                   key={badge.label}
-                  className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
+                  className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-slate-950/70 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
                 >
-                  <span className="scroll-icon-bounce hover-icon-bounce text-brandCyan">
+                  <span className="hover-icon-bounce text-brandCyan shrink-0">
                     <DynamicIcon name={badge.iconName} className="w-4 h-4" />
                   </span>
                   <span>{badge.label}</span>

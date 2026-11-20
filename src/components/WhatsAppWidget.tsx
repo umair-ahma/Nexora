@@ -150,7 +150,7 @@ export default function WhatsAppWidget() {
               value={customMessage}
               onChange={(e) => setCustomMessage(e.target.value)}
               placeholder="Type your suburb or question..."
-              className="flex-1 min-h-[44px] text-xs px-3 py-2.5 rounded-xl bg-slate-100 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="flex-1 min-h-[44px] text-base md:text-xs px-3 py-2.5 rounded-xl bg-slate-100 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
             />
             <button
               type="submit"

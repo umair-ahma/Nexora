@@ -8,23 +8,139 @@ import {
   Sparkles,
   ArrowRight,
   CheckCircle2,
-  BadgePercent,
+  AlertTriangle,
   X,
 } from 'lucide-react';
 import { PERTH_REGIONS, SERVICE_CATEGORIES } from '@/data/nexoraData';
 import QuoteForm from '@/components/QuoteForm';
+
+type CoverageStatus = 'idle' | 'in-area' | 'regional-wa' | 'out-of-area' | 'unverified';
+
+interface CoverageResult {
+  status: CoverageStatus;
+  heading: string;
+  subtext: string;
+}
+
+function evaluateServiceAreaQuery(raw: string): CoverageResult {
+  const query = raw.trim();
+  if (!query) {
+    return {
+      status: 'idle',
+      heading: 'Instant Perth Metro Quote',
+      subtext:
+        'No extra metro travel surcharge • 100% Free Quote in 3 Minutes • 5% Price Beat',
+    };
+  }
+
+  // 1. Check 4-digit Australian postcode if present
+  const postcodeMatch = query.match(/\b(\d{4})\b/);
+  if (postcodeMatch) {
+    const code = parseInt(postcodeMatch[1], 10);
+    if (code >= 6000 && code <= 6214) {
+      return {
+        status: 'in-area',
+        heading: `Yes! Our Perth Crew Services "${query}"`,
+        subtext:
+          'Greater Perth & Peel corridor (6000–6214) • Zero metro travel surcharge • Free quote in 3 minutes',
+      };
+    }
+    if (code >= 6215 && code <= 6799) {
+      return {
+        status: 'regional-wa',
+        heading: `"${query}" Is Regional WA (Outside Standard Perth Metro)`,
+        subtext:
+          'Our standard metro coverage is postcodes 6000–6214. Submit your details below to check regional WA availability.',
+      };
+    }
+    return {
+      status: 'out-of-area',
+      heading: `"${query}" Is Outside Our Perth & WA Service Area`,
+      subtext:
+        'Nexora Cleaning Co operates in Greater Perth & Peel, WA (postcodes 6000–6214). Please double-check your WA postcode or contact us below.',
+    };
+  }
+
+  // 2. Reject purely numeric non-4-digit inputs (e.g. "999", "123456")
+  if (/^\d+$/.test(query)) {
+    return {
+      status: 'out-of-area',
+      heading: `"${query}" Is Not a Valid Perth Metro Postcode`,
+      subtext:
+        'Enter a 4-digit Perth Metro / Peel postcode (6000–6214) or suburb name (e.g. Subiaco, Joondalup, Fremantle).',
+    };
+  }
+
+  // 3. Match against known Perth suburbs, regions, or WA metro keywords
+  const lower = query.toLowerCase();
+  const matchedRegion = PERTH_REGIONS.find(
+    (r) =>
+      r.regionName.toLowerCase().includes(lower) ||
+      lower.includes(r.regionName.toLowerCase()) ||
+      r.suburbs.some(
+        (s) =>
+          s.toLowerCase() === lower ||
+          (lower.length >= 3 && s.toLowerCase().includes(lower)) ||
+          (s.length >= 4 && lower.includes(s.toLowerCase()))
+      )
+  );
+
+  const metroKeywords = [
+    'perth',
+    'western australia',
+    'fremantle',
+    'joondalup',
+    'mandurah',
+    'rockingham',
+    'midland',
+    'subiaco',
+    'peel',
+    'swan valley',
+    'hills',
+  ];
+
+  if (matchedRegion || metroKeywords.some((kw) => lower.includes(kw))) {
+    return {
+      status: 'in-area',
+      heading: `Yes! Our Perth Crew Services "${query}"`,
+      subtext: matchedRegion
+        ? `${matchedRegion.regionName} (${matchedRegion.postcodeRange}) • Zero metro travel surcharge • Free quote in 3 minutes`
+        : 'Greater Perth Metro coverage • Zero metro travel surcharge • Free quote in 3 minutes',
+    };
+  }
+
+  return {
+    status: 'unverified',
+    heading: `We Couldn't Confirm "${query}" as a Perth Metro Suburb`,
+    subtext:
+      'We cover Greater Perth & Peel, WA (postcodes 6000–6214). Enter your 4-digit WA postcode or submit below so our coordinator can confirm.',
+  };
+}
 
 export default function ServiceAreasPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [quoteForcedOpen, setQuoteForcedOpen] = useState(false);
 
   const isQuoteDrawerOpen = searchQuery.trim().length > 0 || quoteForcedOpen;
+  const coverage = evaluateServiceAreaQuery(searchQuery);
+
+  const scrollDrawerIntoView = () => {
+    window.requestAnimationFrame(() => {
+      const el = document.getElementById('postcode-quote-drawer');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
+  const handleStartQuote = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setQuoteForcedOpen(true);
+    scrollDrawerIntoView();
+  };
 
   const handleSelectRegion = (regionLabel: string) => {
     setSearchQuery(regionLabel);
     setQuoteForcedOpen(true);
-    const el = document.getElementById('postcode-quote-drawer');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollDrawerIntoView();
   };
 
   return (
@@ -63,7 +179,10 @@ export default function ServiceAreasPage() {
 
           {/* Centerpiece Postcode / Suburb Bar (PDF p. 10) */}
           <div className="pt-2 max-w-2xl mx-auto">
-            <div className="relative flex items-center bg-white rounded-2xl p-1.5 sm:p-2 shadow-2xl border-2 border-brandCyan/60">
+            <form
+              onSubmit={handleStartQuote}
+              className="relative flex items-center bg-white rounded-2xl p-1.5 sm:p-2 shadow-2xl border-2 border-brandCyan/60"
+            >
               <label htmlFor="service-area-postcode-input" className="sr-only">
                 Enter Perth postcode or suburb
               </label>
@@ -72,11 +191,12 @@ export default function ServiceAreasPage() {
                 id="service-area-postcode-input"
                 name="postcode"
                 type="text"
+                autoComplete="postal-code"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Enter Perth postcode or suburb..."
                 aria-label="Enter Perth postcode or suburb"
-                className="flex-1 min-w-0 min-h-[44px] px-2.5 sm:px-3 py-2.5 sm:py-3 text-slate-900 placeholder:text-slate-400 text-xs sm:text-base font-medium focus:outline-none"
+                className="flex-1 min-w-0 min-h-[44px] px-2.5 sm:px-3 py-2.5 sm:py-3 text-slate-900 placeholder:text-slate-400 text-base font-medium focus:outline-none"
               />
               {searchQuery && (
                 <button
@@ -92,13 +212,12 @@ export default function ServiceAreasPage() {
                 </button>
               )}
               <button
-                type="button"
-                onClick={() => setQuoteForcedOpen(true)}
+                type="submit"
                 className="min-h-[44px] px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-brandBlue to-brandCyan text-white font-heading font-bold text-xs sm:text-sm shrink-0 shadow-md whitespace-nowrap"
               >
                 Start Quote
               </button>
-            </div>
+            </form>
 
             {/* Quick Postcode Pills */}
             <div className="flex flex-wrap items-center justify-center gap-2 pt-3 text-xs">
@@ -123,23 +242,39 @@ export default function ServiceAreasPage() {
       {/* =====================================================================
           POP-DOWN QUOTE PROCESS (Appears as soon as Postcode / Suburb is entered — PDF p. 10)
       ===================================================================== */}
-      <div id="postcode-quote-drawer" className="bg-sky-50/70 border-b border-sky-100 scroll-mt-24">
+      <div id="postcode-quote-drawer" className="bg-sky-50/70 border-b border-sky-100 scroll-mt-20">
         <div className={`pop-down-drawer ${isQuoteDrawerOpen ? 'is-open' : ''}`}>
           <div className="pop-down-inner">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border border-emerald-200 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-6 h-6" />
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 space-y-6">
+              <div
+                role="status"
+                aria-live="polite"
+                className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-5 rounded-2xl border shadow-sm ${
+                  coverage.status === 'out-of-area' || coverage.status === 'regional-wa' || coverage.status === 'unverified'
+                    ? 'border-amber-300 bg-amber-50/40'
+                    : 'border-emerald-200'
+                }`}
+              >
+                <div className="flex items-start sm:items-center gap-3">
+                  <div
+                    className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${
+                      coverage.status === 'out-of-area' || coverage.status === 'regional-wa' || coverage.status === 'unverified'
+                        ? 'bg-amber-100 text-amber-700'
+                        : 'bg-emerald-100 text-emerald-700'
+                    }`}
+                  >
+                    {coverage.status === 'out-of-area' || coverage.status === 'regional-wa' || coverage.status === 'unverified' ? (
+                      <AlertTriangle className="w-6 h-6" />
+                    ) : (
+                      <CheckCircle2 className="w-6 h-6" />
+                    )}
                   </div>
                   <div>
                     <p className="font-heading font-extrabold text-base text-slate-900">
-                      {searchQuery.trim()
-                        ? `Yes! Our Perth Crew Services "${searchQuery.trim()}"`
-                        : 'Instant Perth Metro Quote'}
+                      {coverage.heading}
                     </p>
-                    <p className="text-xs text-slate-600">
-                      No extra metro travel surcharge • 100% Free Quote in 3 Minutes • 5% Price Beat
+                    <p className="text-xs text-slate-600 leading-relaxed mt-0.5">
+                      {coverage.subtext}
                     </p>
                   </div>
                 </div>
@@ -149,7 +284,7 @@ export default function ServiceAreasPage() {
                     setSearchQuery('');
                     setQuoteForcedOpen(false);
                   }}
-                  className="min-h-[44px] px-3 inline-flex items-center text-xs font-semibold text-slate-500 hover:text-slate-800 self-end sm:self-center"
+                  className="min-h-[44px] px-3 inline-flex items-center text-xs font-semibold text-slate-600 hover:text-slate-900 self-end sm:self-center shrink-0"
                 >
                   Close Drawer ✕
                 </button>

@@ -79,9 +79,9 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
   return (
     <div className="flex flex-col">
       {/* =====================================================================
-          HERO BANNER: Translucent Background Photo + 1-Liner Intro + CTA
+          HERO BANNER: Mobile-First Above-the-Fold CTA + High-Contrast Copy
       ===================================================================== */}
-      <section className="relative overflow-hidden bg-slate-900 text-white py-14 sm:py-24 border-b border-slate-200">
+      <section className="relative overflow-hidden bg-slate-900 text-white py-6 sm:py-16 lg:py-20 border-b border-slate-200">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 hero-bg-motion bg-cover bg-center"
@@ -91,55 +91,80 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/70 to-slate-950/55"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/86 to-slate-950/75"
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* Breadcrumbs */}
-          <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
-            <Link href="/" className="hover:text-brandCyan transition-colors">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 sm:space-y-6">
+          {/* Breadcrumbs (44px+ Touch Targets) */}
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-1 text-xs text-slate-300">
+            <Link
+              href="/"
+              className="min-h-[44px] inline-flex items-center px-1.5 py-2 hover:text-brandCyan transition-colors"
+            >
               Home
             </Link>
-            <span>/</span>
-            <Link href="/services" className="hover:text-brandCyan transition-colors">
+            <span aria-hidden="true">/</span>
+            <Link
+              href="/services"
+              className="min-h-[44px] inline-flex items-center px-1.5 py-2 hover:text-brandCyan transition-colors"
+            >
               Cleaning Services
             </Link>
-            <span>/</span>
+            <span aria-hidden="true">/</span>
             <Link
               href={`/services#${service.categoryId}`}
-              className="hover:text-brandCyan transition-colors"
+              className="min-h-[44px] inline-flex items-center px-1.5 py-2 hover:text-brandCyan transition-colors"
             >
               {service.categoryName}
             </Link>
-            <span>/</span>
-            <span className="text-white font-semibold">{service.title}</span>
-          </div>
+            <span aria-hidden="true">/</span>
+            <span className="px-1.5 py-2 text-white font-semibold">{service.shortTitle}</span>
+          </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            <div className="lg:col-span-8 space-y-5">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-slate-200 text-xs font-bold uppercase tracking-wider">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+            <div className="lg:col-span-8 space-y-3.5 sm:space-y-5">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/75 border border-white/20 text-slate-200 text-[11px] sm:text-xs font-bold uppercase tracking-wider">
                   <DynamicIcon name={service.iconName} className="w-3.5 h-3.5 text-brandCyan" />
                   {service.categoryName}
                 </span>
 
                 <span
-                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-xs font-extrabold uppercase tracking-wider ${getBadgeStyle()}`}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] sm:text-xs font-extrabold uppercase tracking-wider ${getBadgeStyle()}`}
                 >
                   {service.badgeText}
                 </span>
               </div>
 
-              <h1 className="font-heading text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
+              <h1 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
                 {service.title}
               </h1>
 
-              {/* Client-Specified 1-Liner Intro */}
-              <p className="text-lg sm:text-xl text-brandCyan font-medium leading-relaxed">
+              {/* High-Contrast 1-Liner Intro */}
+              <p className="text-sm sm:text-lg text-sky-100 font-medium leading-relaxed">
                 {service.oneLiner}
               </p>
 
-              <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-3xl">
+              {/* Primary CTA Buttons (Placed Immediately Above the Fold on Mobile) */}
+              <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 pt-1">
+                <Link
+                  href={`/contact?service=${encodeURIComponent(service.title)}#quote-form`}
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_25px_rgba(0,128,240,0.45)] transition-all"
+                >
+                  <span>Request a Free Quote</span>
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+
+                <a
+                  href={BRAND_INFO.phoneHref}
+                  className="min-h-[48px] inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-950/80 hover:bg-slate-900 border border-white/30 text-white font-heading font-bold text-sm sm:text-base transition-all"
+                >
+                  <Phone className="w-4 h-4 text-brandCyan" />
+                  <span>{BRAND_INFO.phoneDisplay}</span>
+                </a>
+              </div>
+
+              <p className="text-xs sm:text-base text-slate-200 leading-relaxed max-w-3xl pt-1">
                 {service.overview}
               </p>
 
@@ -148,7 +173,7 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 {TRUST_BADGE_PILLS.map((badge) => (
                   <span
                     key={badge.label}
-                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/70 border border-white/20 backdrop-blur-md text-xs font-heading font-bold text-white"
                   >
                     <DynamicIcon name={badge.iconName} className="w-3.5 h-3.5 text-brandCyan" />
                     <span>{badge.label}</span>
@@ -156,32 +181,13 @@ export default function IndividualServicePage({ params }: ServiceDetailPageProps
                 ))}
               </div>
 
-              {/* Special Status Callout Box if Coming Soon / Add-On / Trusted Partner */}
+              {/* Special Status Callout Box if Add-On / Trusted Partner */}
               {service.addOnNote && (
-                <div className="p-4 rounded-2xl bg-white/10 border border-brandCyan/40 text-xs sm:text-sm text-slate-100 flex items-start gap-3">
+                <div className="p-4 rounded-2xl bg-slate-950/75 border border-brandCyan/40 text-xs sm:text-sm text-slate-100 flex items-start gap-3">
                   <Info className="w-5 h-5 text-brandCyan shrink-0 mt-0.5" />
                   <span>{service.addOnNote}</span>
                 </div>
               )}
-
-              {/* Primary CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <Link
-                  href={`/contact?service=${encodeURIComponent(service.title)}#quote-form`}
-                  className="min-h-[48px] inline-flex items-center gap-2 px-7 py-4 rounded-2xl bg-gradient-to-r from-brandBlue to-brandCyan hover:from-brandRoyal hover:to-brandBlue text-white font-heading font-extrabold text-sm sm:text-base shadow-[0_10px_25px_rgba(0,128,240,0.45)] transition-all"
-                >
-                  <span>Request a Free Quote</span>
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-
-                <a
-                  href={BRAND_INFO.phoneHref}
-                  className="min-h-[48px] inline-flex items-center gap-2 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-heading font-bold text-sm sm:text-base transition-all"
-                >
-                  <Phone className="w-4 h-4 text-brandCyan" />
-                  <span>{BRAND_INFO.phoneDisplay}</span>
-                </a>
-              </div>
             </div>
 
             {/* Right Trust Summary Card */}
