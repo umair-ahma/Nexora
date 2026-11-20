@@ -339,6 +339,7 @@ ${notes ? `- Notes: ${notes}` : ''}`;
             value={websiteUrl}
             onChange={(e) => setWebsiteUrl(e.target.value)}
             tabIndex={-1}
+            aria-hidden="true"
             autoComplete="off"
           />
         </div>

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'Privacy Policy & Terms of Service | Nexora Cleaning Co WA',
   description:
     'Privacy Policy (compliant with the Australian Privacy Principles) and Service Terms & Conditions for Nexora Cleaning Co across Perth and Western Australia.',
+  alternates: {
+    canonical: '/privacy-terms',
+  },
 };
 
 export default function PrivacyTermsPage() {

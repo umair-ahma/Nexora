@@ -139,6 +139,17 @@ body {
     animation-delay: var(--stagger-delay, 0ms);
   }
 
+  /* Instant above-the-fold reveal (prevents faded cards on tall 4K screens at initial load) */
+  .scroll-heading-reveal[data-instant='true'],
+  .scroll-card-snap[data-instant='true'],
+  .scroll-icon-bounce[data-instant='true'],
+  .scroll-card-snap[data-instant='true'] .scroll-icon-bounce {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
   /* 4. Interactive Hover Icon Micro-Bounce */
   @keyframes micro-bounce {
     0%,

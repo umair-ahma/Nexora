@@ -46,6 +46,9 @@ export function generateMetadata({ params }: ServiceDetailPageProps): Metadata {
   return {
     title: `${service.title} Perth WA | Free Quote in 3 Minutes`,
     description: `${service.oneLiner} Insured, police-checked staff across Perth & Western Australia. We beat any comparable written quote by 5%.`,
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
   };
 }
 

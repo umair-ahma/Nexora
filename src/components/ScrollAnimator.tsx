@@ -29,6 +29,23 @@ export default function ScrollAnimator() {
 
     let observer: IntersectionObserver | null = null;
     let rafId: number | null = null;
+    let timerId: number | null = null;
+
+    const revealAboveFoldNow = () => {
+      const elements = document.querySelectorAll<HTMLElement>(
+        '.scroll-card-snap, .scroll-heading-reveal, .scroll-icon-bounce'
+      );
+      const viewportLimit = window.innerHeight + 120;
+      elements.forEach((el) => {
+        if (el.getAttribute('data-inview') === 'true') return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top < viewportLimit && rect.bottom > -40) {
+          el.style.setProperty('--stagger-delay', '0ms');
+          el.setAttribute('data-instant', 'true');
+          el.setAttribute('data-inview', 'true');
+        }
+      });
+    };
 
     const initScrollReveals = () => {
       const elements = document.querySelectorAll<HTMLElement>(
@@ -36,17 +53,22 @@ export default function ScrollAnimator() {
       );
 
       if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-        elements.forEach((el) => el.setAttribute('data-inview', 'true'));
+        elements.forEach((el) => {
+          el.setAttribute('data-instant', 'true');
+          el.setAttribute('data-inview', 'true');
+        });
         return;
       }
 
       // Immediately reveal anything already visible in the initial viewport (critical for tall 4K screens)
       // and assign staggered cascade delays only to below-the-fold sibling cards
       const parentCounts = new Map<Element, number>();
+      const viewportLimit = window.innerHeight + 120;
       elements.forEach((el) => {
         const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight + 60) {
+        if (rect.top < viewportLimit) {
           el.style.setProperty('--stagger-delay', '0ms');
+          el.setAttribute('data-instant', 'true');
           el.setAttribute('data-inview', 'true');
           return;
         }
@@ -70,7 +92,7 @@ export default function ScrollAnimator() {
         },
         {
           threshold: 0.01,
-          rootMargin: '0px 0px 40px 0px',
+          rootMargin: '0px 0px 80px 0px',
         }
       );
 
@@ -79,15 +101,23 @@ export default function ScrollAnimator() {
       });
     };
 
-    // Run after paint so all client components on the route have mounted
+    // Reveal immediately, then re-verify after paint and layout settlement
+    initScrollReveals();
     rafId = window.requestAnimationFrame(() => {
-      initScrollReveals();
+      revealAboveFoldNow();
     });
+    timerId = window.setTimeout(() => {
+      revealAboveFoldNow();
+    }, 150);
+
+    window.addEventListener('resize', revealAboveFoldNow, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', updateProgressBar);
       window.removeEventListener('resize', updateProgressBar);
+      window.removeEventListener('resize', revealAboveFoldNow);
       if (rafId !== null) window.cancelAnimationFrame(rafId);
+      if (timerId !== null) window.clearTimeout(timerId);
       if (observer) observer.disconnect();
     };
   }, [pathname]);

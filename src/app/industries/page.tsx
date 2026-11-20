@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: 'Industries We Serve | Homes, Offices, Schools, Childcare, NDIS & Builders WA',
   description:
     'Nexora Cleaning Co supports homes, corporate offices, construction builders, schools, childcare centres, aged care, NDIS self & plan-managed participants, events, and property managers across Western Australia.',
+  alternates: {
+    canonical: '/industries',
+  },
 };
 
 export default function IndustriesPage() {

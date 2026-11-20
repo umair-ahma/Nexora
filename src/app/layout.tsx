@@ -9,6 +9,9 @@ import { BRAND_INFO } from '@/data/nexoraData';
 
 export const metadata: Metadata = {
   metadataBase: new URL(BRAND_INFO.siteUrl),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default:
       'Nexora Cleaning Co | Professional Cleaning Solutions Across Western Australia',
@@ -103,10 +106,18 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col bg-slate-100 text-slate-900">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:px-4 focus:py-3 focus:min-h-[44px] focus:inline-flex focus:items-center focus:rounded-xl focus:bg-brandBlue focus:text-white focus:font-heading focus:font-bold focus:text-sm focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+        >
+          Skip to main content
+        </a>
         <div className="min-h-screen w-full max-w-[1920px] mx-auto flex flex-col bg-white shadow-sm">
           <ScrollAnimator />
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+            {children}
+          </main>
           <Footer />
           <WhatsAppWidget />
           <StickyMobileBar />

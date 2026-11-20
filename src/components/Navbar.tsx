@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -26,7 +26,20 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   const navLinks = [
     { label: 'Services', href: '/services', hasDropdown: true },
@@ -212,9 +225,12 @@ export default function Navbar() {
               Free Quote
             </Link>
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-nav-drawer"
               className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center p-2.5 rounded-xl bg-slate-100 text-slate-900 hover:bg-slate-200 shrink-0"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -225,7 +241,10 @@ export default function Navbar() {
 
       {/* Clean, Breathable Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-6 space-y-2 max-h-[82vh] overflow-y-auto shadow-xl">
+        <div
+          id="mobile-nav-drawer"
+          className="lg:hidden bg-white border-t border-slate-200 px-4 pt-3 pb-6 space-y-2 max-h-[82vh] overflow-y-auto shadow-xl"
+        >
           <Link
             href="/"
             onClick={() => setMobileMenuOpen(false)}

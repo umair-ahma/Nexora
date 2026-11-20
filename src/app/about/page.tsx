@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: 'About Nexora Cleaning Co | Trusted WA Cleaning Company',
   description:
     'Learn about Nexora Cleaning Co in Perth, Western Australia. Police-checked, WWCC-screened, White Card certified & NDIS self/plan-managed cleaning across Perth Metro.',
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 export default function AboutPage() {

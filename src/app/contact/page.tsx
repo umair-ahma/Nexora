@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   title: 'Contact & Request a Free Quote | Nexora Cleaning Co Perth WA',
   description:
     'Contact Nexora Cleaning Co in Perth, Western Australia. Get a 100% free quote in 3 minutes at info@nexoracleaning.au or via our short mobile quote form. We beat any comparable written quote by 5%.',
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export default function ContactPage() {
