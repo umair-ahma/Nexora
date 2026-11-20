@@ -31,6 +31,7 @@ import {
 import DynamicIcon from '@/components/DynamicIcon';
 import QuoteForm from '@/components/QuoteForm';
 import FaqAccordion from '@/components/FaqAccordion';
+import ReviewForm from '@/components/ReviewForm';
 import ScrollLogoBackground from '@/components/ScrollLogoBackground';
 
 export default function HomePage() {
@@ -444,6 +445,11 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Expandable On-Site Customer Review Submission Form (relays to info@nexoracleaning.au) */}
+          <div className="pt-2">
+            <ReviewForm />
           </div>
         </div>
       </section>
